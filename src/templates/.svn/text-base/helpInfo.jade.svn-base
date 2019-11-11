@@ -1,0 +1,24 @@
+extends template.jade
+block titleAndStyles
+    title 帮助与反馈详情
+    link(rel="stylesheet",type="text/css",href="./static/css/out/main.css")
+block scripts
+    script(type='text/javascript',src='./static/js/def/helpInfo.js',charset='utf-8')
+block content
+    div.page-group
+        div.page.page-current
+            div.content
+                //-
+                    div.helplist
+                        a.help_about_x.external.bord_top.on(href="javascript:void(0)") 关于微理财
+                        p.helpInfo.on 第一条订立本协议的目的在于确保甲、定的双方的职责和权利。乙方作为单独的企业法人或经营者进行经济活动。因此，他必须遵守对所 有企业法人或经营者共同的法律要求，特别是有关资格的规则以及社会的、财务的商业要求。作为一个企业法人或经营者，乙方应就其活动自负一切风险和从合法经 营中获利乙方不是甲方的代理人，也不是甲方的雇员和合伙人。作为一个企业法人或经营者乙方应就其活动自负一切风险和从合法经 理人，乙方不是作为甲方委托代表。
+                        a.help_about_x.external(href="javascript:void(0)") 安全保障
+                        p.helpInfo 第二条订立本协议的目的在于确保甲、定的双方的职责和权利。乙方作为单独的企业法人或经营者进行经济活动。因此，他必须遵守对所 有企业法人或经营者共同的法律要求，特别是有关资格的规则以及社会的、财务的商业要求。作为一个企业法人或经营者，乙方应就其活动自负一切风险和从合法经 营中获利乙方不是甲方的代理人，也不是甲方的雇员和合伙人。作为一个企业法人或经营者乙方应就其活动自负一切风险和从合法经 理人，乙方不是作为甲方委托代表。
+                        a.help_about_x.external(href="javascript:void(0)") 微博金融如何帮我理财
+                        p.helpInfo 第三条订立本协议的目的在于确保甲、定的双方的职责和权利。乙方作为单独的企业法人或经营者进行经济活动。因
+                        a.help_about_x.external(href="javascript:void(0)") 在微博金融理财优势
+                        p.helpInfo 第四条订立本协议的目的在于确保甲、定的双方的职责和权利。乙方作为单独的企业法人或经营者进行经济活动。因
+                        a.help_about_x.external(href="javascript:void(0)") 微博金融安全吗
+                        p.helpInfo 第五条订立本协议的目的在于确保甲、定的双方的职责和权利。乙方作为单独的企业法人或经营者进行经济活动。因
+                        a.help_about_x.external(href="javascript:void(0)") 账户与安全
+                        p.helpInfo 第六条订立本协议的目的在于确保甲、定的双方的职责和权利。乙方作为单独的企业法人或经营者进行经济活动。因

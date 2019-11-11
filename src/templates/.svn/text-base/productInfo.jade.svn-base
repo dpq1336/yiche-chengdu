@@ -1,0 +1,61 @@
+extends template.jade
+block titleAndStyles
+	title 产品详情
+	style.
+		.page {
+			height: auto;
+		}
+block scripts
+	script(type='text/javascript',src='./static/js/def/productInfo.js',charset='utf-8')
+block content
+	div.page-group
+		div.page.page_nav.pb100
+			//-
+				a.com_btn.pro_buy_btn.my-tab.external(href="buyProduct.html") 立即购买
+				div.content.native-scroll
+					div.pro_top_sy
+						div.pt_sy_tit 预期年化收益率
+						div.pt_sy_num 11.5<span>+</span>0.5<span>%</span>
+						div.pt_sy_process
+							div.process_num(style={width:'60%'}) <span>67%</span>
+						div.pt_sy_money 剩余可购买金额<span>321,200</span>元
+					div.pro_top_sy_c
+						div.syc_l
+							div.syc_item1 <span>期限</span>
+							div.syc_item2 <span>180</span>天
+						div.syc_r
+							div.syc_item1 <span>起投金额</span>
+							div.syc_item2 <span>1000</span >元
+					div.pro_mid_type
+						div.pmt_top
+							div.pmt_1
+								div.pmt_item 发起募集
+								div.pmt_item 开始计息
+								div.pmt_item 到期日期
+							div.pmt_2
+								span.pmt_circle1
+								span.pmt_circle2
+								span.pmt_circle3
+							div.pmt_3
+								div.pmt_item 2016-06-23
+								div.pmt_item 2016-06-23
+								div.pmt_item 2016-06-23
+						div.pmt_bot
+							div.pbot_l 还款方式：
+							div.pbot_2 到期自动承兑本息，资金将在3个工作日内转入原支付账户（具体到账时间视银行而定）
+					div.pro_deatail.t_card
+						a.pd_top1.t_card_tit.tit_arrow(href="productProtocol.html") 产品详情<span class="t_card_r_text">查看合同</span>
+						div.pd_text 本产品为大连金融资产三方资金监管交易中心推送并管理的固定收益类安全保障理财产品。
+					div.pro_safe_bz.t_card
+						a.pd_top1.t_card_tit.tit_arrow(href="javascript:void(0)") 安全保障<span class="t_card_r_text">更多详情</span>
+						div.pd_th_icon
+							a.external(href="#")
+								div.thi_item
+									img(src="./static/images/def/icons/p_safe_icon1.png")
+									div 账户安全保障
+								div.thi_item
+									img(src="./static/images/def/icons/p_safe_icon2.png")
+									div 金融机构增信
+								div.thi_item
+									img(src="./static/images/def/icons/p_safe_icon3.png")
+									div 三方资金监管

@@ -1,0 +1,36 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.babel.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=dev gulp",
+    "build": "cross-env NODE_ENV=build gulp",
+    "prd": "cross-env NODE_ENV=prd gulp"
+  },
+  "author": "826302928@qq.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "browser-sync": "^2.26.7",
+    "core-js": "^3.1.4",
+    "cross-env": "^5.2.0",
+    "del": "^5.0.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-csso": "^3.0.1",
+    "gulp-if": "^3.0.0",
+    "gulp-inject": "^5.0.4",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rev": "^9.0.0",
+    "gulp-rev-collector": "^1.3.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "gulp-url-prefixer": "^1.0.2",
+    "gulp-zip": "^4.0.0"
+  }
+}

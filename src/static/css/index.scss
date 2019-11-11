@@ -1,0 +1,1079 @@
+.main_banner {
+  height: 296px;
+}
+
+.main_nav {
+  height: 40px;
+  background: #4180FF;
+}
+
+.main_nav .wrapper {
+  width: 1200px;
+  height: 40px;
+  margin: 0 auto;
+
+  ul {
+    li {
+      float: left;
+      line-height: 40px;
+
+      a {
+        display: inline-block;
+        color: white;
+        font-weight: 800;
+        padding: 0 35px;
+        font-size: 14px;
+      }
+
+      a:hover {
+        color: #22FBB5;
+        background-color: #0532FE;
+      }
+    }
+
+    li:nth-child(1) a {
+      color: #22FBB5;
+      background-color: #0532FE;
+
+    }
+  }
+
+}
+
+.main_pic {
+  padding-top: 20px;
+  background-color: #0532FF;
+  padding-bottom: 90px;
+
+  .wrapper {
+    width: 1200px;
+    margin: 0 auto;
+
+    .brand {
+      height: 120px;
+      background-color: #4180FF;
+      position: relative;
+
+      ._left,
+      ._right {
+        width: 10px;
+        height: 20px;
+        cursor: pointer;
+      }
+
+      ._left {
+        position: absolute;
+        background: url('http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-left.png') no-repeat;
+        background-size: 100%;
+        left: 20px;
+        top: 50px;
+      }
+
+      ._right {
+        position: absolute;
+        background: url('http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-right.png') no-repeat;
+        background-size: 100%;
+        right: 20px;
+        top: 50px;
+      }
+
+      .main {
+        width: 1060px;
+        height: 120px;
+        margin: 0 auto;
+        overflow: hidden;
+
+        .cars {
+          width: 3000px;
+
+          ul {
+            width: 100%;
+            height: 120px;
+            box-sizing: border-box;
+            padding-top: 30px;
+
+            li {
+              width: 50px;
+              float: left;
+              text-align: center;
+              margin-right: 34px;
+              height: 90px;
+              position: relative;
+
+              a:nth-child(1) {
+                display: inline-block;
+                margin-bottom: 10px;
+              }
+
+              a:nth-child(2) {
+                position: absolute;
+                display: block;
+                color: white;
+                font-size: 12px;
+                bottom: 20px;
+                text-align: center;
+              }
+            }
+
+          }
+        }
+      }
+    }
+
+    .main_cars {
+      height: 157px;
+      background-color: white;
+      margin-bottom: 20px;
+
+      .left {
+        width: 70px;
+        height: 147px;
+        background-color: #4180FF;
+        margin-top: 10px;
+        margin-right: 40px;
+        padding: 25px 22.5px;
+        box-sizing: border-box;
+
+        span {
+          display: inline-block;
+          color: white;
+          font-size: 24px;
+          font-weight: bold;
+          line-height: 26px;
+        }
+      }
+
+      .right {
+        float: left;
+
+        ul {
+          li {
+            float: left;
+            margin-right: 45px;
+
+            a:nth-child(1) {
+              display: inline-block;
+              background-color: #22FBB5;
+              width: 120px;
+              height: 80px;
+              margin-top: 15px;
+            }
+
+            a:nth-child(2) {
+              display: block;
+              font-size: 14px;
+              color: #333333;
+              text-align: center;
+              margin-bottom: 10px;
+
+            }
+
+            h5 {
+              color: #999999;
+              font-size: 12px;
+              font-weight: normal;
+              text-align: center;
+            }
+          }
+
+          li:nth-child(7) {
+            margin-right: 0;
+            width: 60px;
+
+            a {
+              display: inline-block;
+              width: 100%;
+            }
+          }
+        }
+      }
+
+    }
+
+    .pic_lunbo {
+
+      .swiper-container {
+        width: 100%;
+        height: 320px;
+        position: relative;
+        box-sizing: content-box;
+        z-index: 1;
+        overflow: hidden;
+        padding-bottom: 60px;
+
+
+        .swiper-wrapper {
+          width: 3600px;
+          height: 100%;
+          z-index: 1;
+
+          .swiper-slide {
+            float: left;
+            width: 1200px;
+            height: 320px;
+
+            .left {
+              width: 477px;
+              height: 320px;
+              margin-right: 5px;
+
+              a {
+                display: inline-block;
+                position: relative;
+
+                p {
+                  width: 100%;
+                  position: absolute;
+                  text-align: center;
+                  font-weight: bold;
+                  color: white;
+                  font-size: 20px;
+                  bottom: 15px;
+                }
+              }
+            }
+
+            .right {
+              width: 718px;
+
+              ul {
+                li {
+                  float: left;
+                  margin-right: 5px;
+                  margin-bottom: 5px;
+                  width: 236px;
+                  height: 157px;
+
+                  a {
+                    display: inline-block;
+                    position: relative;
+                    width: 236px;
+                    height: 157px;
+
+                    img {
+                      width: 100%;
+                      height: 100%;
+                    }
+
+                    p {
+                      width: 100%;
+                      position: absolute;
+                      text-align: center;
+                      font-weight: normal;
+                      color: white;
+                      font-size: 16px;
+                      bottom: 10px;
+                    }
+                  }
+                }
+
+                li:nth-child(3n) {
+                  margin-right: 0;
+                }
+
+                li:nth-child(n+3) {
+                  margin-bottom: 0;
+                }
+              }
+            }
+          }
+        }
+
+        .swiper-button-prev {
+          width: 30px;
+          height: 60px;
+          position: absolute;
+          left: 0;
+          top: 160px;
+        }
+
+
+        .swiper-button-next {
+          position: absolute;
+          width: 30px;
+          height: 60px;
+          right: 0;
+          top: 160px;
+        }
+
+        .swiper-pagination {
+          position: absolute;
+          width: 80px;
+          height: 15px;
+          bottom: 20px;
+          left: 560px;
+
+          span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: white;
+            border: 2px solid black;
+          }
+        }
+
+      }
+    }
+
+    .banner {
+      height: 80px;
+      margin-bottom: 65px;
+
+      .left {
+        height: 100%;
+        width: 820px;
+
+        a {
+          display: inline-block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .right {
+        height: 100%;
+        width: 360px;
+
+        a {
+          display: inline-block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    .main_live {
+      background-color: #4180FF;
+      height: 750px;
+      position: relative;
+
+      .top {
+        width: 1200px;
+        height: 71px;
+        z-index: 22;
+        position: absolute;
+        background: url('http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-banner-6.png');
+      }
+
+      .live {
+        width: 1150px;
+        transform: translateY(71px);
+        height: 462px;
+        margin: 0 auto;
+
+        .player-box {
+          width: 100%;
+          height: 462px;
+
+          .vidbox {}
+
+          .play-right-box {
+            height: 462px;
+          }
+
+          .play-img {
+            height: 462px;
+          }
+        }
+      }
+
+      .bottom {
+        width: 1150px;
+        margin: 0 auto;
+        margin-top: 20px;
+        overflow-x: scroll;
+        height: 127px;
+        transform: translateY(71px);
+
+
+        ul {
+          width: 3000px;
+          height: 127px;
+          overflow-x: scroll;
+
+          li {
+            background-color: #666;
+            float: left;
+            width: 225px;
+            height: 127px;
+            margin-right: 5px;
+            margin-bottom: 20px;
+
+            span {
+              display: inline-block;
+              width: 40px;
+              height: 20px;
+              line-height: 20px;
+              border-radius: 15px;
+              background-color: #FF4B3B;
+              color: white;
+              text-align: center;
+              margin-top: 10px;
+              margin-left: 10px;
+              margin-bottom: 30px;
+              font-size: 12px;
+            }
+
+            .user {
+              height: 30px;
+
+              .left {
+
+                strong {
+                  display: inline-block;
+                  width: 30px;
+                  height: 30px;
+                  background-color: red;
+                  border-radius: 50%;
+                  margin-left: 10px;
+                  vertical-align: middle;
+                }
+
+                b {
+                  font-weight: normal;
+                  color: white;
+                  vertical-align: middle;
+
+                }
+              }
+
+              .right {
+                width: 45px;
+                height: 20px;
+                border-radius: 5px;
+                color: #FF4B3B;
+                border: 1px solid #FF4B3B;
+                font-size: 12px;
+                text-align: center;
+                line-height: 20px;
+                transform: translate(-10px, 5px);
+              }
+            }
+
+            h4 {
+              font-size: 16px;
+              padding: 0 10px;
+              color: white;
+              margin-top: 5px;
+            }
+
+
+          }
+        }
+      }
+
+      .banner1 {
+        position: absolute;
+        top: -30px;
+        right: 0;
+        width: 608px;
+        height: 60px;
+        background: url('http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-banner-2.png');
+      }
+
+      .banner2 {
+        position: absolute;
+        top: -17px;
+        right: -27px;
+        z-index: 50;
+        width: 54px;
+        height: 265px;
+        background: url('http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-banner-1.png');
+
+      }
+
+      .banner3 {
+        position: absolute;
+        width: 950px;
+        height: 30px;
+        background: url('http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-banner-3.png');
+        bottom: -15px;
+      }
+
+      .banner4 {
+        position: absolute;
+        width: 35px;
+        height: 170px;
+        background: url('http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-banner-4.png');
+        left: -18px;
+        bottom: -33px;
+        z-index: 99;
+      }
+
+      .banner5 {
+        position: absolute;
+        width: 570px;
+        height: 18px;
+        background: url('http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-banner-5.png');
+        bottom: -33px;
+      }
+
+      .banner6 {
+        position: absolute;
+        width: 658px;
+        height: 1343px;
+        background: url('http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-13.png');
+        bottom: -33px;
+      }
+    }
+  }
+
+}
+
+.main_text {
+  .wrapper {
+    .banner {
+      width: 1200px;
+      height: 80px;
+      margin-top: 60px;
+      margin-bottom: 40px;
+
+      a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background: url('http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-banner-8.png');
+      }
+    }
+
+    .main {
+      .left {
+        width: 760px;
+
+        .firsttitle {
+          .btitle {
+            display: block;
+            margin-bottom: 20px;
+
+            img {
+              display: inline-block;
+              width: 30px;
+              height: 27px;
+              vertical-align: middle;
+
+            }
+
+            span {
+              display: inline-block;
+              font-size: 22px;
+              color: #333;
+              font-weight: bold;
+              vertical-align: middle;
+              transform: translateY(2px);
+            }
+
+          }
+
+          .content {
+            .left {
+              margin-right: 30px;
+              width: 240px;
+
+              a {
+                display: inline-block;
+                width: 240px;
+                height: 160px;
+                position: relative;
+
+                img {
+                  height: 100%;
+                }
+
+                p {
+                  position: absolute;
+                  font-size: 16px;
+                  color: white;
+                  text-align: center;
+                  bottom: 10px;
+                  width: 100%;
+                  font-weight: bold;
+                }
+              }
+            }
+
+            .right {
+              width: 390px;
+              float: left;
+              padding-top: 5px;
+
+              a {
+                font-size: 22px;
+                color: #333;
+                font-weight: bold;
+              }
+
+              a:hover {
+                color: #FF4B3B;
+              }
+
+              .b_title {
+                margin-top: 20px;
+
+                a {
+                  font-size: 12px;
+                  display: inline-block;
+                  font-weight: normal;
+                  color: #333;
+                  margin-bottom: 15px;
+                }
+
+                a:hover {
+                  color: #FF4B3B;
+                }
+
+                b {
+                  display: inline-block;
+                  width: 1px;
+                  height: 14px;
+                  background-color: #ccc;
+                  vertical-align: middle;
+                  margin: 0 3px;
+
+                }
+              }
+
+              .b_banner {
+                a {
+                  font-size: 12px;
+                  display: inline-block;
+                  font-weight: normal;
+                }
+
+                b {
+                  display: inline-block;
+                  width: 1px;
+                  height: 14px;
+                  background-color: #ccc;
+                  vertical-align: middle;
+                  margin: 0 3px;
+                }
+              }
+
+            }
+          }
+        }
+
+        .newcarask {
+          margin-top: 15px;
+
+          .btitle {
+            display: block;
+            margin-bottom: 20px;
+
+            img {
+              display: inline-block;
+              width: 30px;
+              height: 27px;
+              vertical-align: middle;
+
+            }
+
+            span {
+              display: inline-block;
+              font-size: 22px;
+              color: #333;
+              font-weight: bold;
+              vertical-align: middle;
+              transform: translateY(2px);
+            }
+
+          }
+
+          .content {
+            .left {
+              margin-right: 30px;
+              width: 240px;
+
+              a {
+                display: inline-block;
+                width: 240px;
+                height: 160px;
+                position: relative;
+
+
+                img {
+                  height: 100%;
+                }
+
+                p {
+                  position: absolute;
+                  font-size: 16px;
+                  color: white;
+                  text-align: center;
+                  bottom: 10px;
+                  width: 100%;
+                  font-weight: bold;
+                }
+              }
+
+              a:nth-child(1) {
+                margin-bottom: 15px;
+              }
+            }
+
+            .right {
+              width: 390px;
+              float: left;
+              padding-top: 5px;
+
+              a {
+                font-size: 22px;
+                color: #333;
+                font-weight: bold;
+              }
+
+              a:hover {
+                color: #FF4B3B;
+              }
+
+              .c_title {
+                margin-top: 25px;
+
+                a {
+                  font-size: 12px;
+                  display: inline-block;
+                  font-weight: normal;
+                  color: #333;
+                  margin-bottom: 17px;
+                }
+
+                a:hover {
+                  color: #FF4B3B;
+                }
+
+                .fenge {
+                  margin-bottom: 45px;
+                }
+
+                b {
+                  display: inline-block;
+                  width: 1px;
+                  height: 14px;
+                  background-color: #ccc;
+                  vertical-align: middle;
+                  margin: 0 3px;
+
+                }
+              }
+
+              .c_banner {
+                a {
+                  font-size: 12px;
+                  display: inline-block;
+                  font-weight: normal;
+                }
+
+                b {
+                  display: inline-block;
+                  width: 1px;
+                  height: 14px;
+                  background-color: #ccc;
+                  vertical-align: middle;
+                  margin: 0 3px;
+                }
+              }
+            }
+          }
+        }
+
+        .yichenum {
+          margin-top: 15px;
+
+          .btitle {
+            display: block;
+            margin-bottom: 20px;
+
+            img {
+              display: inline-block;
+              width: 30px;
+              height: 27px;
+              vertical-align: middle;
+
+            }
+
+            span {
+              display: inline-block;
+              font-size: 22px;
+              color: #333;
+              font-weight: bold;
+              vertical-align: middle;
+              transform: translateY(2px);
+            }
+
+          }
+
+          .content {
+            .left {
+              margin-right: 30px;
+              width: 240px;
+
+              a {
+                display: inline-block;
+                width: 240px;
+                height: 160px;
+                position: relative;
+
+
+                img {
+                  height: 100%;
+                }
+
+                p {
+                  position: absolute;
+                  font-size: 16px;
+                  color: white;
+                  text-align: center;
+                  bottom: 10px;
+                  width: 100%;
+                  font-weight: bold;
+                }
+              }
+
+              a:nth-child(1) {
+                margin-bottom: 15px;
+              }
+            }
+
+            .right {
+              width: 390px;
+              float: left;
+              padding-top: 5px;
+
+              a {
+                font-size: 22px;
+                color: #333;
+                font-weight: bold;
+              }
+
+              a:hover {
+                color: #FF4B3B;
+              }
+
+              .c_title {
+                margin-top: 25px;
+
+                a {
+                  font-size: 12px;
+                  display: inline-block;
+                  font-weight: normal;
+                  color: #333;
+                  margin-bottom: 17px;
+                }
+
+                a:hover {
+                  color: #FF4B3B;
+                }
+
+                .fenge {
+                  margin-bottom: 45px;
+                }
+
+                b {
+                  display: inline-block;
+                  width: 1px;
+                  height: 14px;
+                  background-color: #ccc;
+                  vertical-align: middle;
+                  margin: 0 3px;
+
+                }
+              }
+
+              .c_banner {
+                a {
+                  font-size: 12px;
+                  display: inline-block;
+                  font-weight: normal;
+                }
+
+                b {
+                  display: inline-block;
+                  width: 1px;
+                  height: 14px;
+                  background-color: #ccc;
+                  vertical-align: middle;
+                  margin: 0 3px;
+                }
+              }
+            }
+          }
+        }
+
+        .yichezhuangjia {}
+      }
+    }
+  }
+}
+
+.show_car {
+  background-color: #2A5FFF;
+  padding-top: 60px;
+
+  .wrapper {
+    .video {
+      .banner {
+        width: 966px;
+        height: 197px;
+        margin: 0 auto;
+        background: url('http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-6.png') no-repeat;
+
+      }
+
+      .lunbo {
+        .swiper-container2 {
+          overflow: hidden;
+          position: relative;
+
+          .swiper-wrapper {
+            .swiper-slide {
+              ul {
+                li {
+                  margin-right: 40px;
+                  margin-bottom: 30px;
+                  float: left;
+
+                  a {
+                    display: inline-block;
+                    width: 270px;
+                    height: 150px;
+
+                    img {
+                      height: 100%;
+                    }
+
+                  }
+
+                  .content {
+                    width: 270px;
+                    height: 107px;
+                    box-sizing: border-box;
+                    padding: 10px 15px 15px 15px;
+                    background-color: white;
+                    position: relative;
+                    transform: translateY(-5px);
+
+                    a {
+                      width: 100%;
+                      height: 42px;
+                      color: #333;
+                      font-weight: bold;
+                    }
+
+                    .bottom {
+                      a {
+                        display: inline-block;
+                        height: 30px;
+                        line-height: 30px;
+
+                        b {
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          background-color: red;
+                        }
+
+                      }
+
+                      .guanzhu {
+                        position: absolute;
+                        width: 60px;
+                        height: 26px;
+                        color: #FF4B3B;
+                        border: 1px solid #FF4B3B;
+                        text-align: center;
+                        line-height: 26px;
+                        font-size: 14px;
+                        right: 15px;
+                        bottom: 15px
+                      }
+                    }
+                  }
+                }
+
+                li:nth-child(4n) {
+                  margin-right: 0;
+                }
+              }
+            }
+          }
+
+          .swiper-pagination {
+            position: absolute;
+            width: 80px;
+            height: 15px;
+            bottom: 0px;
+            left: 560px;
+
+            span {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background-color: white;
+              border: 2px solid black;
+            }
+          }
+        }
+      }
+    }
+
+    .more {
+      margin-top: 40px;
+      margin-bottom: 90px;
+      text-align: center;
+
+      a {
+        display: inline-block;
+        width: 220px;
+        height: 75px;
+        background-color: red;
+      }
+    }
+
+    .newcar {
+      .banner {
+        width: 966px;
+        height: 197px;
+        margin: 0 auto;
+        background: url('http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-9.png') no-repeat;
+      }
+
+      .content {
+        .lunbo {
+          .swiper-container3 {
+            .swiper-wrapper {
+              .swiper-slide {
+                height: 437px;
+
+                .left {
+                  margin-right: 10px;
+
+                  a {
+                    display: inline-block;
+                    width: 494px;
+                    height: 437px;
+
+                    img {
+                      height: 100%;
+                    }
+                  }
+                }
+
+                .right {
+                  width: 690px;
+
+                  ul {
+                    li {
+                      float: left;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

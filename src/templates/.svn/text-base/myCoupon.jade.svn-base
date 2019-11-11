@@ -1,0 +1,120 @@
+extends template.jade
+block titleAndStyles
+    title 我的礼券
+block scripts
+    script(type="text/javascript",charset="utf-8",src="./static/js/def/myCoupon.js")
+block content
+    div.page-group
+        div.page.page-current
+            div.com_list.bar.bar-tab-top
+                div.com_list_tab.com_list_tab_x
+                    div.clt_item.active 未使用
+                    div.clt_item 已使用
+            div.content.pt38
+                //-
+
+                div.contentWarp
+                //-
+                    //-jxq
+                    div.addQ
+                        i
+                        i
+                        div.add_bgcolor_x
+                            h3.addTitle
+                                span 新手活动奖励
+                            div.addCont <b>0.9</b><em>％</em>
+                                span 加息券
+                                a.btnGO_x.external(href='./lcList.html') 去理财
+                        div.addFot
+                            p.hsTime 有效期<em>2016.10.01</em>
+                            p.Tite 投资100元以上可用，债转项目除外
+                    //-fxhb
+                    div.addQ.backH
+                        i
+                        i
+                        div.add_bgcolor_x
+                            h3.addTitle
+                                span 新手活动奖励
+                            div.addCont <b>100</b><em>元</em>
+                                span 返现红包
+                                a.btnGO_x.external.on(href='./lcList.html') 去理财
+                        div.addFot
+                            p.hsTime 有效期<em>2016.10.01</em>
+                            p.Tite 投资直投项目满2000元，使用此券获得100元返现
+                    //-xjhb
+                    div.addQ.GoDH
+                        i
+                        i
+                        div.add_bgcolor_x
+                            h3.addTitle
+                                span 新手活动奖励
+                            div.addCont <b>535.26</b><em>元</em>
+                                span 现金红包
+                                a.btnGO_x 兑换
+                        div.addFot
+                            p.hsTime 有效期<em>2016.10.01</em>
+                            p.Tite 投资直投项目满2000元，使用此券获得100元返现
+                    //-duihuan  tuanchuang
+                    div.Dhsuc 兑换成功
+                    div.Dhfalse 兑换失败
+
+
+                    //-jxq
+                    div.addQ
+                        i
+                        i
+                        div.add_bgcolor_x
+                            h3.addTitle
+                                span 新手活动奖励
+                            div.addCont <b>0.9</b><em>％</em>
+                                span 加息券
+                                a.btnGO_x.external 去理财
+                        div.addFot
+                            p.hsTime 有效期<em>2016.10.01</em>
+                            p.Tite 投资100元以上可用，债转项目除外
+                    //-xjhb
+                    div.addQ.GoDH
+                        i
+                        i
+                        div.add_bgcolor_x
+                            h3.addTitle
+                                span 新手活动奖励
+                            div.addCont <b>535.26</b><em>元</em>
+                                span 现金红包
+                                a.btnGO_x.external 兑换
+                        div.addFot
+                            p.hsTime 有效期<em>2016.10.01</em>
+                            p.Tite 投资直投项目满2000元，使用此券获得100元返现
+
+                    //yshiyong
+                    div.addQ.used_x
+                        p.usedImg
+                        i
+                        i
+                        div.add_bgcolor_x
+                            h3.addTitle
+                                span 新手活动奖励
+                            div.addCont <b>0.9</b><em>％</em>
+                                span 加息券
+                                a.btnGO_x.external(href='javascript:void(0);') 去理财
+                        div.addFot
+                            p.hsTime 有效期<em>2016.10.01</em>
+                            p.Tite 投资100元以上可用，债转项目除外
+                    //yguoqi
+                    div.addQ.oldUsed_x
+                        p.usedImg
+                        i
+                        i
+                        div.add_bgcolor_x
+                            h3.addTitle
+                                span 新手活动奖励
+                            div.addCont <b>0.9</b><em>％</em>
+                                span 加息券
+                                a.btnGO_x.external(href='javascript:void(0);') 去理财
+                        div.addFot
+                            p.hsTime 有效期<em>2016.10.01</em>
+                            p.Tite 投资100元以上可用，债转项目除外
+                    //-
+                        div.coupon
+                            img(src="./static/images/def/icons/mycoupon.png")
+                            p 你还没有红包／礼券哦！

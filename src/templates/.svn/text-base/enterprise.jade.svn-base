@@ -1,0 +1,29 @@
+extends template.jade
+block titleAndStyles
+    title 充值结果
+block scripts
+    script.
+        seajs.use(["zepto", "util"], function (a, util) {
+            var pageController = {
+                init: function () {
+                    util.getWeiboApi();
+                },
+                store: {
+                    serverIP: util.getServerIp(),
+                    userId: util.getUserId()
+                }
+            }
+            $(function () {
+                pageController.init();
+            });
+        });
+block content
+    div.page-group
+        div.page.page-current
+            div.content
+                //-
+                div.error404.error500
+                    img(src="./static/images/def/icons/activateFalse2.png")
+                    div.err_datil 您当前使用的是企业账户
+                    div.err_Tite 请更换您的个人账户进行理财
+

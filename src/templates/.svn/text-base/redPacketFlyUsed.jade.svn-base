@@ -1,0 +1,54 @@
+extends templateAct.jade
+block titleAndStyles
+    title 温馨提示
+    style.
+        .page-current {
+            background: #ff5954;
+        }
+block scripts
+    script.
+        seajs.use(["zepto", "util"], function (a, util) {
+            var pageController = {
+                init: function () {
+                    util.getWeiboApi();
+                },
+                store: {
+                    serverIP: util.getServerIp(),
+                    userId: util.getUserId()
+                }
+            }
+            $(function () {
+                pageController.init();
+            });
+        });
+
+block content
+    div.page-group
+        div.page.page-current
+            div.content.native-scroll.redpacket-fly-con.redpacket-fly-use-con
+                div.redpacket-fly-top
+                    img(src="./static/images/def/newUser/redpacket_fly_bg5.jpg")
+                div.redpacket-fly-fourlists
+                    div.redpacket-fly-btn.redpacket-fly-btn-used
+                        a(href="index.html").use 去理财
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+extends template.jade
+block titleAndStyles
+	title
+block scripts
+	script(type="text/javascript",charset="utf-8",src="./static/js/def/setPayPwdResult.js")
+block content
+	div.page-group
+		div.page.page-current
+			div.content
+				//-
+					div.result_cont
+						img(src="./static/images/def/icons/buy_suc.png",class="ImgSuc")
+						div.buySucce_x 恭喜您设置成功！
+						div.buyBack 立即购买新手标，即可激活18.88元现金红包！
+					div.buyFalse_x
+						a.external.other_x(href="./index.html") 我再看看
+						a.external.IKnow(href="./buyProduct.html") 购买新手标
+				//-
+					setModifyPayPwdResult   修改成功
+						div.result_cont
+							img(src="./static/images/def/icons/buy_suc.png",class="ImgSuc")
+							div.buySucce_x 修改成功！
+							div.buyBack 支付密码不要告诉别人哦
+						div.buyFalse_x
+							a.external.IKnow(href="./buyProduct.html") 我知道了

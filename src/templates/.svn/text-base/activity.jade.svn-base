@@ -1,0 +1,177 @@
+extends templateAct
+block titleAndStyles
+    title 活动专题
+    style.
+        .content{
+            height: auto;
+            background: #f2f2f2;
+        }
+        .page{
+            height: auto;
+            background: #f2f2f2;
+        }
+        .lucky_star_clone{
+            background: #f4f4f4;
+            overflow: hidden;
+        }
+block scripts
+    script.
+        //-
+        seajs.use(["zepto", "util"], function (a, util) {
+            var pageController = {
+                init: function () {
+                    util.getWeiboApi();
+                    this.getPageData();
+                    util.pushData({
+                        orderType: "c",//a:新手领取，b:员工专享，c:活动专题，d：分享领取结果页
+                        sourceType: 0 //0:pv,1:点击
+                    });
+                },
+                store:{
+                    serverIP: util.getServerIp(),
+                    inviteCode:null,
+                    userId: util.getUserId(),
+                    speed:30
+                },
+                
+                getPageData: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + '/app/act/getActPageData',
+                        dataType: "json",
+                        data: {
+                            userId: _this.store.userId
+                        },
+                        success: function (jsonData) {
+                            if (jsonData && jsonData.control.error == 0) {
+                                var data = jsonData.data;
+                                $('.content,.bar-tab').show();
+                                _this.store.inviteCode=data.inviteCode;
+                                _this.pageHandler(data);
+                            }else if (jsonData && jsonData.control.error == -1003) {
+                                _this.creatEndTpl();
+                            }else {
+                                util.errorHandler(_this.store.userId);
+                            }
+
+                        },
+                        error: function (jsonData) {
+                            util.errorHandler(_this.store.userId);
+                        }
+                    });
+                },
+                pageHandler:function(data){
+                    var _this = this;
+                    
+                    $(".btn_wb").on('click', function () {
+                        util.pushData({
+                            orderType: "c",//a:新手领取，b:员工专享，c:活动专题，d：分享领取结果页
+                            sourceType: $(this).attr("data_type") //0:pv,1:点击,2:点击微博
+                        });
+                        var sinaWbTxt = 'http://8.sc.weibo.com/api/app/rookieAct/' + _this.store.inviteCode;
+                    	var dataTwb = 'sinaweibo://sendweibo?title=发微博&content=今日“宜”理财：看到这条消息，你注定要发财。'+encodeURIComponent(sinaWbTxt);
+                        util.toPage(dataTwb);
+                    })
+                    /*var dataTpl = '';
+                    for (var i=0;i<data.dataList.length;i++){
+                    dataTpl += '<div class="lucky_star_cont">'
+                        dataTpl += '<div class="lucky_s_l">'+data.dataList[i].userName+'</div>'
+                        dataTpl += '<div class="lucky_s_c">'+data.dataList[i].inviteUserName+'</div>'
+                        dataTpl += '<div class="lucky_s_r">'+data.dataList[i].amount+'元</div>'
+                    dataTpl += '</div>'
+                    }
+                    $('.lucky_star').append(dataTpl);
+                    $('.lucky_star_clone').append(dataTpl);
+                    $(".lucky_stars").css("height",$(".lucky_star")[0].offsetHeight+"px");
+                    setInterval(_this.marquee,_this.store.speed);*/
+
+                },
+                creatEndTpl: function () {
+                    var dataTpl = '';
+                    dataTpl+='<div class="content"><div class="active_end_top"><img src="./static/images/def/newUser/active_end_img.jpg"><div class="active_title">当前活动已结束啦！</div><div class="active_other">不过，我们特别为你准备了最新的活动，</br>超给力福利等你来哦！</div></div><div class="fot_active_end"><a href="index.html" class="btn_wb btn_see external">查看新活动</a></div></div>'
+                    $('.content,.page').css('height','100%')
+                    $('.page').html(dataTpl);
+
+                },
+                marquee:function () {
+                    if ($('.lucky_star_clone')[0].offsetTop-40 - $('.lucky_stars')[0].scrollTop <= 0)
+                        $('.lucky_stars')[0].scrollTop -= $('.lucky_star')[0].offsetHeight;
+                    else {
+                        $('.lucky_stars')[0].scrollTop++;
+                    }
+                }
+            }
+            $(function () {
+                pageController.init();
+            });
+        });
+
+block content
+    //-
+    div.page-group
+        div.page.page-current.page-act
+            div.content.native-scroll(style="display:none;")
+                div.activity_top
+                    img(src="./static/images/def/newUser/active_img1.png")
+                    img(src="./static/images/def/newUser/active_img2.png").mt1
+                //-
+                    div.lucky_star_cont
+                        div.lucky_s_l.font30color33 幸运的博主
+                        div.lucky_s_c.font30color33 更幸运的粉丝
+                        div.lucky_s_r.font30color33 获奖金额
+                div.lucky_stars(style="overflow:hidden; position: relative;")
+                    div.lucky_star
+                        //-
+                            div.lucky_star_cont
+                                div.lucky_s_l 李***我
+                                div.lucky_s_c 李***我
+                                div.lucky_s_r 888元
+                            div.lucky_star_cont
+                                div.lucky_s_l 李***我
+                                div.lucky_s_c 李***我
+                                div.lucky_s_r 888元
+                            div.lucky_star_cont
+                                div.lucky_s_l 李***我
+                                div.lucky_s_c 李***我
+                                div.lucky_s_r 888元
+                            div.lucky_star_cont
+                                div.lucky_s_l 李***我
+                                div.lucky_s_c 李***我
+                                div.lucky_s_r 888元
+                            div.lucky_star_cont
+                                div.lucky_s_l 李***我
+                                div.lucky_s_c 李***我
+                                div.lucky_s_r 888元
+                    div.lucky_star_clone(style="height:auto;")
+                div.lucky_star_foot
+                    img(src="./static/images/def/newUser/lucky_star_fot.png")
+                div.details
+                    p 本活动时间为2016年10月31日至11月7日；
+                    p 活动期间发微博邀请好友参与新手开红包活动，若好友抽中888元红包，立即送您888元红包；
+                    p 购买任意理财产品满指定金额即可将红包激活提现；
+                    p 获奖次数无上限，邀请越多，获奖机率越大；
+                    p 红包有效期为15天，请在有效期内使用，以免过期给您造成损失。
+            a.bar.bar-tab.btn_wb(href="javascript: void(0);",data_url="sinaweibo://sendweibo?title=发微博&content=今日“宜”理财：看到这条消息，你注定要发财。",data_type="2",style="display:none;") 发微博，坐等888元
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

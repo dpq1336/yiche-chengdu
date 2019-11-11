@@ -1,0 +1,36 @@
+extends template.jade
+block titleAndStyles
+	title 选择红包/礼券
+block scripts
+	script(type='text/javascript',src='./static/js/def/selBankCard.js',charset='utf-8')
+block content
+	div.page-group
+		div.page.page-current
+			div.content.pl26
+				//-
+					div.addQ
+						i
+						i
+						div.add_bgcolor_x
+							h3.addTitle
+								span 新手活动奖励
+							div.addCont <b>0.9</b><em>％</em>
+								span 加息券
+						div.addFot
+							p.hsTime 有效期<em>2016.10.01</em>
+							p.Tite 投资100元以上可用，债转项目除外
+							p.choice_x
+					div.addQ.backH
+						i
+						i
+						div.add_bgcolor_x
+							h3.addTitle
+								span 新手活动奖励
+							div.addCont <b>100</b><em>元</em>
+								span 返现红包
+						div.addFot
+							p.hsTime 有效期<em>2016.10.01</em>
+							p.Tite 投资直投项目满2000元，使用此券获得100元返现
+							p.choice_x.on
+					div.Nouse 不使用红包／礼券
+						p.choice_x

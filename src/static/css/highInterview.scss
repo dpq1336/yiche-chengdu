@@ -1,0 +1,202 @@
+.main_banner {
+  height: 296px;
+}
+
+.main_nav {
+  height: 40px;
+  background: #4180FF;
+}
+
+.main_nav .wrapper {
+  width: 1200px;
+  height: 40px;
+  margin: 0 auto;
+
+  ul {
+    li {
+      float: left;
+      line-height: 40px;
+
+      a {
+        display: inline-block;
+        color: white;
+        font-weight: 800;
+        padding: 0 35px;
+        font-size: 14px;
+      }
+
+      a:hover {
+        color: #22FBB5;
+        background-color: #0532FE;
+      }
+    }
+
+    li:nth-child(9) a {
+      color: #22FBB5;
+      background-color: #0532FE;
+
+    }
+  }
+
+}
+
+.main_body {
+  margin-top: 20px;
+  margin-bottom: 26px;
+
+  .wrapper {
+    width: 1200px;
+    margin: 0 auto;
+
+    .banner {
+      .left {
+        a {
+          display: inline-block;
+          width: 598px;
+          height: 401px;
+          overflow: hidden;
+          position: absolute;
+
+          span {
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+            position: absolute;
+            color: white;
+            font-weight: 800;
+            font-size: 20px;
+            bottom: 15px;
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            transition: transform .5s ease-out;
+          }
+
+          img:hover {
+            transform: scale(1.03);
+          }
+        }
+      }
+
+      .right {
+        width: 598px;
+        height: 401px;
+
+        a {
+          float: left;
+          margin-right: 5px;
+          margin-bottom: 5px;
+          display: inline-block;
+          width: 294px;
+          height: 198px;
+          overflow: hidden;
+          position: relative;
+
+          span {
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+            position: absolute;
+            color: white;
+            font-weight: 800;
+            font-size: 16px;
+            bottom: 15px;
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            transition: transform .5s ease-out;
+          }
+
+          img:hover {
+            transform: scale(1.03);
+          }
+        }
+      }
+    }
+
+    .highInterview {
+      margin-top: 20px;
+
+      h2 {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #E1E1E1;
+        font-weight: 800;
+      }
+
+      .clear {
+        margin-top: 20px;
+
+        li {
+          float: left;
+          width: 570px;
+          height: 160px;
+          margin-bottom: 30px;
+
+          .left {
+            width: 240px;
+            height: 100%;
+
+            a {
+              height: 100%;
+
+              display: inline-block;
+              overflow: hidden;
+
+              img {
+                width: 100%;
+                height: 100%;
+                transition: transform .5s ease-out;
+              }
+
+              img:hover {
+                transform: scale(1.03);
+              }
+            }
+          }
+
+          .right {
+            width: 330px;
+            box-sizing: border-box;
+            padding-top: 5px;
+            padding-left: 12px;
+
+            a {
+              font-weight: 700;
+              font-size: 18px;
+              line-height: 23px;
+            }
+
+            a:hover {
+              color: #FF4B3B;
+
+              img:hover {
+                transition: transform .5s ease-out;
+              }
+            }
+
+            p {
+              padding-top: 7px;
+              height: 50px;
+              background: url(http://image.bitautoimg.com/yc-pc/expo-pc/special/high-fangtan-top.png) no-repeat 0 -0;
+              margin-top: 20px;
+              font-size: 16px;
+              color: #4A4A4A;
+              line-height: 26px;
+              text-indent: 1.5em;
+              overflow: hidden;
+
+            }
+          }
+        }
+
+        li:nth-of-type(odd) {
+          margin-right: 60px;
+        }
+      }
+    }
+  }
+}

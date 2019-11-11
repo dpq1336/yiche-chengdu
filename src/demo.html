@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 100px;
+      height: 3000px;
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+
+  <script>
+    window.onscroll = function () {
+      var t = document.documentElement.scrollTop || document.body.scrollTop;
+      if (t > 2000) {
+        console.log(111)
+        var item = '<!-- inject:footer:html --> <!--endinject-- > '
+        document.querySelector('body').append(item)
+      }
+
+    }
+  </script>
+</body>
+
+</html>

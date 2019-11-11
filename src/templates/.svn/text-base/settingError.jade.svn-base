@@ -1,0 +1,15 @@
+extends template.jade
+block titleAndStyles
+	title 设置失败
+block scripts
+	script(type="text/javascript",charset="utf-8",src="./static/js/def/buy.js")
+block content
+	div.page-group
+		div.page.page-current
+			div.content
+				img(src="./static/images/def/icons/activateFalse.png",class="ImgSuc")
+				div.buySucce_x 抱歉，设置失败
+				div.buyBack 如有疑问，请咨询新浪支付<a href="tel:4009218887">400-921-8887</a>
+				div.buyFalse_x
+					a.other_x.external(href="./index.html") 我知道了
+					a.IKnow.ml32(href="#") 再试一次

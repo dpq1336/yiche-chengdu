@@ -1,0 +1,101 @@
+extends template.jade
+block titleAndStyles
+	title 回款日历
+	link(rel="stylesheet",type="text/css",href="./static/css/out/huikuan.css")
+block scripts
+	script(type="text/javascript",charset="utf-8",src="./static/js/def/payMoneyCalendar.js")
+block content
+	div.page-group
+		div.page.page-current
+			div.content.native-scroll
+				div.calendar-box
+					div.calendarBox
+				div.pm_con_list
+					div.com_list_con
+						div.t_card
+							div.com_lite_item
+						div.t_card.pm_list
+							//-
+								div.com_lite_item
+									//div.cli_2.cli_item.com_arrow_r.arrow_d <span class="l_s">2016-05-05</span><span class="s_o_money">回款金额：429.12元</span>
+									div.pm_m_info
+										div.pm_mi_item
+											div.disflex
+												div.mii_1 2016-05-05
+												div.mii_2.boxflex 优房养老盈宝134-23
+												div.mii_3 1000.00元(已收)
+										div.pm_mi_item
+											div.disflex
+												div.mii_1 2016-05-05
+												div.mii_2.boxflex 平安保险优房养老盈盈盈盈平安保险优房养老盈盈盈盈
+												div.mii_3 1000.00元(已收)
+										div.pm_mi_item
+											div.disflex
+												div.mii_1 2016-05-05
+												div.mii_2.boxflex 优房养老盈宝
+												div.mii_3 1000.00元(已收)
+								div.com_lite_item.active
+									div.cli_2.cli_item.com_arrow_r.arrow_d <span class="l_s">2016-05-05</span><span class="s_o_money">回款金额：429.12元</span>
+									div.pm_m_info
+										div.pm_mi_item
+											div.disflex
+												div.mii_1 2016-05-05
+												div.mii_2.boxflex 优房养老盈宝134-23
+												div.mii_3 1000.00元(已收)
+										div.pm_mi_item
+											div.disflex
+												div.mii_1 2016-05-05
+												div.mii_2.boxflex 平安保险优房养老盈盈盈盈平安保险优房养老盈盈盈盈
+												div.mii_3 1000.00元(已收)
+										div.pm_mi_item
+											div.disflex
+												div.mii_1 2016-05-05
+												div.mii_2.boxflex 优房养老盈宝
+												div.mii_3 1000.00元(已收)
+								div.com_lite_item
+									div.cli_2.cli_item.com_arrow_r.arrow_d <span class="l_s">2016-05-05</span><span class="s_o_money">回款金额：429.12元</span>
+									div.pm_m_info
+										div.pm_mi_item
+											div.disflex
+												div.mii_1 2016-05-05
+												div.mii_2.boxflex 优房养老盈宝134-23
+												div.mii_3 1000.00元(已收)
+										div.pm_mi_item
+											div.disflex
+												div.mii_1 2016-05-05
+												div.mii_2.boxflex 平安保险优房养老盈盈盈盈平安保险优房养老盈盈盈盈
+												div.mii_3 1000.00元(已收)
+										div.pm_mi_item
+											div.disflex
+												div.mii_1 2016-05-05
+												div.mii_2.boxflex 优房养老盈宝
+												div.mii_3 1000.00元(已收)
+				//-
+					div.com_no_data.tc_no_data
+						img(src="./static/images/def/icons/th_icon.png")
+						div 暂时没有理财记录
+						a.external.to_lc_btn.com_btn(href="lcList.html") 去理财
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

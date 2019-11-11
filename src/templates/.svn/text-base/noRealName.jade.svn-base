@@ -1,0 +1,17 @@
+extends template.jade
+block titleAndStyles
+	title 实名
+block content
+	div.page-group
+		div.page.page-current
+			div.content.native-scroll
+				div.real_name
+					div.no_real_name
+						img(src="./static/images/def/icons/activateFalse.png")
+						p 您还没有实名
+						a.external.to_real_btn.com_btn(href="realName.html") 去实名
+						div 客服电话:<a href="tel:400100111">400-100-111</a>  工作日:09:00-20:00
+					
+			
+
+

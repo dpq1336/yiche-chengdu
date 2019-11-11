@@ -1,0 +1,84 @@
+extends template.jade
+block titleAndStyles
+	title 注册投资者申请表
+block scripts
+	script.
+		seajs.use(["zepto","util"], function(a,util) {
+			var pageController = {
+				init: function() {
+					util.getWeiboApi();
+				}
+			}
+			$(function() {
+				pageController.init();
+			});
+		});
+block content
+	div.page-group
+		div.page
+			div.content.tzProtocol
+				p.tit 注册投资者申请表
+				p.tit （适用于：个人）
+				p.mt10 致：天津金融资产交易所有限责任公司（贵交易所）
+				p.mb10
+					span.fl 一、
+					span.ovhi 鉴于：贵交易所作为一家金融资产交易所，具有金融资产交易及金融创新产品研发、服务、交易等经营范围，拥有系统、规范的交易所规则及相关交易细则，具备组织开展各类金融资产交易的良好条件；本申请人具备贵交易所相应交易业务参与者的资格条件，特此申请成为交易所注册投资者。
+				p.ovhi
+					span.fl 二、
+					span.ovhi 申请人基本情况信息：
+				p.ovhi
+					span.wid50
+						span.fl 姓名：
+						span.line.ovhi
+					span.wid50
+						span.fl 居民身份证号码：
+						span.line.ovhi
+				p.ovhi
+					span.fl 住址：
+					span.line.ovhi
+				p.ovhi
+					span.fl 邮编：
+					span.line.ovhi
+				p.ovhi
+					span.fl 职业：
+					span.line.ovhi
+				p.ovhi.mb10
+					span.wid33
+						span.fl 联系人：
+						span.line.ovhi
+					span.wid33
+						span.fl 电话：
+						span.line.ovhi
+					span.wid33
+						span.fl 手机：
+						span.line.ovhi
+				p.ovhi
+					span.fl 三、
+					span.ovhi 本申请人在此申请成为下列所选择类别的注册投资者：
+				p.mb10 □ 注册投资者
+				p.ovhi
+					span.fl 四、
+					span.ovhi 本申请人声明及承诺：
+				p （1）承认并承诺遵守贵交易所规则及相关交易细则的全部及任何规定及其效力。
+				p （2）承诺遵守国家有关金融资产交易的相关法律、法规、规章及其它有效规定。
+				p （3）承诺其在一旦违反国家有关金融资产交易的相关法律、法规、规章及其它有效规定，或一旦违反本交易所规则及相关交易细则的有关规定等情形下，将会承担其所应负的全部及任何法律责任。
+				p.mb10 （4）就贵交易所依据或者未违背交易所规则或相关细则而组织的交易相关活动或所作出的相关决策/决定，均不会以任何形式提出有关旨在要求贵交易所对某项交易承担法律责任的主张，并且其已有效地放弃了以任何形式提出有关旨在要求贵交易所对某项交易承担法律责任的主张的权利。
+				p.ovhi
+					span.fl 五、
+					span.ovhi 申请人所理解及承认的会员/注册投资者基本权利与义务如下：
+				p （1）参加会员大会，听取工作报告，对重大事项有提议、监督、表决的权利（该项仅限于会员，注册投资者暂未实行注册投资者大会制度）；
+				p （2）根据会员/注册投资者类别可查阅包括交易所挂牌信息、历史交易信息（有保密要求的除外）和内部发现咨询报告；
+				p （3）有权根据相关协议约定使用交易所提供的电子席位（含以网络用户名和密码登录）参与交易活动；
+				p （4）有退会/退出投资者注册自由；
+				p （5）优先参加本交易所举办的各类服务活动；
+				p （6）遵守贵交易所规则及相关交易细则和《会员章程》，承担其中所规定的相关义务；
+				p.mb10 （7）按时交纳会费（注册投资者暂不实行资费缴纳制度）
+				p.ovhi
+					span.fl 六、
+					span.ovhi 其它：
+				p （1）本申请书经本申请人签署并加盖本人姓名章（若经办机构有此盖章要求）后即生效。
+				p （2）本申请书及此后会员合同/注册投资者关系项下有关法律文件的订立、履行及相关解释均适用中国法律。
+				p （3）请贵交易所受理此申请并办理会员/注册投资者资格条件审核及资格授予。
+				p.pt40 申请人或授权代表签字：
+				p.fr.ovhi 二○一六年   月   日（加盖公章）
+

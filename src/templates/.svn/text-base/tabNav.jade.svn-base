@@ -1,0 +1,12 @@
+mixin navView(flag)
+	-var navData=[{"text":"首页","url":"index.html","icon":"home_icon"},{"text":"理财","url":"lcList.html","icon":"licai_icon"},{"text":"我的","url":"userCenter.html","icon":"user_icon"}];
+	nav.bar.bar-tab.my-tab
+		each val, index in navData
+			-if(index==flag)
+				a.tab_nav_item.external.active(href=val.url)
+					span.nav_icon(class=val.icon)
+					span.nav_text= val.text
+			-else
+				a.tab_nav_item.external(href=val.url)
+					span.nav_icon(class=val.icon)
+					span.nav_text= val.text

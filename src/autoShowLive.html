@@ -1,0 +1,245 @@
+  <!-- inject:header:html -->
+  <!-- endinject -->
+  <title>车展直播</title>
+  <link rel="stylesheet" href="./static/css/base.css">
+  <link rel="stylesheet" type="text/css" href="./static/css/autoShowLive.css">
+  </head>
+
+  <body>
+    <!-- inject:nav:html -->
+    <!-- endinject -->
+    <div class="main_banner"></div>
+    <div class="main_nav">
+      <div class="wrapper">
+        <ul>
+          <li><a href="/">
+              车展首页
+            </a></li>
+          <li><a href="/autoShowLive.html">
+              车展直播
+            </a></li>
+          <li><a href="/autoShowInfo.html">
+              车展资讯
+            </a></li>
+          <li><a href="/yicheNum.html">
+              易车号
+            </a></li>
+          <li><a href="/autoShowVideo.html">
+              车展视频
+            </a></li>
+          <li><a href="/newCarParsing.html">
+              新车解析
+            </a></li>
+          <li><a href="#">
+              VR
+            </a></li>
+          <li><a href="/newCarShow.html">
+              新车展厅
+            </a></li>
+          <li><a href="/highInterview.html">
+              高端访谈
+            </a></li>
+          <li><a href="#">
+              赛道日
+            </a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="main_body">
+      <div class="wrapper">
+        <!-- 当前位置 start -->
+        <div class="position">
+          当前位置:
+          <span>易车</span> >
+          <span>广州车展</span> >
+          <span class="position_font">直播</span>
+        </div>
+        <!-- 当前位置 end -->
+        <!-- 内容广告开始 -->
+        <div class="banner_top">
+          <div class="banner clear" id="bannerObj">
+          </div>
+        </div>
+        <!-- 内容广告结束 -->
+
+        <!-- body start -->
+        <div class="main_row_box">
+          <!-- 页卡 热门推荐/全部视频 -->
+          <div class="col_left_box">
+            <!-- 页卡 start -->
+            <div class="tabbox">
+              <ul>
+                <li class="zb active" index="1">直播</li>
+                <li class="hk" index="2">回看</li>
+              </ul>
+              <!-- body start -->
+              <div class="main_card">
+                　　<div class="active" id="videoObj">
+                  <!-- <div class="live_box_tab">
+                    <div class="time_ball"></div>
+                    <div class="time_axis">
+                      <div class="time_axis_txt">05月02日</div>
+                    </div>
+                    <div class="card_list_box clear">
+                      　　　　<div class="card_list">
+                        <a href="#" class="card_img">
+                          <span class="live_broadcast">直播中</span>
+                          <img
+                            src="http://image.bitautoimg.com/bitauto/2019/09/06/965cb663-ba4f-44c2-8f45-6dbc69ff18f6.jpg"
+                            alt="">
+                          <em class="video"></em>
+                        </a>
+                        <div class="card_details">
+                          <h2><a href="#">111111 宝马8系四门轿跑图解</a></h2>
+                        </div>
+                        <div class="card_bottom_box">
+                          <div class="card_bottom_user">主播：<span>兮有视频</span></div>
+                          <div class="card_bottom_time">2019-10-22</div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+              <!-- body end -->
+            </div>
+            <!-- 页卡 end -->
+            <div class="load_more">正在加载</div>
+          </div>
+          <!-- 品牌专家 -->
+          <div class="col_right_box">
+            <div class="brand_experts">
+              <div class="brand_box">
+                <h2>品牌专家</h2>
+                <a href="javascript:;" class="change">
+                  <em></em>换一换
+                </a>
+              </div>
+            </div>
+            <!-- 列表 start -->
+            <div class="follow_box clear" id="yicheObj">
+              <!-- <div class="follow_list">
+                <div class="follow_list_item">
+                  <div class="comment_photo">
+                    <a href="#"><img
+                        src="//img1.baa.bitautotech.com/newavatar/2018/04/20/7078571_120_83e69c95-ad13-4da8-a1bd-d21af3eecf6c.jpg"
+                        alt=""></a>
+                  </div>
+                  <div class="v_infor">
+                    <div class="v_left">
+                      <p class="name"><a href="#">赵普</a></p>
+                      <p class="fans"><span class="last">粉丝 22.13万</span></p>
+                    </div>
+                    <span><a href="#" class="btn btn_gray">已关注</a></span>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            <!-- 列表 end -->
+          </div>
+        </div>
+        <!-- body end -->
+      </div>
+    </div>
+    <!-- inject:footer:html -->
+    <!-- endinject -->
+    <!-- 内容广告模板 start -->
+    <script id="banner-tpl" type="text/html">
+      <div class="left">
+        <a href="{{bannerListA[0].url}}" target="_blank">
+          <span class="video"></span>
+          <img src="{{bannerListA[0].pic1}}" alt="{{bannerListA[0].title}}">
+          <div class="txt">{{bannerListA[0].title}}</div>
+        </a>
+
+      </div>
+      <div class="right">
+        {{each bannerListB item key}}
+        <a href="{{item.url}}" target="_blank">
+          <span class="video"></span>
+          <img src="{{item.pic1}}" alt="{{item.title}}">
+          <div class="txt">{{item.title}}</div>
+        </a>
+        {{/each}}
+      </div>
+    </script>
+    <!-- 内容广告模板 end -->
+    <!-- 专家列表模板 start -->
+    <script id="yiche-tpl" type="text/html">
+      {{each expertList item key}}
+      <div class="follow_list">
+        <div class="follow_list_item">
+          <div class="comment_photo">
+            {{if isLogin}}
+                <a href="http://i.yiche.com/u{{item.uid}}" target="_blank"><img src="{{item.avatarpath}}" alt="{{item.showName}}"></a>
+            {{else}}
+                <a href="http://i.yiche.com" target="_blank"><img src="{{item.avatarpath}}" alt="{{item.showName}}"></a>
+            {{/if}}
+          </div>
+          <div class="v_infor">
+            <div class="v_left">
+              {{if isLogin}}
+                <p class="name"><a href="http://i.yiche.com/u{{item.uid}}" target="_blank">{{item.showname}}</a></p>
+              {{else}}
+                <p class="name"><a href="http://i.yiche.com" target="_blank">{{item.showname}}</a></p>
+              {{/if}}
+              <p class="fans"><span class="last">粉丝 {{item.fanscount}}</span></p>
+            </div>
+            {{if isLogin}}
+                {{if item.followType == 0}}
+                    <span><a href="###" class="btn btn_fllow" uid="{{item.uid}}">关注TA</a></span>
+                {{else}}
+                    <span><a href="###" class="btn btn_gray" id="unFollow">已关注</a></span>
+                {{/if}}
+            {{else}}
+                <span><a href="http://i.yiche.com" target="_blank" class="btn btn_fllow" uid="{{item.uid}}">关注TA</a></span>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </script>
+    <!-- 专家列表模板 end -->
+    <!-- 视频直播列表模板 start -->
+    <script id="video-tpl" type="text/html">
+      {{each videoList item key}}
+      <div class="live_box_tab">
+        <div class="time_ball"></div>
+        <div class="time_axis">
+          <div class="time_axis_txt">{{item.timeLabel}}</div>
+        </div>
+        <div class="card_list_box clear">
+          {{each item.listInfo value key}}
+          <div class="card_list">
+            <a href="{{value.url}}" target="_blank" class="card_img">
+              {{if value.status == '回看'}}
+                  <span class="live_broadcast hk_bg">{{value.status}}</span>
+              {{else}}
+                  <span class="live_broadcast">{{value.status}}</span>
+              {{/if}}
+              <img src="{{value.mobileImageUrl}}" alt="{{value.title}}">
+              <em class="video"></em>
+            </a>
+            <div class="card_details">
+              <h2><a href="{{value.url}}" target="_blank">{{value.title}}</a></h2>
+            </div>
+            <div class="card_bottom_box">
+              <div class="card_bottom_user">主播：<span>{{value.userName}}</span></div>
+              <div class="card_bottom_time">{{value.key}}</div>
+            </div>
+          </div>
+          {{/each}}
+
+        </div>
+      </div>
+      {{/each}}
+    </script>
+    <!-- 视频直播列表模板 end -->
+    <script type="text/javascript" src="./assets/js/template.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./assets/js/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./static/js/autoShowLive.js" charset="utf-8"></script>
+  </body>
+
+  </html>

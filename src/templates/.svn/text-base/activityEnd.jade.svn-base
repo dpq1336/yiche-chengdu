@@ -1,0 +1,57 @@
+extends templateAct.jade
+block titleAndStyles
+    title 哎呀！活动嘞？
+    style.
+        .content, .page {
+            height: 100%;
+            background: #f2f2f2;
+        }
+block scripts
+    script.
+        seajs.use(["zepto", "util"], function (a, util) {
+            var pageController = {
+                init: function () {
+                    util.getWeiboApi();
+                },
+                store: {
+                    serverIP: util.getServerIp(),
+                    userId: util.getUserId()
+                }
+            }
+            $(function () {
+                pageController.init();
+            });
+        });
+
+block content
+    div.page-group
+        div.page.page-current.page-act
+            div.content
+                div.active_end_top
+                    img(src="./static/images/def/newUser/active_end_img.jpg")
+                    div.active_title 当前活动已结束啦！
+                    div.active_other 不过，我们特别为你准备了最新的活动，</br>超给力福利等你来哦！
+                div.fot_active_end
+                    //-
+                    a(href="index.html").btn_wb.btn_see.external 查看新活动
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

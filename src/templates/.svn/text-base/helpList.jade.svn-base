@@ -1,0 +1,18 @@
+extends template.jade
+block titleAndStyles
+    title 帮助与反馈
+block scripts
+    //script(type='text/javascript',src='./static/js/out/pushData.js',charset='utf-8')
+    script(type='text/javascript',src='./static/js/def/helpList.js',charset='utf-8')
+block content
+    div.page-group
+        div.page.page-current
+            div.content
+                //-
+                    div.helplist
+                        a.help_about_x.external.bord_top(href="./helpInfo.html") 关于微理财
+                        a.help_about_x.external(href="./helpInfo.html") 安全保障
+                        a.help_about_x.external(href="./helpInfo.html") 如何投资
+                        a.help_about_x.external(href="./helpInfo.html") 资金赎回
+                        a.help_about_x.external(href="./helpInfo.html") 帐户管理
+                        a.help_about_x.external(href="./helpInfo.html") 卡券

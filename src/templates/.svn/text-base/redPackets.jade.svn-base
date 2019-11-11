@@ -1,0 +1,161 @@
+extends templateAct
+block titleAndStyles
+    title 加载中...
+    style.
+        .content, .page {
+            height: 100%;
+        }
+block scripts
+    script.
+        //-
+        seajs.use(["zepto", "util"], function (a, util) {
+            var pageController = {
+                init: function () {
+                    util.getWeiboApi();
+                    this.getPageData();
+                },
+                store: {
+                    serverIP: util.getServerIp(),
+                    userId: util.getUserId(),
+                    inviteCode: util.getUrlParam('inviteCode'),
+                    isReceive: 0,
+                    amount: 0,
+                    portraitPath: '',
+                    nickName: ''
+                },
+                pageHandler: function () {
+                    var openImg = $('#openImg');
+                    var _this = this;
+                    openImg.click(function () {
+                        if (!this.tap) {
+                            $(this).addClass('active');
+                            util.toPage('./receiveResults.html?inviteCode='+_this.store.inviteCode);
+                            this.tap = true;
+                            _this.getWbHandle();
+                        }
+                    });
+                },
+                getWbHandle: function () {
+                    var _this = this;
+                    var isChecked = $("#radio-1").attr('checked');
+                    if (isChecked) {
+                        $.ajax({
+                            type: "POST",
+                            url: _this.store.serverIP + '/app/weibo/lightapp/follow',
+                            data: {
+                                userId: _this.store.userId
+                            },
+                            dataType: "json",
+                            success: function (jsonData) {
+                            }
+                        });
+                    }
+                },
+                getPageData: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + '/app/act/getInvitePageData',
+                        dataType: "json",
+                        data: {
+                            userId: _this.store.userId,
+                            inviteCode: _this.store.inviteCode
+                        },
+                        success: function (jsonData) {
+                            console.log(jsonData)
+                            if (jsonData && jsonData.control.error == 0) {
+                                var data = jsonData.data;
+                                 _this.store.portraitPath = data.portraitPath;
+                                 _this.store.nickName = data.nickName;
+                                if (data.isReceive != 0) {
+                                    var _url = './receiveResults.html?isReceive=' + data.isReceive;
+                                    _url += '&inviteCode=' + data.inviteCode;
+                                    util.toPage(_url);
+                                } else {
+                                    _this.creatTpl(data);
+                                    $('.red_packet_cont').show();
+                                    document.title="新手红包";
+                                    _this.pageHandler();
+                                }
+                            } else if (jsonData && jsonData.control.error == -1003) {
+                                util.toPage('./activityEnd.html');
+                            }
+                        },
+                        error: function (jsonData) {
+                            util.errorHandler();
+                        }
+                    });
+                },
+                creatTpl: function (data) {
+                    var _this = this;
+                    var dataTpl = '';
+                    dataTpl += '<div class="packet_c_top">'
+                    var userPhoto = data.portraitPath;
+                    if (!userPhoto) {
+                        dataTpl += '<img src="./static/images/def/icons/userPhoto.jpg" class="red_people_img">'
+                    } else {
+                        dataTpl += '<img src="' + data.portraitPath + '" class="red_people_img">'
+                    }
+                    dataTpl += '<div class="people_name">' + data.nickName + '</div>'
+                    //dataTpl += '<div class="red_title">已有' + data.redPackageNum + '人抢到红包</div>'
+                    dataTpl += '</div>'
+                    dataTpl += '<div class="red_open">'
+                    dataTpl += '<img src="./static/images/def/newUser/redpackets_bg2.png">'
+                    dataTpl += '<img id="openImg" src="./static/images/def/newUser/red_open.png" />'
+                    dataTpl += '</div>'
+                    dataTpl += '<div class="red_foot">'
+                    //dataTpl += '<div class="packet_money">红包最高可获<em> 888 元</em></div>'
+                    dataTpl += '<div class="atten_x atten_x_packet">'
+                    dataTpl += '<span class="about_x">'
+                    dataTpl += '<input type="checkbox" id="radio-1" name="radio-1" checked>'
+                    dataTpl += '<label for="radio-1"></label></span>'
+                    dataTpl += '<span class="about_x2">关注我们 <img src="./static/images/def/newUser/redpackets_loge.png" class="atten_logo"><em>理财平台</em></span></div>'
+                    dataTpl += '</div>'
+                    $('.red_packet_cont').append(dataTpl);
+                }
+            }
+            $(function () {
+                pageController.init();
+            });
+        });
+
+block content
+    div.page-group
+        div.page
+            div.content
+                div.red_packet_cont
+                    //-
+                        div.packet_c_top
+                            img.red_people_img(src="./static/images/def/newUser/result_img_poper.jpg")
+                            div.people_name 盛夏深远
+                            //div.red_title 已有5,234,567人抢到红包
+                        div.red_open
+                            img(src="./static/images/def/newUser/redpackets_bg2.png")
+                            img#openImg(src="./static/images/def/newUser/red_open.png")
+                        div.red_foot
+                            //div.packet_money 微理财红包最高可获<em> 888 元</em>
+                            div.atten_x.atten_x_packet
+                                span.about_x
+                                    input(type="checkbox",id="radio-1",name="radio-1" checked)
+                                    label(for="radio-1")
+                                span.about_x2 关注我们 <img src="./static/images/def/newUser/redpackets_loge.png" class='atten_logo'><em>理财平台</em>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

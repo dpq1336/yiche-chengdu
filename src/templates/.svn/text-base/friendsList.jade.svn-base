@@ -1,0 +1,287 @@
+extends template.jade
+block titleAndStyles
+    title 受邀好友列表
+    style.
+        .pt166 {
+            padding-top: 4.15rem;
+        }
+
+        .warp_content {
+            margin-top: 0.475rem;
+            background: #fff;
+        }
+
+        .friends-list-page {
+            background: #fff;
+        }
+
+        .load_more_btn {
+            background: #fff;
+        }
+
+        .friends-bar {
+            background: #fff;
+            width: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            border-bottom: 1px solid #dbdbdb;
+            padding: 0.8rem 0;
+            display: box;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: flex;
+            z-index: 99999;
+        }
+
+        .friends-bar .friends-bar-l {
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .friends-bar .friends-bar-l, .friends-bar .friends-bar-r {
+            -moz-box-flex: 1;
+            -webkit-box-flex: 1;
+            box-flex: 1;
+            -webkit-flex: 1;
+            -moz-flex: 1;
+            flex: 1;
+            width: 50%;
+            text-align: center;
+        }
+
+        .friends-bar .friends-bar-tit {
+            font-size: 0.65rem;
+            color: #666;
+        }
+
+        .friends-bar .friends-bar-money {
+            color: #ec3215;
+            font-size: 1.1rem;
+        }
+
+        .friendsListTit {
+            position: relative;
+            display: box;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: flex;
+        }
+
+        .friendsListTit:before {
+            width: 100%;
+            height: 1px;
+            border-top: 1px solid #f2f2f2;
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            -webkit-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+            -webkit-transform: scaleY(0.5);
+            -moz-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+        }
+
+        .friendsListTit:after {
+            width: 100%;
+            height: 1px;
+            border-bottom: 1px solid #dadada;
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: 1;
+            -webkit-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+            -webkit-transform: scaleY(0.5);
+            -moz-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+        }
+
+        .friendsListTit div {
+            text-align: center;
+            font-size: 0.7rem;
+            height: 2.75rem;
+            line-height: 2.75rem;
+            color: #666;
+            -moz-box-flex: 1;
+            -webkit-box-flex: 1;
+            box-flex: 1;
+            -webkit-flex: 1;
+            -moz-flex: 1;
+            flex: 1;
+        }
+
+        .friends-list-page .friendsList {
+            position: relative;
+            overflow: hidden;
+            padding: 0.65rem 0;
+            margin: 0 0.65rem;
+            display: box;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: flex;
+        }
+
+        .friends-list-page .friendsList:before {
+            border-bottom: 1px dashed #e9e9e9;
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            -webkit-transform: scaleY(0.5);
+            -moz-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+        }
+
+        .friends-list-page .friendsList .friendsListL {
+            text-align: center;
+            -moz-box-flex: 1;
+            -webkit-box-flex: 1;
+            box-flex: 1;
+            -webkit-flex: 1;
+            -moz-flex: 1;
+            flex: 1;
+        }
+
+        .friends-list-page .friendsList .friendsListL .userImg {
+            vertical-align: top;
+            float: left;
+            display: inline-block;
+            width: 1.95rem;
+            height: 1.95rem;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .friends-list-page .friendsList .friendsListL .userImg img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+        }
+
+        .friends-list-page .friendsList .friendsListL .name {
+            overflow: hidden;
+            padding-left: 0.5rem;
+            color: #666;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            height: 1.95rem;
+            line-height: 1.95rem;
+        }
+
+        .friends-list-page .friendsList .friendsListR {
+            -moz-box-flex: 1;
+            -webkit-box-flex: 1;
+            box-flex: 1;
+            -webkit-flex: 1;
+            -moz-flex: 1;
+            flex: 1;
+            text-align: center;
+            height: 1.95rem;
+            line-height: 1.95rem;
+            position:relative;
+        }
+
+        .friends-list-page .friendsList .friendsListR span{
+            color:#666;
+        }
+
+        .friends-list-page .friendsList .friendsListR .notice {
+            position: absolute;
+            top: 50%;
+            left:50%;
+            margin-top: -0.725rem;
+            margin-left:-1.7875rem;
+            text-align: center;
+            width: 3.575rem;
+            height: 1.45rem;
+            line-height: 1.45rem;
+            display: block;
+            background: #f43b1e;
+            color: #fffef4;
+            font-size: 0.7rem;
+            border-radius: 0.9rem;
+            -webkit-border-radius: 0.9rem;
+        }
+
+        .friends-list-page .friendsList .friendsListR .notice-down {
+            text-align: center;
+            width: 3.575rem;
+            height: 1.45rem;
+            line-height: 1.45rem;
+            display: block;
+            color: #666;
+            font-size: 0.8rem;
+            margin: 0 auto;
+        }
+
+        .friends-list-page .friendsList .friendsListR .max {
+            width: 2.375rem;
+            height: 1.825rem;
+            display: block;
+            position:absolute;
+            right:-2px;
+            bottom:-10px;
+        }
+
+        .friends-list-page .friendsList .friendsListR .icon-two {
+            position: absolute;
+            top: 50%;
+            display: block;
+            width: 3.575rem;
+            height: 2.05rem;
+            margin-top: -1.025rem;
+        }
+
+        .empty_pic {
+            width: 8.125rem;
+            height: 13.75rem;
+            display: block;
+            padding-top:6.5rem;
+            margin: 0 auto;
+        }
+        .sendWb{
+            position:fixed;
+            bottom:0;
+            left:0;
+            width:100%;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            text-align: center;
+            background: #ff8301;
+            color:#f3f3f3;
+            font-size: 1rem;
+
+        }
+        .color-red{
+            color:#ec3215;
+        }
+        .loading_img_x{
+        	top: 25%;
+        }
+block scripts
+    script(type="text/javascript",charset="utf-8",src="./static/js/def/friendsList.js")
+block content
+    div.page-group
+        div.page.page-current.friends-list-page

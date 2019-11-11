@@ -1,0 +1,50 @@
+extends template.jade
+block titleAndStyles
+    title 存钱罐收益明细
+block scripts
+    script(type="text/javascript",charset="utf-8",src="./static/js/def/profitList.js")
+block content
+    div.page-group
+        div.page.page-current
+            div.content.native-scroll
+                //-
+                    div.com_list
+                        div.t_card.com_list_con
+                            div.com_lite_item
+                                div.cli_1.cli_item <span class="l_s">收益</span><span class="r_s">+1,324,000.00元</span>
+                                div.cli_2.cli_item <span class="l_s">2015-10-22 13:42</span>
+                            div.com_lite_item
+                                div.cli_1.cli_item <span class="l_s">收益</span><span class="r_s">-31,324,000.00元</span>
+                                div.cli_2.cli_item <span class="l_s">2015-10-22 13:42</span>
+                            div.com_lite_item
+                                div.cli_1.cli_item <span class="l_s">收益</span><span class="r_s">+1,324,000.00元</span>
+                                div.cli_3.cli_item <span class="l_s">2015-10-22 13:42</span>
+                            div.com_lite_item
+                                div.cli_1.cli_item <span class="l_s">收益</span><span class="r_s">-1,324,000.00元</span>
+                                div.cli_3.cli_item <span class="l_s">2015-10-22 13:42</span>
+                    //-
+                        div.com_no_data.tc_no_data
+                            img(src="./static/images/def/icons/th_icon.png")
+                            div 暂还没有购买记录
+            //-
+                script#proListTpl(type="text/html").
+                    <div class="com_list">
+                            {{# if(d.incomeList.length==0){ }}
+                                <div class="com_no_data tc_no_data"><img src="./static/images/def/icons/th_icon.png">
+                                    <div>暂还没有购买记录</div>
+                                </div>
+                            {{# } }}
+                            <div class="t_card com_list_con">
+                                {{# if(d.incomeList.length>0){ }}
+                                    {{# for(var i=0;i<d.incomeList.length;i++){ }}
+                                        <div class="com_lite_item">
+                                            <div class="cli_1 cli_item"><span class="l_s">收益</span><span class="r_s">{{ d.incomeList[i].plusOrDiff + d.incomeList[i].amount}}元</span></div>
+                                            <div class="cli_2 cli_item"><span class="l_s">{{d.incomeList[i].incomdeDate}}</span></div>
+                                        </div>
+                                    {{# } }}
+                                {{# } }}
+                            </div>
+                    </div>
+
+
+

@@ -1,0 +1,221 @@
+@charset "utf-8";
+$bgColor:#fff;
+$disBtnColor:#eee;
+body{
+  background-color: $bgColor;
+}
+.content{
+  background-color: $bgColor;
+}
+p,h3,input{
+  margin: 0;
+  padding:0;
+}
+em{
+  font-style: normal;
+}
+.content{
+  background: $bgColor;
+}
+$browser-default-font-size: 40px !default;
+$box_shadow:0 1px 1px rgba(0, 0, 0, 0.05);
+$box_shadow2:0 -1px 1px rgba(0, 0, 0, 0.1);
+@mixin box-shadow($shadow...){
+  -webkit-box-shadow:$shadow;
+  -moz-box-shadow:$shadow;
+  box-shadow:$shadow;
+}
+@mixin borderRadio($value) {
+  -webkit-border-radius: $value;
+  -moz-border-radius: $value;
+  border-radius: $value;
+}
+@mixin boxflex($value: 1){
+  -moz-box-flex:$value;
+  -webkit-box-flex:$value;
+  box-flex:$value;
+  -webkit-flex:$value;
+  -moz-flex:$value;
+  flex:$value;
+}
+@mixin dis_flex(){
+  display: box;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+}
+@mixin no_select{
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  user-select:none;
+}
+@mixin over-flow-hidden(){
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+@mixin com_btn($width:100%,$height:pxToRem(85px),$color:#fff,$radius:2px,$bgcolor:$orang_1){
+  width: $width;
+  height: $height;
+  line-height:$height;
+  background-color: $bgcolor;
+  color: $color;
+  border-radius:$radius;
+  text-align: center;
+  border: 0 none;
+  display: block;
+}
+.dis_btn{
+  background-color: $disBtnColor !important;
+  color: #999 !important;
+}
+
+@function pxToRem($px){//$px为需要转换的字号
+  @return $px / $browser-default-font-size * 1rem;
+}
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+@mixin transForm($value...){
+  -webkit-transform:$value;
+  -moz-transform:$value;
+  transform:$value;
+}
+@mixin transiTion($value...){
+  -webkit-transition:$value;
+  -moz-transition:$value;
+  transition:$value;
+}
+@mixin animAtion($value...){
+  -webkit-animation:$value;
+  -moz-animation:$value;
+  animation:$value;
+}
+@mixin rotateZ($value...){
+  -webkit-transform: rotateZ($value);
+  -moz-transform: rotateZ($value);
+  transform: rotateZ($value);
+}
+@mixin transFormOrigin($value...){
+  -webkit-transform-origin:$value;
+  -moz-transform-origin:$value;
+  transform-origin:$value;
+}
+@mixin appearance(){
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+}
+
+ 
+.dot_user{
+  display: none;
+  width: pxToRem(16px);
+  height:pxToRem(16px);
+  background: #f50000;
+  @include borderRadio(50%);
+  vertical-align: middle;
+  margin-left: pxToRem(24px);
+  margin-top:-2px;
+}
+.disinck{
+  display: inline-block;
+}
+.com_arrow_r{
+  &:after{
+    content: '';
+    display: inline-block;
+    width: pxToRem(14px);
+    height: pxToRem(14px);
+    border: 1px solid #aaaaaa;
+    border-top: none;
+    border-left: none;
+    position: absolute;
+    top: 50%;
+    right: pxToRem(24px);
+    @include transForm(translate(-50%, -50%) rotate(-45deg));
+    @include transiTion(all .5s);
+  }
+
+  &.arrow_d{
+    &:after{
+      @include transForm(rotate(90deg) translate(-50%, -50%));
+      right:pxToRem(40px);
+    }
+  }
+}
+.com_no_data{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include transForm(translate(-50%,-50%));
+  img{
+    width:pxToRem(184px);
+    height:pxToRem(154px);
+    display: block;
+    margin: 0 auto;
+    margin-bottom:pxToRem(40px);
+  }
+  div{
+    font-size: pxToRem(28px);
+    
+    text-align: center;
+  }
+}
+
+
+.disflex{
+  @include dis_flex();
+}
+.boxflex{
+  @include boxflex(1);
+}
+.boxflex15{
+  @include boxflex(1.2);
+}
+
+
+.common_layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.3);
+  z-index: 9999;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.dis_none{
+  display: none;
+}
+.clearfix {
+  zoom:1}
+
+.clearfix:before {
+  content: '';
+  display: block;
+  clear: both
+}
+
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both
+}

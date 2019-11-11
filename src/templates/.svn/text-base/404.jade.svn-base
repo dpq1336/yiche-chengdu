@@ -1,0 +1,15 @@
+extends template.jade
+block titleAndStyles
+	title 404
+block content
+	div.page-group
+		div.page.page-current
+			div.content.native-scroll
+				//-
+				div.error404
+					img(src="./static/images/def/icons/icon_404.png")
+					div.err_Tite 啊，页面不在了
+					a.btn_lc.external(href="./index.html") 返回首页
+					a.contact.external(href="lcList.html") 联系客服
+			
+

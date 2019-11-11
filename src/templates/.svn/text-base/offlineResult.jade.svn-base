@@ -1,0 +1,146 @@
+extends templateAct
+block titleAndStyles
+    title 领取结果
+    style.
+        .page_color {
+            background: #eaeaea;
+        }
+
+        .page-act {
+            height: auto;
+            padding-bottom: 4.45rem;
+            min-height: 100%;
+        }
+
+        .content {
+            background: transparent;
+            height: auto;
+        }
+block scripts
+    script.
+        //-
+        seajs.use(["zepto", "util"], function (a, util) {
+            var pageController = {
+                init: function () {
+                    util.getWeiboApi();
+                    this.getPageData();
+                },
+                store: {
+                    serverIP: util.getServerIp(),
+                    userId: util.getUserId(),
+                    isReceive: null
+                },
+                getPageData: function () {
+                    var _this = this;
+                    var interFace = "/app/act/saomaRedPacket";
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + interFace,
+                        dataType: "json",
+                        data: {
+                            userId: _this.store.userId
+                        },
+                        beforeSend: function () {
+                            util.showLoading();
+                        },
+                        complete: function () {
+                            util.hideLoading();
+                        },
+                        success: function (jsonData) {
+                            console.log(jsonData);
+                            if (jsonData && jsonData.control.error == 0) {
+                                var data = jsonData.data;
+                                $('.page-group').show();
+                                _this.creatTpl(data);
+                            } else if (jsonData && jsonData.control.error == -1003) {
+                                util.toPage('./activityEnd.html');
+                            } else {
+                                util.errorHandler();
+                            }
+                        },
+                        error: function (jsonData) {
+                            util.errorHandler();
+                        }
+                    });
+                },
+                creatTpl: function (data) {
+                    var _this = this;
+                    var dataTpl = '';
+                    _this.store.isReceive = data.isReceive;
+                    _this.store.inviteCode = data.inviteCode;
+                    if (data.isReceive != 2) {
+                        for (var i = 0; i < data.redPackages.length; i++) {
+                            dataTpl += '<div class="vouchers_side">'
+                            dataTpl += '<div class="vou_side_L"><em>' + data.redPackages[i].amount + '</em>元</div>'
+                            dataTpl += '<div class="vou_side_R"><img src="./static/images/def/newUser/receive_fx.png">'
+                            dataTpl += '<h4>有效期至' + data.redPackages[i].endTime + '</h4>'
+                            if (data.redPackages[i].downLimitAmount == 0) {
+                                dataTpl += '<p>*购买任意金额可用</p>'
+                            } else {
+                                dataTpl += '<p>*购买' + data.redPackages[i].downLimitAmount + '元及以上金额可用</p>'
+                            }
+                            if (data.redPackages[i].downLimitDay == 0) {
+                                dataTpl += '<p>*购买任意期限产品可用</p>'
+                            } else {
+                                dataTpl += '<p>*购买' + data.redPackages[i].downLimitDay + '天及以上期限产品可用</p>'
+                            }
+                            dataTpl += '</div>'
+                            dataTpl += '</div>'
+                        }
+                        if (data.isReceive == 0) {
+                            $('.vouchers_list').append(dataTpl);
+
+                        } else if (data.isReceive == 1) {
+                            $('.vouchers_list').append(dataTpl);
+                            $('.receive_boxImg_once').show();
+                            $('.receive_foot_go').hide();
+                            $('.vouchers_list').addClass('vouchers_list_once');
+                        }
+                    }
+                    $(".btn_wb").html("立即使用红包").attr('href', './index.html');
+                }
+            }
+            $(function () {
+                pageController.init();
+            });
+        });
+block content
+    div.page-group.hide
+        div.page.page-current.page-receive-bg-xl.page-act
+            div.content.native-scroll.overwidth
+                img(src="./static/images/def/newUser/receive_banner_xl.png").back_img.zindex3
+                div.receive_boxImg.receive_boxImg_xl
+                    img(src="./static/images/def/newUser/receive_Once.png").receive_boxImg_once.hide
+                //div.vouchers_list.vouchers_list_once
+                div.vouchers_list.vouchers_list_xl
+                    //-
+                        div.vouchers_side
+                            div.vou_side_L <em>1.88</em>元
+                            div.vou_side_R
+                                img(src="./static/images/def/newUser/receive_fx.png")
+                                h4 3天有效
+                                p *购买任意金额可用
+                                p *购买任意期限产品可用
+                        div.vouchers_side
+                            div.vou_side_L <em>6.88</em>元
+                            div.vou_side_R
+                                img(src="./static/images/def/newUser/receive_fx.png")
+                                h4 3天有效
+                                p *购买2000元及以上金额可用
+                                p *购买30天及以上期限产品可用
+                        div.vouchers_side
+                            div.vou_side_L <em>16.88</em>元
+                            div.vou_side_R
+                                img(src="./static/images/def/newUser/receive_fx.png")
+                                h4 3天有效
+                                p *购买5000元及以上金额可用
+                                p *购买30天及以上期限产品可用
+                        div.vouchers_side
+                            div.vou_side_L <em>38.88</em>元
+                            div.vou_side_R
+                                img(src="./static/images/def/newUser/receive_fx.png")
+                                h4 3天有效
+                                p *购买10000元及以上金额可用
+                                p *购买30天及以上期限产品可用
+                img(src="./static/images/def/newUser/receive_foot_go.png").receive_foot_go
+            a(href="javascript:void(0)").bar.bar-tab.btn_wb.btn_wb_xl 立即使用红包

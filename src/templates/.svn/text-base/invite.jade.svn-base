@@ -1,0 +1,162 @@
+extends templateAct
+block titleAndStyles
+    title 发微博赚现金
+    style.
+        .content{
+            height: auto;
+            background: #c70707;
+            display: none;
+        }
+        .page-group {
+            height: auto;
+        }
+        .page_color{
+            background: #c70707;
+        }
+block scripts
+    script.
+        //-
+        seajs.use(["zepto", "util"], function (a, util) {
+            var pageController = {
+                init: function () {
+                    util.getWeiboApi();
+                    this.getPageData();
+                    util.pushData({
+                        orderType: "c",//a:新手领取，b:员工专享，c:活动专题，d：分享领取结果页
+                        sourceType: 0 //0:pv,1:点击
+                    });
+                },
+                store:{
+                    serverIP: util.getServerIp(),
+                    sendWeiboMsg: util.sendWeiboMsg(),
+                    inviteCode:null,
+                    totalAwardAmount:0,
+                    userId: util.getUserId()
+                },
+                getPageData: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + '/app/act/getActCode',
+                        dataType: "json",
+                        data: {
+                            userId: _this.store.userId
+                        },
+                        beforeSend:function(){
+                        	util.showLoading();
+                        },
+                        complete:function(){
+                        	util.hideLoading();
+                        },
+                        success: function (jsonData) {
+                            if (jsonData && jsonData.control.error == 0) {
+                                var data = jsonData.data;
+                                console.log(jsonData);
+                                $('.content,.btn_invite').show();
+                                $('body').addClass('page_color');
+                                _this.store.inviteCode=data.inviteCode;
+                                if (data.totalAwardAmount == 0){
+                                    _this.store.totalAwardAmount="竟然没有";
+                                    $('.inviteAmount').html(_this.store.totalAwardAmount);
+                                }else {
+                                    _this.store.totalAwardAmount=data.totalAwardAmount;
+                                    $('.inviteAmount').html(_this.store.totalAwardAmount +"元");
+                                }
+
+                                _this.pageHandler(data);
+                            }else if (jsonData && jsonData.control.error == -1003) {
+                                _this.creatEndTpl();
+                            }else {
+                                util.errorHandler(_this.store.userId);
+                            }
+
+                        },
+                        error: function (jsonData) {
+                            util.errorHandler(_this.store.userId);
+                        }
+                    });
+                },
+                pageHandler:function(data){
+                    var _this = this;
+                    $(".btn_invite").on('click', function () {
+                        util.pushData({
+                            orderType: "c",//a:新手领取，b:员工专享，c:活动专题，d：分享领取结果页
+                            sourceType: $(this).attr("data_type") //0:pv,1:点击,2:点击微博
+                        });
+                        var sinaWbTxt = _this.store.sendWeiboMsg + "/" + _this.store.inviteCode;
+                    	var dataTwb = 'sinaweibo://sendweibo?title=发微博&content='+encodeURIComponent(util.getInviteText()+sinaWbTxt);
+                        util.toPage(dataTwb);
+                    });
+                    $(".btn_datil").click(function(){
+                         util.toPage("./friendsList.html?inviteCode="+_this.store.inviteCode);
+                    });
+                    $('.btn_rules').on('click',function () {
+                        $('.common_layer').show();
+                        $('.invite_cont').show();
+                        util.forbiddenScroll();
+                    });
+                    $('.off_p').on('click',function () {
+                        $('.common_layer').hide();
+                        $('.invite_cont').hide();
+                        util.forbiddenScroll();
+                    })
+
+                },
+                creatEndTpl: function () {
+                    var dataTpl = '';
+                    dataTpl+='<div class="content"><div class="active_end_top"><img src="./static/images/def/newUser/active_end_img.jpg"><div class="active_title">当前活动已结束啦！</div><div class="active_other">不过，我们特别为你准备了最新的活动，</br>超给力福利等你来哦！</div></div><div class="fot_active_end"><a href="index.html" class="btn_wb btn_see external">查看新活动</a></div></div>'
+                    $('.content,.page').css('height','100%');
+                    $('.page-group').removeClass('page_color');
+                    $('.page').html(dataTpl);
+                }
+            }
+            $(function () {
+                pageController.init();
+            });
+        });
+
+block content
+    //-
+    div.page-group
+        div.page.page-current.page-act
+            div.common_layer.hide
+            div.act_rules_cont.invite_cont <p class="off_p"></p><div class="act_rules_mess_top"><span>活动规则</span></div><div class="act_rules_mess"><p><i></i><span>活动时间：<em class="spe">2016年11月9日至11月25日</em>；</span></p><p><i></i><span>活动内容：发微博分享活动，好友（新用户）通过活动链接成功购买理财产品后，您将获得活动期间内好友理财金额的0.5%现金奖励，奖励将自动发放至“ <em class="spe">我的礼券</em>”中，点击兑换即可；</span></p><p><i class="opacty0"></i><span class="color_font24">温馨提示：成功邀请一位好友（新用户）获得现金奖励的最高上限为1000元；</span></p> <p><i></i><span>本活动由理财平台主办，活动奖励不同于投资收益，与所投资产品无关，奖励发放由理财平台提供；</span></p><p><i></i><span>本活动严禁任何恶意作弊行为，如经发现，将收回奖励并永久列入理财平台黑名单；</span></p><p><i></i><span>在法律允许范围内，理财平台保留本活动最终解释权；</span></p><p><i></i><span>活动期间如有任何疑问，请到“帮助中心”－“联系客服”中咨询。</span></p></div>
+            div.content.native-scroll
+                div.activity_top.invite_top
+                    img(src="./static/images/def/newUser/invite_bg1.jpg")
+                    img(src="./static/images/def/newUser/invite_bg2.jpg")
+                div.invit_example
+                    img(src="./static/images/def/newUser/invite_bg3.jpg").invit_example_img
+                    a(href="javascript: void(0);").btn_rules 活动规则
+                div.invite_list
+                    img(src="./static/images/def/newUser/invite_bg4.jpg")
+                div.invit_datil
+                    img(src="./static/images/def/newUser/invit_rules.png").invit_example_img
+                    span 我的现金奖励
+                    a(href="javascript:ovid(0)").btn_datil 邀请明细
+                    p <em class="inviteAmount">--</em>
+
+                div.bar.bar-tab.invite_footer
+                    a.bar.bar-tab.btn_invite(href="javascript: void(0);",data_type="2",style="display:none;") 立即赚现金
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+extends template.jade
+block titleAndStyles
+	title 提现
+	style.
+		.dis_btn {
+			background-color: #dbdbdb;
+			color: #999;
+		}
+block scripts
+	script(type="text/javascript",charset="utf-8",src="./static/js/def/turnOut.js")
+block content
+	div.page-group
+		div.page.page-current
+			div.content
+				//-
+					form
+						div.bgff.clearfix.borderTm
+							div.bank_x 提现银行卡
+							div.banktite_x 招商银行（尾号3456）
+						div.bgff.clearfix.mb20
+							div.bank_x 存钱罐余额（元）
+							div.banktite_x 10
+						div.buyInput_x.bgff
+							span 金额（元）
+							input(placeholder="本次最多可转出1,000.00元")
+						div.pl26.turnIn
+							a.btn_buy(href='./turnOutSuccess.html') 确认转出
+			//-
+				script#proListTpl(type="text/html").
+					<form>
+						<div class="bgff clearfix mb20">
+						<div class="bank_x">{{d.cardName}}（尾号{{d.cardNo}}）</div>
+						</div>
+						<div class="buyInput_x bgff"><span>金额（元）</span>
+						<input class="Input_turnOut" placeholder="本次最多可转出{{d.canWithAmount}}元">
+						</div>
+						<div class="pl26 turnIn"><a href="javascript:void(0);" class="btn_buy btn_turnOut">确认转出</a></div>
+					</form>

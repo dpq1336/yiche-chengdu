@@ -1,0 +1,24 @@
+extends template.jade
+block titleAndStyles
+	title 公告详情
+block scripts
+	script(type="text/javascript",charset="utf-8",src="./static/js/def/msgInfo.js")
+block content
+	div.page-group.bgff_x
+		div.page.page-current
+			div.content.native-scroll.bgff_x
+				//-
+					div.gg_msg_info
+						div.msi_tit
+							div.msi_t1 您投资的理财产品优房宝“508-60”已完成筹款
+							div.msi_t2 2016年5月19日 19:00 微理财团队
+						div.msi_content 亲爱的微博金融用户，您好！<br>感谢您使用互联网理财投资平台微博金融。您投资的理财产品“优房宝508-60”已于2016年03月23时13分募集成功。您的投资人民币¥8000.00元将于明日开始计息，感谢您支持微博金融！
+			//-
+				script#proListTpl(type="text/html").
+					<div class="gg_msg_info">
+						<div class="msi_tit">
+							<div class="msi_t1">{{d.title}}</div>
+							<div class="msi_t2">{{d.createTime}} {{d.newssource}}</div>
+						</div>
+						<div class="msi_content">{{d.content}}</div>
+					</div>

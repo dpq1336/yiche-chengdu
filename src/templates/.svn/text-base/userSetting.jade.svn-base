@@ -1,0 +1,32 @@
+extends template.jade
+block titleAndStyles
+	title 设置
+block scripts
+	script(type="text/javascript",charset="utf-8",src="./static/js/def/userSetting.js")
+block content
+	div.page-group
+		div.page.page-current
+			div.native-scroll.content
+				//-
+					div.x_top_title 实名信息
+					div.accv_bot.t_card
+						div.t_card_tit 姓名 <span>胡X峰</span>
+						div.t_card_tit 身份证号 <span>23010049*******2889</span>
+					div.x_top_title 账户信息
+					div.accv_bot.t_card
+						div.t_card_tit 手机号 <span>177*****174</span>
+						div.t_card_tit 银行卡号 <span>招商银行（尾号0214）</span>
+						div.t_card_tit 支付密码 <span class="set_pay_pwd color_orang_1">设置支付密码</span>
+						div.t_card_tit 忘记支付密码 <span class="set_pay_pwd color_orang_1">找回支付密码</span>
+					div.accv_bot.t_card.kf_phone
+						div.t_card_tit 客服电话：<a href="tel:400100111">400-100-111</>  <span class="font_24">工作日09:00-20:00</span>
+					
+						
+					
+								
+								
+						
+					
+			
+
+

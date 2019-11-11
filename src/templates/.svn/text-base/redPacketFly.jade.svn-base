@@ -1,0 +1,113 @@
+extends templateAct.jade
+block titleAndStyles
+    title 兑换成功
+    style.
+        .page-current {
+            background: #ff4741;
+        }
+block scripts
+    script.
+        //-
+        seajs.use(["zepto", "util"], function (a, util) {
+            var pageController = {
+                init: function () {
+                    util.getWeiboApi();
+                    this.getPageData();
+                    this.getWbHandle();
+                },
+                store: {
+                    userId: util.getUserId(),
+                    serverIP: util.getServerIp()
+                },
+                getPageData: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + '/app/act/fly/getFlyRedPackageList',
+                        dataType: "json",
+                        data: {
+                            userId: _this.store.userId
+                        },
+                        beforeSend: function () {
+                            util.showLoading();
+                        },
+                        complete: function () {
+                            util.hideLoading();
+                        },
+                        success: function (jsonData) {
+                            if (jsonData && jsonData.control.error == 0) {
+                                if (jsonData.data.code == 0) {
+                                    _this.pageHandler(jsonData.data);
+                                } else if (jsonData.data.code == -100) {
+                                    util.toPage("redPacketFlyUsed.html");
+                                } else if (jsonData.data.code == -103) {
+                                    util.toPage("activityEnd.html");
+                                }else {
+                                    alert(jsonData.data.msg);
+                                }
+                            } else {
+                                util.errorHandler(_this.store.userId);
+                            }
+
+                        },
+                        error: function (jsonData) {
+                            util.errorHandler(_this.store.userId);
+                        }
+                    });
+                },
+                pageHandler: function (data) {
+                    var _this = this;
+                    if (!data) {
+                        return false;
+                    }
+                    var dataTpl = '';
+                    dataTpl += '<ul>'
+                    for (var i = 0; i < data.actList.length; i++) {
+                        dataTpl += '<li><div class="redpacket-fly-list">';
+                        dataTpl += '<div class="r-f-money"><em>' + data.actList[i].amount + '</em>元</div>';
+                        if (data.userType == 0 && data.actList[i].downLimitDay == 0) {
+                            dataTpl += '<div class="r-f-day r-f-day-spe">* 购买任意产品可用</div>';
+                            dataTpl += '<span class="r-f-general"></span>';
+                        } else {
+                            dataTpl += '<div class="r-f-day">* 购买' + data.actList[i].downLimitDay + '天及以上产品</div>';
+                            dataTpl += '<div class="r-f-price">满' + data.actList[i].downLimitAmount + '元可用</div>';
+                        }
+                        dataTpl += '</div></li>'
+                    }
+                    dataTpl += '</ul>';
+                    $(".redpacket-fly-lists").append(dataTpl);
+                },
+                getWbHandle: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + '/app/weibo/lightapp/follow',
+                        data: {
+                            userId: _this.store.userId
+                        },
+                        dataType: "json",
+                        success: function (jsonData) {
+                        }
+                    });
+                }
+            };
+            $(function () {
+                pageController.init();
+            });
+        });
+
+block content
+    //-
+    div.page-group
+        div.page.page-current
+            div.content.native-scroll.redpacket-fly-con
+                div.redpacket-fly-top
+                    img(src="./static/images/def/newUser/redpacket_fly_bg1.jpg")
+                div.redpacket-fly-fourlists
+                    img(src="./static/images/def/newUser/redpacket_fly_bg2.jpg")
+                    div.redpacket-fly-lists
+                    img(src="./static/images/def/newUser/redpacket_fly_steps.jpg")
+                    div.redpacket-fly-btn
+                        div.redpacket-fly-btn-bg
+                        a.use(href="index.html?redpacketfly=fly") 立即使用
+                    div.follow 已关注 @理财平台

@@ -1,0 +1,378 @@
+extends templateAct
+block titleAndStyles
+    title 微博理财节
+    style.
+        .content{
+            height: auto;
+            background: #fff;
+            display: none;
+            padding-bottom: 3.5rem;
+        }
+        .page-group {
+            height: auto;
+        }
+block scripts
+    script.
+        //-
+        seajs.use(["zepto", "util"], function (a, util) {
+            var pageController = {
+                init: function () {
+                    util.getWeiboApi();
+                    this.getPageData();
+                },
+                store:{
+                    serverIP: util.getServerIp(),
+                    sendweiboRanking: util.sendweiboRanking(),
+                    inviteCode:null,
+                    totalAwardAmount:0,
+                    userId: util.getUserId()
+                },
+                getPageData: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + '/app/investRank/investRankAwardInfo',
+                        dataType: "json",
+                        data: {
+                            userId: _this.store.userId
+                        },
+                        beforeSend:function(){
+                            util.showLoading();
+                        },
+                        complete:function(){
+                            util.hideLoading();
+                        },
+                        success: function (jsonData) {
+                            if (jsonData && jsonData.control.error == 0) {
+                                var data = jsonData.data;
+                                console.log(jsonData);
+                                $('.content,.btn_invite_box').show();
+                                $('.page-group').show();
+                                _this.creatTpl(data);
+                                _this.pageHandler(data);
+                                $('.rank_warp').show();
+                            }else {
+                                util.errorHandler(_this.store.userId);
+                            }
+                        },
+                        error: function (jsonData) {
+                            util.errorHandler(_this.store.userId);
+                        }
+                    });
+                },
+                getProfit: function (rank) {  //3
+                    var profitArr = [{
+                        text: "一个么么哒",
+                        imgSrc: './static/images/def/newUser/rank_img6_x.png'
+                    }, {
+                        text: "iPhone 7 Plus",
+                        imgSrc: './static/images/def/newUser/rank_img6_a_x.png'
+                    }, {
+                        text: "iPad Air2",
+                        imgSrc: './static/images/def/newUser/rank_img6_b_x.png'
+                    }, {
+                        text: "1000元京东E卡",
+                        imgSrc: './static/images/def/newUser/rank_img6_x.png'
+                    }, {
+                        text: "500元京东E卡",
+                        imgSrc: './static/images/def/newUser/rank_img6_x.png'
+                    }, {
+                        text: "100元京东E卡",
+                        imgSrc: './static/images/def/newUser/rank_img6_x.png'
+                    }];
+                    return profitArr[rank];
+                },
+                pageHandler:function(data){
+                    var _this = this;
+                    var btn_Receive = $('#btn_Receive');
+                    var currAwardType = data.userRankMap.currAwardType; //当前奖励类型   0：无奖励  1：1等奖 2：2等奖 3：3等奖 4：4等奖 5：5等奖,
+                    var nextAwardType = data.userRankMap.nextAwardType; //下一个奖励类型,
+                    var investAmount = data.userRankMap.investAmount; //投资金额
+                    var w = investAmount/10000*100;
+                    var advancedAmount = data.userRankMap.advancedAmount; //进阶到下一个奖励类型需要投资金额,
+                    var isReceived = data.userRankMap.isRecived; //进阶到下一个奖励类型需要投资金额,
+                    var isExpired = data.userRankMap.isExpired; //是否过期0未过期  1：过期
+                    var rank = data.userRankMap.rank; //当前排名
+                    $(".btn_rank_invite").on('click', function () {
+                        var sinaWbTxt = _this.store.sendweiboRanking ;
+                        var dataTwb = 'sinaweibo://sendweibo?title=发微博&content='+encodeURIComponent("壕炸咧！我在#理财平台#白拿iPhone7 Plus，iPad Air2，千元购物卡，现金红包等壕气大奖！一起来领呀！"+sinaWbTxt);
+                        util.toPage(dataTwb);
+
+                    });
+                    $('.btn_rules_rank').on('click',function () {
+                        $('.common_layer').show();
+                        $('.invite_cont').show();
+                        util.forbiddenScroll();
+                    });
+                    $('.off_p').on('click',function () {
+                        $('.common_layer').hide();
+                        $('.invite_cont').hide();
+                        util.forbiddenScroll();
+                    })
+                    if(w >= 100 ){
+                        w = 100
+                    }
+                    $this_bd = $('.rank_progress span');
+                    $this_bd.animate({width: w + '%', minWidth: '10%'}, 700, 'ease-out');
+
+                    if (investAmount >= 10000) {
+                        $('.rank_progress p').html('您已达标');
+                    }else {
+                        $('.rank_progress p').html( investAmount );
+                    }
+                    if(isExpired == 0){
+                        if (investAmount < 10000) {
+                            btn_Receive.removeClass('on').html('未领取');
+                        }else {
+                            if (isReceived == 0) {
+                                btn_Receive.addClass('on').html('领取');
+                                if (btn_Receive.hasClass('on')){
+                                    btn_Receive.on('click', function () {
+                                        _this.receiveHandler(this);
+                                    })
+                                }
+
+                            } else {
+                                btn_Receive.removeClass('on').html('已领取');
+                            }
+                        }
+                    }else {
+                        btn_Receive.removeClass('on').html('已过期');
+                    }
+
+
+                    if(investAmount == 0){
+                        $('.rank_act2_L_top').html('尚未理财');
+                    }else {
+                        $('.rank_act2_L_top').html('我的当前排名：<em>第'+ rank +'名</em>');
+                    }
+                    $('.rank_act2_L_text1').html('保持当前排名可得：<em>'+ _this.getProfit(currAwardType).text +'</em>');
+                    if(currAwardType == 1){
+                        if (nextAwardType == 0) {
+                            nextAwardType = 1;
+                        }
+                        $('.rank_act2_L_text2').html('');
+                        $('#nextimg').attr('src',_this.getProfit(nextAwardType).imgSrc);
+                    }else {
+                            $('.rank_act2_L_text2').html('目前距获得<em>' + _this.getProfit(nextAwardType).text + '还差' + advancedAmount + '元</em></br>继续加油！');
+                        $('#nextimg').attr('src',_this.getProfit(nextAwardType).imgSrc);
+                    }
+                    $('.rank_three').show();
+                    $('.btn_txt').html(_this.getProfit(nextAwardType).text);
+                },
+                receiveHandler: function (me) {
+                    var _this = this;
+                    var btn_Receive = $('#btn_Receive');
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + '/app/investRank/receiveCashAward',
+                        dataType: "json",
+                        data: {
+                            userId: _this.store.userId
+                        },
+                        success: function (jsonData) {
+                            var data = jsonData.data;
+                            if (data.status == 0){
+                                util.showTips('现金红包已发到账户');
+                                btn_Receive.removeClass('on').html('已领取');
+                                btn_Receive.off('click');
+                            }else {
+                                util.showTips('领取失败，请稍候重试');
+                            }
+                        },
+                        error: function (jsonData) {
+                            util.errorHandler(_this.store.userId);
+                        }
+                    });
+                },
+                creatTpl: function (data) {
+                    var dataTpl = '', objarr1 = '', objarr2 = '', objarr3 = '';
+                    for ( var i=0;i<data.rankList.length; i++){
+                        if(i < 3){
+                            dataTpl +='';
+                            dataTpl += '<div class="rank_cont_item">'
+                                dataTpl += '<div class="rank_cont_num"><img src="./static/images/def/newUser/receive_list_icon'+(i+1)+'.jpg"></div>'
+                                dataTpl += '<div class="rank_cont_name on">'+ data.rankList[i].userNickname +'</div>'
+                            dataTpl += '</div>'
+                            objarr1 += dataTpl;
+                            dataTpl = '';
+                        } else if ( 3<= i && i< 10) {
+                            dataTpl += '';
+                            dataTpl += '<div class="rank_cont_item">'
+                                dataTpl += '<div class="rank_cont_num">'+(i+1)+'</div>'
+                                dataTpl += '<div class="rank_cont_name">' + data.rankList[i].userNickname + '</div>'
+                            dataTpl += '</div>'
+                            objarr2 += dataTpl;
+                            dataTpl = '';
+                        } else if (10 <= i && i< 20) {
+                            dataTpl += '';
+                            dataTpl += '<div class="rank_cont_item">'
+                            dataTpl += '<div class="rank_cont_num">' + (i + 1) + '</div>'
+                            dataTpl += '<div class="rank_cont_name">' + data.rankList[i].userNickname + '</div>'
+                            dataTpl += '</div>'
+                            objarr3 += dataTpl;
+                            dataTpl = '';
+                        }
+                    }
+                    $('#just1').append(objarr1);
+                    $('#just2').append(objarr2);
+                    $('#just3').append(objarr3);
+                }
+            }
+            $(function () {
+                pageController.init();
+            });
+        });
+
+block content
+    //-
+    div.page-group.hide
+        div.page.page-current
+            div.common_layer.hide
+            div.act_rules_cont.invite_cont <p class='rank3_img'></p><p class='rank3_top'></p><p class="off_p"></p><div class="act_rules_head_top"></div><div class="act_rules_head_L"></div><div class="act_rules_mess"><p><i class='a'></i><span>活动时间：<em class="spe">2016年12月23日00:00:00至12月31日23:59:59</em>；</span></p><p><i class='b'></i><span>活动内容：</br>活动一、活动期间内累计理财金额≥10000元，即可获得30元现金奖励（仅限一次）；</br>活动二、活动期间内所有理财金额将计入排行榜，活动结束后按照排行榜中的排名情况统一发放奖励；
+                | </span></p><p><i class='c'></i><span>奖品设置：</span><img src="./static/images/def/newUser/gzimagess.png" class='rank_act2_top' /></p><p><i class='d'></i><span>奖励发放：</br>
+                | 活动一、活动期间内累计理财金额≥10000元，进入我的排名中点击领取即可获得30元现金奖励；</br>
+                | 活动二、活动结束后三个工作日内工作人员将与获奖用户取得联系，请留意工作人员电话联系发奖事宜（客服将直接联系理财平台绑卡的手机号码）；</span></p><p><i></i><span>奖励排名：因网络延迟等因素影响，排名展示可能有延迟，最终排名以公布为准；</span></p><p><i></i><span>活动期间，同一用户（指微博账号、身份证、银行卡号、手机号均视为同一用户）仅可获得一次奖励，实物奖品不可叠加计算；</span></p><p><i></i><span>活动中的苹果奖品与苹果公司无关；</span></p><p><i></i><span>为保证公平性，最终排名将以活动结束日最后一笔购买订单为止，获奖名单于次日公布。</span></p></div>
+            div.content.native-scroll
+                a(href="javascript:void(0)").btn_rules_rank 活动规则
+                div.activity_top.invite_top
+                    img(src="./static/images/def/newUser/ranks_img1_x.jpg")
+                    img(src="./static/images/def/newUser/rankss_img2_x.jpg")
+                div.rank_act1
+                    img(src="./static/images/def/newUser/rank3_just1.png").rank3_acTop1
+                    img(src="./static/images/def/newUser/rank3_just3_yun.png").rank3_acTop2
+                    img(src="./static/images/def/newUser/rank3_just4_t.png").rank3_acTop3
+
+                    div.rank_act1_L.clearfix
+                        div.rank_progress
+                            span
+                                p Loading
+                        //div.rank_moey 50元红包
+                        div.rank_act1_title 我的累计理财(元)
+                        div.rank_act1_L_bottm 累计理财<em class='investAmount'>10000元</em>即可获得<em></br>30元现金红包</em>
+                    div.rank_act1_R
+                        img(src="./static/images/def/newUser/rank_img4_x.png")
+                        a(href="javascript:void(0);").btn_Receive#btn_Receive 未领取
+                div.rank_act1.rank_act2(style='margin-top:0;')
+                    img(src="./static/images/def/newUser/rank3_just2.png").rank3_acTop1
+                    img(src="./static/images/def/newUser/rank3_just4_t.png").rank3_acTop3
+                    img(src="./static/images/def/newUser/rank3_just5_z.png").rank3_acTop6
+                    img(src="./static/images/def/newUser/rank3_just5_z.png").rank3_acTop7
+                    img(src="./static/images/def/newUser/rank3_just6_x.png").rank3_acTop8
+                    div.rank_act3_L
+                        div.rank_act2_L_top --
+                        div.rank_act2_L_bottom
+                            p.rank_act2_L_text1 --
+                            p.rank_act2_L_text2 --
+                    div.rank_act1_R.rank_act2_R
+                        div.rank_three.hide
+                            img(src="./static/images/def/newUser/rank_img6_x.png")#nextimg
+                            a(href="javascript:void(0);").btn_Receive.btn_txt --
+
+                img(src="./static/images/def/newUser/rank3_just7.jpg")#rank3_img_side
+                div.rank_warp.hide
+                    div.rank_head
+                        img(src="./static/images/def/newUser/rank3_just8_x.png")
+                        div.rank_head_L
+                            div 排名
+                            div 微博昵称
+                        div.rank_head_R 活动奖励
+                    div.rank_cont_top
+                        img(src="./static/images/def/newUser/rank3_just9_zd.jpg").rank3_cont_zL
+                        img(src="./static/images/def/newUser/rank3_just9_zd.jpg").rank3_cont_zR
+                        div.rank_cont_top_L#just1
+                            //-
+                                div.rank_cont_item
+                                    div.rank_cont_num
+                                        img(src='./static/images/def/newUser/receive_list_icon1.jpg')
+                                    div.rank_cont_name.on 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num
+                                        img(src='./static/images/def/newUser/receive_list_icon2.jpg')
+                                    div.rank_cont_name.on 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num
+                                        img(src='./static/images/def/newUser/receive_list_icon3.jpg')
+                                    div.rank_cont_name.on 土***豪
+                        div.rank_cont_top_R
+                            img(src="./static/images/def/newUser/receive_list_one_x.jpg").cont
+                    div.rank_cont_top.rank_cont_warp
+                        div.rank_cont_top_L#just2
+                            //-
+                                div.rank_cont_item
+                                    div.rank_cont_num 4
+                                    div.rank_cont_name 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num 5
+                                    div.rank_cont_name 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num 6
+                                    div.rank_cont_name 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num 7
+                                    div.rank_cont_name 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num 8
+                                    div.rank_cont_name 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num 9
+                                    div.rank_cont_name 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num 10
+                                    div.rank_cont_name 土***豪
+                        div.rank_cont_top_R
+                            img(src="./static/images/def/newUser/receive_list_two_top.jpg").top
+                            img(src="./static/images/def/newUser/receive_list_two_x.jpg").cont
+                            img(src="./static/images/def/newUser/receive_list_two_bot.jpg").bot
+                        div.bg_img2_x
+                    div.rank_cont_top.rank_cont_bottom
+                        div.rank_cont_top_L#just3
+                            //-
+                                div.rank_cont_item
+                                    div.rank_cont_num 11
+                                    div.rank_cont_name 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num 12
+                                    div.rank_cont_name 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num 13
+                                    div.rank_cont_name 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num 14
+                                    div.rank_cont_name 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num 15
+                                    div.rank_cont_name 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num 16
+                                    div.rank_cont_name 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num 17
+                                    div.rank_cont_name 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num 18
+                                    div.rank_cont_name 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num 19
+                                    div.rank_cont_name 土***豪
+                                div.rank_cont_item
+                                    div.rank_cont_num 20
+                                    div.rank_cont_name 土***豪
+                        div.rank_cont_top_R
+                            img(src="./static/images/def/newUser/receive_list_three_top.jpg").top
+                            img(src="./static/images/def/newUser/receive_list_three_x.jpg").cont
+                            img(src="./static/images/def/newUser/receive_list_three_bot.jpg").bot
+                        div.bg_img3
+                    div.rank_cont_fot
+                        div.rank_cont_fot_list
+                            div.rank_cont_fot_name 21-50名
+                            div.rank_cont_fot_thing 可获得<em>500元京东E卡</em>
+                        div.rank_cont_fot_list
+                            div.rank_cont_fot_name 51-100名
+                            div.rank_cont_fot_thing 可获得<em>100元京东E卡</em>
+                img(src="./static/images/def/newUser/rank3_fot_img.jpg")#rank3_fot_img
+                div.bar.bar-tab.rank_footer
+                    img(src="./static/images/def/newUser/fot_btn_img.png")
+                    div.btn_invite_box
+                        a.btn_rank.btn_rank_invite(href="javascript: void(0);",style="display:block;") 邀请好友来冲榜
+                        a.btn_rank.btn_index(href="index.html",style="display:block;") 立即去理财

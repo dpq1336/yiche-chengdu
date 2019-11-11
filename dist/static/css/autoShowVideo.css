@@ -1,0 +1,438 @@
+.main_banner {
+  height: 296px;
+}
+
+.main_nav {
+  height: 40px;
+  background: #4180FF;
+}
+
+.main_nav .wrapper {
+  width: 1200px;
+  height: 40px;
+  margin: 0 auto;
+}
+
+.main_nav .wrapper ul li {
+  float: left;
+  line-height: 40px;
+}
+
+.main_nav .wrapper ul li a {
+  display: inline-block;
+  color: white;
+  font-weight: 800;
+  padding: 0 35px;
+  font-size: 14px;
+}
+
+.main_nav .wrapper ul li a:hover {
+  color: #22FBB5;
+  background-color: #0532FE;
+}
+
+.main_nav .wrapper ul li:nth-child(5) a {
+  color: #22FBB5;
+  background-color: #0532FE;
+}
+
+.main_body .wrapper {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.main_body .wrapper .banner_top {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.main_body .wrapper .banner_top .banner img {
+  -webkit-transition: -webkit-transform .5s ease-out;
+  transition: -webkit-transform .5s ease-out;
+  transition: transform .5s ease-out;
+  transition: transform .5s ease-out, -webkit-transform .5s ease-out;
+  width: 100%;
+  height: 100%;
+}
+
+.main_body .wrapper .banner_top .banner img:hover {
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.main_body .wrapper .banner_top .banner .left a {
+  position: relative;
+  display: inline-block;
+  width: 598px;
+  height: 337px;
+  overflow: hidden;
+}
+
+.main_body .wrapper .banner_top .banner .left a .video {
+  display: block;
+  position: absolute;
+  left: 20px;
+  bottom: 70px;
+  z-index: 9;
+  width: 46px;
+  height: 46px;
+  background-image: url(http://image.bitautoimg.com/yc-pc/expo-pc/special/ico-video.png);
+}
+
+.main_body .wrapper .banner_top .banner .left a .txt {
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.69)));
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.69));
+  text-align: left;
+  font-size: 20px;
+  font-weight: 700;
+  height: 60px;
+  line-height: 60px;
+  padding-left: 20px;
+}
+
+.main_body .wrapper .banner_top .banner .left a:hover .video {
+  background: url(http://image.bitautoimg.com/yc-pc/expo-pc/special/icon-video-hover.png) 0 0 no-repeat;
+}
+
+.main_body .wrapper .banner_top .banner .right {
+  width: 598px;
+  height: 337px;
+}
+
+.main_body .wrapper .banner_top .banner .right a {
+  position: relative;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  display: inline-block;
+  width: 294px;
+  height: 166px;
+}
+
+.main_body .wrapper .banner_top .banner .right a .video {
+  display: block;
+  position: absolute;
+  left: 20px;
+  bottom: 40px;
+  z-index: 9;
+  width: 46px;
+  height: 46px;
+  background-image: url(http://image.bitautoimg.com/yc-pc/expo-pc/special/ico-video.png);
+}
+
+.main_body .wrapper .banner_top .banner .right a .txt {
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.69)));
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.69));
+  text-align: left;
+  font-size: 16px;
+  font-weight: 700;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 20px;
+}
+
+.main_body .wrapper .banner_top .banner .right a:hover .video {
+  background: url(http://image.bitautoimg.com/yc-pc/expo-pc/special/icon-video-hover.png) 0 0 no-repeat;
+}
+
+.main_body .wrapper .main_row_box {
+  margin-top: 30px;
+}
+
+.main_body .wrapper .main_row_box .col_left_box {
+  width: 840px;
+  float: left;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox ul {
+  list-style: none;
+  display: table;
+  border-bottom: 2px solid #E1E1E1;
+  width: 840px;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox ul li {
+  float: left;
+  line-height: 50px;
+  margin-right: 40px;
+  font-size: 24px;
+  color: #333333;
+  cursor: pointer;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox ul li.active {
+  color: #FF4B3B;
+  font-weight: bold;
+  border-bottom: 2px solid #ff4b3b;
+  margin-bottom: -2px;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div {
+  margin-top: 10px;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list {
+  position: relative;
+  float: left;
+  width: 270px;
+  height: 243px;
+  margin: 0 15px 30px 0;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list .card_img {
+  width: 270px;
+  height: 152px;
+  display: inline-block;
+  position: relative;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list .card_img img {
+  width: 270px;
+  height: 152px;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list .card_img .video {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  width: 46px;
+  height: 46px;
+  background-image: url(http://image.bitautoimg.com/yc-pc/expo-pc/special/ico-video.png);
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list .card_details {
+  padding: 0;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list .card_details h2 {
+  height: 44px;
+  margin: 9px 0 8px;
+  font-size: 16px;
+  overflow: hidden;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list .card_details h2 a:hover {
+  color: #FF4B3B;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list .author_box {
+  margin-bottom: 10px;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list .author_box .photo {
+  float: left;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list .author_box .photo_desc {
+  margin-left: 5px;
+  display: inline;
+  line-height: 30px;
+  font-size: 12px;
+  color: #999;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list .author_box .guanz {
+  float: right;
+  width: 58px;
+  margin-top: 2px;
+  line-height: 26px;
+  text-align: center;
+  display: block;
+  font-size: 14px;
+  color: #ff4b3b;
+  border: 1px solid #ff4b3b;
+  border-radius: 3px;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list .author_box .guanz:hover {
+  background: #ff4b3b;
+  color: #fff;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list .author_box .yiguanzhu {
+  display: block;
+  float: right;
+  width: 58px;
+  margin-top: 2px;
+  line-height: 26px;
+  text-align: center;
+  border: 1px solid #ccc;
+  color: #ccc;
+  cursor: default;
+  border-radius: 3px;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list .photo img {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list .photo span {
+  font-size: 12px;
+  color: #999;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div .card_list a:hover .video {
+  background: url(http://image.bitautoimg.com/yc-pc/expo-pc/special/icon-video-hover.png) 0 0 no-repeat;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card .card_list:nth-child(3n) {
+  margin: 0 0 20px;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div {
+  display: none;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .tabbox .main_card > div.active {
+  display: block;
+}
+
+.main_body .wrapper .main_row_box .col_left_box .load_more {
+  margin: 40px auto;
+  width: 144px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 16px;
+  color: #333333;
+}
+
+.main_body .wrapper .main_row_box .col_right_box {
+  width: 320px;
+  float: right;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .brand_experts {
+  position: relative;
+  line-height: 50px;
+  height: 50px;
+  border-bottom: 2px solid #e1e1e1;
+  margin-bottom: 20px;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .brand_experts .brand_box h2 {
+  font-size: 23px;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .brand_experts .brand_box .change {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .brand_experts .brand_box .change em {
+  display: inline-block;
+  width: 19px;
+  height: 18px;
+  background: url(http://image.bitautoimg.com/yc-pc/expo-pc/special/change.png) no-repeat;
+  position: relative;
+  top: 3px;
+  left: -5px;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .brand_experts .brand_box .change:hover {
+  color: #ff4b3b;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .follow_box .follow_list {
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .follow_box .follow_list .follow_list_item .comment_photo {
+  float: left;
+  width: 50px;
+  height: 50px;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .follow_box .follow_list .follow_list_item .comment_photo a {
+  display: block;
+  position: relative;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .follow_box .follow_list .follow_list_item .comment_photo img {
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 0 0;
+  border-radius: 25px;
+  border: 1px solid #e1e1e1;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .follow_box .follow_list .follow_list_item .v_infor {
+  margin-left: 63px;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .follow_box .follow_list .follow_list_item .v_infor .v_left {
+  float: left;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .follow_box .follow_list .follow_list_item .v_infor .v_left .name {
+  font-size: 14px;
+  color: #333;
+  font-weight: 700;
+  line-height: 20px;
+  margin: 4px 0 5px;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .follow_box .follow_list .follow_list_item .v_infor .v_left .fans {
+  font-size: 12px;
+  color: #999;
+  line-height: 16px;
+  position: relative;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .follow_box .follow_list .follow_list_item .v_infor .btn {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-radius: 3px;
+  background-color: #fff;
+  line-height: 26px;
+  font-size: 14px;
+  width: 58px;
+  float: right;
+  padding: 0;
+  margin-top: 12px;
+  border: 1px solid #ff4b3b;
+  color: #ff4b3b;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .follow_box .follow_list .follow_list_item .v_infor .btn:hover {
+  background: #ff4b3b;
+  color: #fff;
+}
+
+.main_body .wrapper .main_row_box .col_right_box .follow_box .follow_list .follow_list_item .v_infor .btn_gray {
+  cursor: default;
+  color: #ccc;
+  border-color: #ccc;
+}
+
+/*# sourceMappingURL=autoShowVideo.css.map */

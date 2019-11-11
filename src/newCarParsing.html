@@ -1,0 +1,111 @@
+  <!-- inject:header:html -->
+  <!-- endinject -->
+  <title>新车解析</title>
+  <link rel="stylesheet" href="./static/css/base.css">
+  <!-- 车展资讯 同 新车解析 -->
+  <link rel="stylesheet" type="text/css" href="./static/css/newCarParsing.css">
+  </head>
+
+  <body>
+    <!-- inject:nav:html -->
+    <!-- endinject -->
+    <div class="main_banner"></div>
+    <div class="main_nav">
+      <div class="wrapper">
+        <ul>
+          <li><a href="/">
+              车展首页
+            </a></li>
+          <li><a href="/autoShowLive.html">
+              车展直播
+            </a></li>
+          <li><a href="/autoShowInfo.html">
+              车展资讯
+            </a></li>
+          <li><a href="/yicheNum.html">
+              易车号
+            </a></li>
+          <li><a href="/autoShowVideo.html">
+              车展视频
+            </a></li>
+          <li><a href="/newCarParsing.html">
+              新车解析
+            </a></li>
+          <li><a href="#">
+              VR
+            </a></li>
+          <li><a href="/newCarShow.html">
+              新车展厅
+            </a></li>
+          <li><a href="/highInterview.html">
+              高端访谈
+            </a></li>
+          <li><a href="#">
+              赛道日
+            </a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="main_body">
+      <div class="wrapper">
+        <!-- 新车解析 -->
+        <div class="main_header">
+          <div class="main_tit">新车解析</div>
+        </div>
+        <!-- body -->
+        <div class="main_card clear" id="dataListObj">
+          <!-- <div class="card_list">
+            <a href="#" class="card_img">
+              <img src="http://image.bitautoimg.com/bitauto/2019/09/06/965cb663-ba4f-44c2-8f45-6dbc69ff18f6.jpg" alt="">
+            </a>
+            <div class="card_details">
+              <h2><a href="#">时隔30年王者终归来 宝马8系四门轿跑图解</a></h2>
+              <div class="card_info">
+                <div class="card_author">作者:
+                  <em>韩瑞</em>
+                </div>
+                <div class="card_bottom">
+                  <div class="card_view">17534</div>
+                  <div class="card_comment">164</div>
+                  <div class="card_time">2019-09-06</div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+        </div>
+        <div class="load_more">正在加载...</div>
+      </div>
+    </div>
+    <!-- inject:footer:html -->
+    <!-- endinject -->
+    <!-- 数据模板 start -->
+    <script id="data-list-tpl" type="text/html">
+      {{each dataList item key}}
+      <div class="card_list">
+        <a href="http://news.yiche.com{{item.url}}" target="_blank" class="card_img">
+          <img src="{{item.cover[0]}}" alt="{{item.title}}">
+        </a>
+        <div class="card_details">
+          <h2><a href="http://news.yiche.com{{item.url}}" target="_blank">{{item.title}}</a></h2>
+          <div class="card_info">
+            <div class="card_author">作者:
+              <em>{{item.user.showname}}</em>
+            </div>
+            <div class="card_bottom">
+              <div class="card_view">{{item.pv}}</div>
+              <div class="card_comment">{{item.comments}}</div>
+              <div class="card_time">{{item.publishTime.split(" ")[0]}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </script>
+    <!-- 数据模板 end -->
+    <script type="text/javascript" src="./assets/js/template.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./assets/js/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./static/js/newCarParsing.js" charset="utf-8"></script>
+  </body>
+
+  </html>

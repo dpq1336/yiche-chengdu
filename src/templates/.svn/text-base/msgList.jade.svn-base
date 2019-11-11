@@ -1,0 +1,40 @@
+extends template.jade
+block titleAndStyles
+	title 公告
+	style.
+		.t_card{
+			margin-bottom: 0;
+			margin-top:0.5rem;
+		}
+block scripts
+	script(type="text/javascript",charset="utf-8",src="./static/js/def/msgList.js")
+block content
+	div.page-group
+		div.page.page-current
+			div.content
+				//-
+					div.pull-to-refresh-layer
+						div.preloader
+						div.pull-to-refresh-arrow
+					div.gg_msg_list
+						div.t_card.no_read
+							div.gg_ml_content
+								a(href="msgInfo.html")
+									div.mlc_tit 3月30日项目提前回款完毕公告
+									div.mlc_time 2016年5月19日 19:00
+							a.t_card_tit(href="msgInfo.html") 更多详情
+						div.t_card.readed
+							div.gg_ml_content
+								div.mlc_tit 3月30日项目提前回款完毕公告
+								div.mlc_time 2016年5月19日 19:00
+							a.t_card_tit.tit_arrow(href="msgInfo.html") 更多详情
+						div.t_card.readed
+							div.gg_ml_content
+								div.mlc_tit 3月30日项目提前回款完毕公告
+								div.mlc_time 2016年5月19日 19:00
+							a.t_card_tit.tit_arrow(href="msgInfo.html") 更多详情
+				//-
+					div.no_data
+						img(src="./static/images/def/icons/no_msg_icon.png")
+						div 暂时没有公告
+

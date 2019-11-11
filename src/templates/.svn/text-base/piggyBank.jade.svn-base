@@ -1,0 +1,102 @@
+extends template.jade
+block titleAndStyles
+	title 存钱罐余额
+block scripts
+	//script(type="text/javascript",charset="utf-8",src="./static/js/out/jquery-1.11.1.js")
+	script(type="text/javascript",charset="utf-8",src="./static/js/def/piggyBank.js")
+	//-
+		script.
+			$(function () {
+				$('#Column-chart').highcharts({
+					chart: {
+						type: 'area'
+					},
+					title: {
+						text: '七日年华收益率3.347%',
+						align:'left'
+					},
+					subtitle: {
+						text: ''
+					},
+					xAxis: {
+						/*categories: ['07-10', '07-11', '07-12', '07-13', '07-14', '07-15', '07-16'],*/
+						categories: ['07-10', '07-11', '07-12', '07-13', '07-14', '07-15', '07-16'],
+						tickmarkPlacement: 'on',
+						title: {
+							enabled: false
+						}
+					},
+					yAxis: {
+						title: {
+							text: ''
+						},
+						labels: {
+							formatter: function () {
+								return this.value +"%";
+							}
+						}
+					},
+					credits: {
+						enabled: false
+					},
+					legend:{
+						enabled:false
+					},
+					tooltip: {
+						shared: true,
+						valueSuffix: '',
+						shadow: false,
+						borderRadius: 10,
+						style: {
+							borderColor:'#eaeaea',
+							color: '#ff8200',
+							padding: '5px'
+						},
+						formatter:function(){
+							return this.y;
+						}
+					},
+					plotOptions: {
+						area: {
+							stacking: 'normal',
+							lineColor: '#ff8404',
+							lineWidth: 1,
+							marker: {
+								lineWidth: 1,
+								lineColor: '#ff8506'
+							},
+							fillColor: '#ffddb9'
+						}
+					},
+					series: [ {
+						name: 'china',
+						data: [0.21, 1.2, 2.7, 3.23,3.75,3.86, 4.01],
+						color:"#ddd"
+	
+					}]
+				});
+			});
+block content
+	div.page-group
+		div.page.page-current
+			div.content.native-scroll
+				//-
+					div.pro_top_sy.pro_prev
+						a.external(href="accountView.html")
+							div.pt_sy_tit 昨日收益
+							div.pt_sy_num 400.00<span>元</span>
+							div.pt_sy_money 存钱罐余额<span>321,200</span>元
+					div.pro_top_sy_c.piggyBank_x
+						div.syc_l
+							div.syc_item1 <span>万份收益</span>
+							div.syc_item2 <span>0.456</span>天
+						div.syc_r
+							a.external(href="accountView.html")
+							div.syc_item1 <span>累计收益</span>
+							div.syc_item2 <span>1000</span >元
+					div#Column-chart
+					div.pl26
+						a.btn_buy.mt40b30.external(href='./turnIn.html') 转入
+						a.btn_buy.mt0.external(href='./turnOut.html') 转出
+		
+

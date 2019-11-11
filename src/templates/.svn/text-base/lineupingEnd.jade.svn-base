@@ -1,0 +1,76 @@
+extends templateAct.jade
+block titleAndStyles
+    title 瓜分冲天奖金
+    style.
+        .content, .page {
+            height: 100%;
+        }
+block scripts
+    script.
+        seajs.use(["zepto", "util"], function (a, util) {
+            var pageController = {
+                init: function () {
+                    util.getWeiboApi();
+                    this.pageHandler();
+                },
+                store: {
+                    serverIP: util.getServerIp(),
+                    userId: util.getUserId()
+                },
+                pageHandler: function () {
+                    var _this =this;
+                    $('.lineEnd_fot').on('click',function () {
+                        _this.getWbHandle();
+                    })
+
+                },
+                getWbHandle: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + '/app/weibo/lightapp/follow',
+                        data: {
+                            userId: _this.store.userId
+                        },
+                        dataType: "json",
+                        success: function (jsonData) {
+                        }
+                    });
+                }
+            }
+            $(function () {
+                pageController.init();
+            });
+        });
+
+block content
+    div.page-group
+        div.page.page-current
+            div.content.lineEnd_warp
+                img(src="./static/images/def/newUser/lineup_bg1.jpg")
+                img(src="./static/images/def/newUser/lineupimgEnd_img_1.jpg")
+                div.lineEnd_fot
+                    img(src="./static/images/def/newUser/lineupimgEnd_img_2.jpg")
+                div.lineEnd_btn.btn_see
+                    a(href="index.html").btn_wb.lineEnd_fot.external 查看新活动
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

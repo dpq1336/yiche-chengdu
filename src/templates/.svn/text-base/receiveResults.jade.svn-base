@@ -1,0 +1,202 @@
+extends templateAct
+block titleAndStyles
+    title 领取结果
+    style.
+        .page_color{
+            background: #eaeaea;
+        }
+        .page-act{
+            height: auto;
+            padding-bottom: 4.45rem;
+            min-height: 100%;
+        }
+        .content{
+            background: transparent;
+            height: auto;
+        }
+block scripts
+    script.
+        //-
+        seajs.use(["zepto", "util"], function (a, util) {
+            var pageController = {
+                init: function () {
+                    util.getWeiboApi();
+                    this.getPageData();
+                },
+                store: {
+                    serverIP: util.getServerIp(),
+                    userId: util.getUserId(),
+                    inviteCode: util.getUrlParam('inviteCode'),
+                    type: util.getUrlParam('type'),
+                    isReceive:null,
+                    sendWeiboMsg: util.sendWeiboMsg()
+                },
+                getPageData: function () {
+                    var _this = this;
+                    var interFace="/app/act/receiveInviteRedPackage";
+                    if(_this.store.type=="index"){
+                    	interFace='/app/act/receiveRedPackage';
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP +interFace,
+                        dataType: "json",
+                        data: {
+                            userId: _this.store.userId,
+                            inviteCode: _this.store.inviteCode
+                        },
+                        beforeSend:function(){
+                        	util.showLoading();
+                        },
+                        complete:function(){
+                        	util.hideLoading();
+                        },
+                        success: function (jsonData) {
+                            console.log(jsonData);
+                            if (jsonData && jsonData.control.error == 0) {
+                                var data = jsonData.data;
+                                $('.page-group').show();
+                                _this.creatTpl(data);
+                            } else if (jsonData && jsonData.control.error == -1003) {
+                                util.toPage('./activityEnd.html');
+                            } else {
+                                util.errorHandler();
+                            }
+                        },
+                        error: function (jsonData) {
+                            util.errorHandler();
+                        }
+                    });
+                },
+                creatTpl: function (data) {
+                    var _this = this;
+                    var dataTpl = '';
+                    _this.store.isReceive=data.isReceive;
+                    _this.store.inviteCode=data.inviteCode;
+                    if(data.isReceive != 2){
+                        for (var i = 0; i < data.redPackages.length; i++) {
+                            dataTpl += '<div class="vouchers_side">'
+                            dataTpl += '<div class="vou_side_L"><em>' + data.redPackages[i].amount + '</em>元</div>'
+                            dataTpl += '<div class="vou_side_R"><img src="./static/images/def/newUser/receive_fx.png">'
+                            dataTpl += '<h4>有效期至' + data.redPackages[i].endTime + '</h4>'
+                            if (data.redPackages[i].downLimitAmount == 0) {
+                                dataTpl += '<p>*购买任意金额可用</p>'
+                            } else {
+                                dataTpl += '<p>*购买' + data.redPackages[i].downLimitAmount + '元及以上金额可用</p>'
+                            }
+                            if (data.redPackages[i].downLimitDay == 0) {
+                                dataTpl += '<p>*购买任意期限产品可用</p>'
+                            } else {
+                                dataTpl += '<p>*购买' + data.redPackages[i].downLimitDay + '天及以上期限产品可用</p>'
+                            }
+                            dataTpl += '</div>'
+                            dataTpl += '</div>'
+                        }
+                        if (data.isReceive == 0) {
+                            $('.vouchers_list').append(dataTpl);
+                            
+                        } else if (data.isReceive == 1) {
+                            $('.vouchers_list').append(dataTpl);
+                            $('.receive_boxImg_once').show();
+                            $('.receive_foot_go').hide();
+                            $('.vouchers_list').addClass('vouchers_list_once');
+                        }
+                    }else {
+                        $('.receive_cont_old_box').show();
+                        $('.vouchers_list').addClass('vouchers_list_old');
+                        $('.receive_boxImg_old').show();
+                        $('.receive_datils').show();
+                        $('.receive_foot_go').hide();
+                    }
+                    if (_this.store.isReceive == 0) {
+                        $(".btn_wb").html("立即使用红包").attr('href', './index.html');
+                    }else if (_this.store.isReceive == 1) {
+                        $(".btn_wb").html("立即去理财").attr('href','./index.html');
+                    }else if(_this.store.isReceive == 2){
+                        $(".btn_wb").html("邀请好友赚现金");
+                        $(".btn_wb").on('click', function () {
+                            var sinaWbTxt = _this.store.sendWeiboMsg + "/" + _this.store.inviteCode;
+                            var dataTwb = 'sinaweibo://sendweibo?title=发微博&content=' + encodeURIComponent(util.getInviteText()+sinaWbTxt);
+                            util.toPage(dataTwb);
+                        })
+                    }
+                }
+            }
+            $(function () {
+                pageController.init();
+            });
+        });
+block content
+    div.page-group.hide
+        div.page.page-current.page-receive-bg.page-act
+            div.content.native-scroll.overwidth
+                img(src="./static/images/def/newUser/receive_banner.png").back_img.zindex3
+                div.receive_boxImg
+                    img(src="./static/images/def/newUser/receive_Once.png").receive_boxImg_once.hide
+                    img(src="./static/images/def/newUser/receive_Old.png").receive_boxImg_old.hide
+                //div.vouchers_list.vouchers_list_once
+                div.vouchers_list
+                    //-
+                        div.vouchers_side
+                            div.vou_side_L <em>1.88</em>元
+                            div.vou_side_R
+                                img(src="./static/images/def/newUser/receive_fx.png")
+                                h4 3天有效
+                                p *购买任意金额可用
+                                p *购买任意期限产品可用
+                        div.vouchers_side
+                            div.vou_side_L <em>6.88</em>元
+                            div.vou_side_R
+                                img(src="./static/images/def/newUser/receive_fx.png")
+                                h4 3天有效
+                                p *购买2000元及以上金额可用
+                                p *购买30天及以上期限产品可用
+                        div.vouchers_side
+                            div.vou_side_L <em>16.88</em>元
+                            div.vou_side_R
+                                img(src="./static/images/def/newUser/receive_fx.png")
+                                h4 3天有效
+                                p *购买5000元及以上金额可用
+                                p *购买30天及以上期限产品可用
+                        div.vouchers_side
+                            div.vou_side_L <em>38.88</em>元
+                            div.vou_side_R
+                                img(src="./static/images/def/newUser/receive_fx.png")
+                                h4 3天有效
+                                p *购买10000元及以上金额可用
+                                p *购买30天及以上期限产品可用
+                img(src="./static/images/def/newUser/receive_foot_go.png").receive_foot_go
+                div.receive_cont_old_box.hide
+                    img(src="./static/images/def/newUser/receive_cont_Old.png").back_img
+                div.receive_datils.hide
+                    img(src="./static/images/def/newUser/receive_datils.png")
+                    p <i></i><b>活动时间</b>：<em>2016.11.9-11.25</em>
+                    p <i></i><b>活动内容</b>：发微博分享活动，好友（新用户）通过活动链接成功购买理财产品后，您将获得活动期间内好友理财金额的<em>0.5%现金奖励</em>，奖励将自动发放至<em>“我的礼券”</em>中，点击兑换即可；
+                    p <b>温馨提示</b>：成功邀请一位好友（新用户）获得现金奖励的最高上限为<em>1000元</em>；
+                    p <i></i>本活动由理财平台主办，活动奖励不同于投资收益，与所投资产品无关，奖励发放由理财平台提供；
+                    p <i></i>本活动严禁任何恶意作弊行为，如经发现，将收回奖励并永久列入理财平台黑名单；
+                    p <i></i>在法律允许范围内，理财平台保留本活动最终解释权；
+                    p.font24 <i></i>活动期间如有任何疑问，请到“帮助中心”－“联系客服”中咨询。
+
+            a(href="javascript:void(0)").bar.bar-tab.btn_wb 立即使用红包
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

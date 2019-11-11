@@ -1,0 +1,28 @@
+extends template.jade
+block titleAndStyles
+	title 微博用户的专享理财服务
+	style.
+		img{
+			display: block;
+		}
+block scripts
+	script.
+		seajs.use(["zepto","util"], function(a,util) {
+			var pageController = {
+				init: function() {
+					util.getWeiboApi();
+				}
+			}
+			$(function() {
+				pageController.init();
+			});
+		});
+block content
+	div.page-group
+		div.page
+			div.content.bgf1
+				img(src="./static/images/def/safeIcons/icon_platform_1.png")
+				img(src="./static/images/def/safeIcons/icon_platform_2.jpg")
+				img(src="./static/images/def/safeIcons/icon_platform_3.jpg")
+				img(src="./static/images/def/safeIcons/icon_platform_4.jpg")
+

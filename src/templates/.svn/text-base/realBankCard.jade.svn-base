@@ -1,0 +1,132 @@
+extends template.jade
+block titleAndStyles
+	title 银行卡认证
+	style.
+		.set_pass_word_box {
+			margin-top: 4.25rem;
+			padding-top: 0;
+		}
+		.real_bk_Top_img2,.real_bk_Top_img1{
+			display: none;
+		}
+block scripts
+	script(type='text/javascript',src='./static/js/def/realBindCard.js',charset='utf-8')
+block content
+	div.page-group
+		div.page.page-current
+			div.content.native-scroll
+				div.real_bk_Top
+					img(src="./static/images/def/icons/step_one.png").real_bk_Top_img1
+					img(src="./static/images/def/icons/step_one_old.png").real_bk_Top_img2
+				div.real_name
+					div.rn_steps
+						div.rn_form
+							div.t_card.t_form_card
+								div.t_fc_item
+									div.t_fci_l 姓名
+									div.t_fci_r
+										input.com_input.userName(type="text",placeholder="请输入持卡人姓名",maxlength="20")
+								div.t_fc_item
+									div.t_fci_l 身份证号
+									div.t_fci_r
+										input.com_input.userCard.letspace2(type="text",placeholder="请输入持卡人身份证号",maxlength="18")
+							div.t_card.t_form_card.real_bnc_card.t_card_bgn.mb0
+								div.t_fc_item
+									div.t_fci_l <div class="bank_sel">银行卡号&nbsp;&nbsp;&nbsp;<span class="def_bank"></span></div>
+									div.t_fci_r
+										input.com_input.bankCardNo.validateItem.dataValidate.letspace2(type="tel",placeholder="请输入储蓄卡卡号",minlength="8",maxlength="25")
+								div.tips_x
+								div.t_bank_con.dis_none
+									div.t_fc_item
+										div.t_fci_l 银行预留手机号
+										div.t_fci_r
+											input#phone_num.com_input.mobile.validateItem.dataValidate.letspace2(type="tel",placeholder="请输入您的预留手机号",maxlength="11")
+											span.bank_tips
+									div.t_fc_item
+										div.t_fci_l 验证码
+										div.t_fci_r
+											input.com_input.check_code_text.letspace2(type="tel",placeholder="请输入验证码",maxlength="6")
+											span.check_code 获取验证码
+							div.clearfix.pt20
+								div.err_x.pl26.error_msg.pull-left(style="overflow: inherit")
+								div.no_check_code.pull-right 没有收到短信验证码？
+							a#realBankBtn.external.com_btn.rn_next_btn.dis_btn(href="javascript:void(0)") 确认添加
+							p.footer_text 注：以上信息仅用于银行认证
+						//-
+							div.common_layer.dis_none
+							div.select_act.dis_none
+								div.user_do 选择储蓄所属银行
+									span.cancel_btn 取消
+								div.sup_bank_list
+									div.bank_item.bank_item1
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item2
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item3
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item4
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item5
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item6
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item7
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item8
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item9
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item10
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item11
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item12
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item13
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item14
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item15
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item16
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item17
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item18
+										span 招商银行
+										em 单笔100万元／单日20万元
+									div.bank_item.bank_item19
+										span 招商银行
+										em 单笔100万元／单日20万元
+							//-
+						div.common_layer.dis_none
+						div.suport_bank_tips.suport_bank_tips1.dis_none
+							div.suport_tips_top_x 收不到验证码？
+							p.p1(style="padding-top:0;") 1.请确认当前是否使用银行预留的手机号码
+							p.p2 2.请检查短信是否被手机安全软件拦截
+							p.p2 3.若预留手机号已停用，请联系银行客服咨询
+							p.p2 4.获取更多帮助，请联系私信理财平台客服。
+							a.com_btn.support_know_btn(href="javascript:void(0)") 我知道了
+						div.suport_bank_tips.suport_bank_tips2.dis_none
+							div.suport_tips_top_x 手机号说明
+							p.p1(style="padding-top:0;") 银行预留手机号是您在办理该银行卡时填写的手机号，可能是您最常用的手机号，没有预留／已经停用可以联系银行进行修改。
+							a.com_btn.support_know_btn(href="javascript:void(0)") 我知道了
+
+

@@ -1,0 +1,35 @@
+extends template.jade
+block titleAndStyles
+    title 找回支付密码
+block scripts
+    script(type="text/javascript",charset="utf-8",src="./static/js/def/findPwd.js")
+block content
+    div.page-group
+        div.page.page-current
+            div.native-scroll.content
+                //-
+                    div.set-pay-pwd
+                        div.input-pwd.l-b
+                            span.tit.new-tit 身份证号
+                            input.no-pad-ri(type="text",placeholder="请输入身份证号")
+                        div.input-pwd.l-b
+                            span.tit.new-tit 图片验证码
+                            input.input-pic(type="text",placeholder="请输入验证码")
+                            div.pic-code
+                                img(src="./static/images/def/icons/code.jpg")
+                        div.input-pwd
+                            span.tit.new-tit 短信验证码
+                            input.input-tel(type="text",placeholder="请输入验证码")
+                            span.code 获取验证码
+                    div.pl26
+                        a.btn_buy 确认修改
+
+
+
+
+
+
+
+
+
+

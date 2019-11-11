@@ -1,0 +1,83 @@
+extends template.jade
+block titleAndStyles
+	title 我的理财
+	style.
+		.t_card{
+			margin-bottom: 0;
+			margin-top:10px;
+		}
+block scripts
+	script(type='text/javascript',src='./static/js/def/myVestList.js',charset='utf-8')
+block content
+	div.page-group
+		div.page.page-current
+			div.com_list
+				div.com_list_tab.bar.bar-tab-top
+					div.clt_item.active 全部
+					div.clt_item 正在募集
+					div.clt_item 正在回款
+					div.clt_item 回款完毕
+			div.content.native-scroll
+				div.com_list.com_list_contents
+					//-
+					div.com_list_con.pt38
+							//-
+								div.t_card
+									div.com_lite_item.x_rh_prev
+										a(href='./productInfo.html').external
+											div.cli_1.cli_item 光大永明定活保33
+											div.cli_2.cli_item <span class="l_s">交易时间：2015-10-22 13:42</span>
+									div.com_lite_item
+										div.vl_status.disflex
+											div.vls_item.boxflex15
+												div.vlsl_t 购买金额
+												div.vlsl_b 1,324,000.00
+											div.vls_item.boxflex
+												div.vlsl_t 年化收益率
+												div.vlsl_b 15%
+											div.vls_item.boxflex.pad_l_40.bor_l_1
+												div.vlsl_t.vlsl_c 正在回款
+									div.com_lite_item
+										div.cli_2.cli_item.pad_tb_20 <span class="l_s tit_color">下笔回款：2015-11-12  2,500元</span>
+									div.t_card
+										div.com_lite_item.x_rh_prev
+											div.cli_1.cli_item 光大永明定活保33
+											div.cli_2.cli_item <span class="l_s">交易时间：2015-10-22 13:42</span>
+										div.com_lite_item
+											div.vl_status.disflex
+												div.vls_item.boxflex15
+													div.vlsl_t 购买金额
+													div.vlsl_b 1,324,000.00
+												div.vls_item.boxflex
+													div.vlsl_t 年化收益率
+													div.vlsl_b 15%
+												div.vls_item.boxflex.pad_l_40.bor_l_1
+													div.vlsl_t 正在回款
+													div.vlsl_b 68%
+										div.com_lite_item
+											div.cli_2.cli_item.pad_tb_20 <span class="l_s tit_color">下笔回款：2015-11-12  2,500元</span>
+									div.t_card
+										div.com_lite_item.x_rh_prev
+											div.cli_1.cli_item 光大永明定活保33
+											div.cli_2.cli_item <span class="l_s">交易时间：2015-10-22 13:42</span>
+										div.com_lite_item
+											div.vl_status.disflex
+												div.vls_item.boxflex15
+													div.vlsl_t 购买金额
+													div.vlsl_b 1,324,000.00
+												div.vls_item.boxflex
+													div.vlsl_t 年化收益率
+													div.vlsl_b 15%
+												div.vls_item.boxflex.pad_l_40.bor_l_1
+													div.vlsl_t 正在募集
+													div.vlsl_b 68%
+										div.com_lite_item
+											div.cli_2.cli_item.pad_tb_20 <span class="l_s tit_color">下笔回款：2015-11-12  2,500元</span>
+					//-
+						div.com_no_data.tc_no_data
+							img(src="./static/images/def/icons/activateFalse.png")
+							div 暂时没有理财记录
+							a.external.to_lc_btn.com_btn(href="lcList.html") 去理财
+
+
+

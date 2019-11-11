@@ -1,0 +1,302 @@
+.main_banner {
+  height: 296px;
+}
+
+.main_nav {
+  height: 40px;
+  background: #4180FF;
+}
+
+.main_nav .wrapper {
+  width: 1200px;
+  height: 40px;
+  margin: 0 auto;
+}
+
+.main_nav .wrapper ul li {
+  float: left;
+  line-height: 40px;
+}
+
+.main_nav .wrapper ul li a {
+  display: inline-block;
+  color: white;
+  font-weight: 800;
+  padding: 0 35px;
+  font-size: 14px;
+}
+
+.main_nav .wrapper ul li a:hover {
+  color: #22FBB5;
+  background-color: #0532FE;
+}
+
+.main_nav .wrapper ul li:nth-child(8) a {
+  color: #22FBB5;
+  background-color: #0532FE;
+}
+
+.main_body {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.main_body .wrapper {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.main_body .wrapper .position {
+  color: #999999;
+}
+
+.main_body .wrapper .position span {
+  color: black;
+  vertical-align: middle;
+}
+
+.main_body .wrapper .search b,
+.main_body .wrapper .search span {
+  display: inline-block;
+}
+
+.main_body .wrapper .search button {
+  width: 56px;
+  height: 20px;
+  color: #4180FF;
+  border: 1px solid #4180FF;
+  border-radius: 5%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.main_body .wrapper .search .level {
+  margin-bottom: 15px;
+  height: 26px;
+  line-height: 26px;
+}
+
+.main_body .wrapper .search .level b {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.main_body .wrapper .search .level span {
+  display: inline-block;
+  padding: 0 11px;
+  color: #333;
+  cursor: pointer;
+  border-radius: 7%;
+}
+
+.main_body .wrapper .search .brand b {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.main_body .wrapper .search .brand span {
+  display: inline-block;
+  padding: 0 7px;
+  color: #333;
+  cursor: pointer;
+}
+
+.main_body .wrapper .search .brand .nolimit {
+  display: inline-block;
+  padding: 0 11px;
+  height: 26px;
+  line-height: 26px;
+  border-radius: 7%;
+}
+
+.main_body .wrapper .search .brand .search_brand {
+  margin-top: 15px;
+  border-top: solid 1px #EDEDED;
+  padding-top: 10px;
+  margin-top: 15px;
+  margin-left: 90px;
+}
+
+.main_body .wrapper .search .brand .search_brand span {
+  height: 24px;
+  line-height: 24px;
+  color: #999;
+  padding: 0 8px;
+  cursor: pointer;
+  border-radius: 8%;
+}
+
+.main_body .wrapper .search .venue {
+  margin-top: 15px;
+}
+
+.main_body .wrapper .search .venue span {
+  height: 26px;
+  line-height: 26px;
+  display: inline-block;
+  margin-right: 15px;
+  padding: 0 9px;
+  color: #333;
+  cursor: pointer;
+  border-radius: 8%;
+}
+
+.main_body .wrapper .search .venue .nolimit {
+  display: inline-block;
+  padding: 0 10px;
+  height: 26px;
+  line-height: 26px;
+  margin-left: 7px;
+}
+
+.main_body .wrapper .carShow {
+  margin-top: 15px;
+}
+
+.main_body .wrapper .carShow ul li {
+  float: left;
+  width: 279px;
+  height: 283px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+.main_body .wrapper .carShow ul li a:nth-child(1) {
+  display: inline-block;
+  height: 186px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.main_body .wrapper .carShow ul li a:nth-child(1) strong {
+  display: inline-block;
+  background-color: #FF4B3B;
+  color: white;
+  width: 60px;
+  height: 20px;
+  line-height: 20px;
+  position: absolute;
+  font-weight: normal;
+  text-align: center;
+  border-radius: 20px;
+  top: 10px;
+  left: 10px;
+}
+
+.main_body .wrapper .carShow ul li a:nth-child(1) img {
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-transform .5s ease-out;
+  transition: -webkit-transform .5s ease-out;
+  transition: transform .5s ease-out;
+  transition: transform .5s ease-out, -webkit-transform .5s ease-out;
+}
+
+.main_body .wrapper .carShow ul li a:nth-child(1) img:hover {
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.main_body .wrapper .carShow ul li a:nth-child(2) {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.main_body .wrapper .carShow ul li a:hover {
+  color: #FF4B3B;
+}
+
+.main_body .wrapper .carShow ul li p {
+  margin-bottom: 10px;
+  color: #FF4B3B;
+  font-size: 16px;
+}
+
+.main_body .wrapper .carShow ul li .report {
+  height: 145px;
+}
+
+.main_body .wrapper .carShow ul li .report span {
+  display: inline-block;
+  color: #333;
+  background-size: 100%;
+  font-size: 14px;
+}
+
+.main_body .wrapper .carShow ul li .report span img {
+  display: inline-block;
+  width: 8px;
+  height: 5px;
+  margin-left: 5px;
+}
+
+.main_body .wrapper .carShow ul li .report .carreport {
+  display: none;
+  position: absolute;
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
+  width: 280px;
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 999;
+}
+
+.main_body .wrapper .carShow ul li .report .carreport .one {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 20px;
+  border-bottom: 1px solid #E1E1E1;
+}
+
+.main_body .wrapper .carShow ul li .report .carreport .one a {
+  height: 100%;
+  overflow: hidden;
+}
+
+.main_body .wrapper .carShow ul li .report .carreport .one a:hover {
+  color: #FF4B3B;
+}
+
+.main_body .wrapper .carShow ul li .report .carreport .two {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 20px;
+  border-bottom: 1px solid #E1E1E1;
+}
+
+.main_body .wrapper .carShow ul li .report .carreport .two a {
+  height: 100%;
+  color: #333;
+  overflow: hidden;
+}
+
+.main_body .wrapper .carShow ul li .report .carreport .two a:hover {
+  color: #FF4B3B;
+}
+
+.main_body .wrapper .carShow ul li .report .carreport .three {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 20px;
+}
+
+.main_body .wrapper .carShow ul li .report .carreport .three a {
+  height: 100%;
+  overflow: hidden;
+}
+
+.main_body .wrapper .carShow ul li .report .carreport .three a:hover {
+  color: #FF4B3B;
+}
+
+.main_body .wrapper .carShow ul li:nth-child(4n) {
+  margin-right: 0;
+}
+
+/*# sourceMappingURL=newCarShow.css.map */

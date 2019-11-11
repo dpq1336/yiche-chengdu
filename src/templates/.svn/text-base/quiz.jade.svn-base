@@ -1,0 +1,314 @@
+extends templateAct.jade
+block titleAndStyles
+    title 有奖竞猜·瓜分土豪奖金！
+block scripts
+    script.
+        seajs.use(["zepto", "util"], function (a, util) {
+            var pageController = {
+                init: function () {
+                    util.getWeiboApi();
+                    this.getPageData();
+                    this.pageHandlers();
+                },
+                store: {
+                    serverIP: util.getServerIp(),
+                    userId: util.getUserId(),
+                    isJoin: 0,//用户是否参加 0:未参加 1:已参加
+                    sendweiboRanking: util.getServerIp() + '/app/pkAct'
+                },
+                pageHandlers: function () {
+                    $(".quiz-tit_arrow").on("click", function () {
+                        $(".last-lineup-rule").toggleClass("hide");
+                        $(".quiz-tit_arrow span").toggleClass("spe");
+                    })
+                },
+                getPageData: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + '/app/idolAct/actInit',
+                        dataType: "json",
+                        data: {
+                            userId: _this.store.userId
+                        },
+                        beforeSend: function () {
+                            util.showLoading();
+                        },
+                        complete: function () {
+                            util.hideLoading();
+                        },
+                        success: function (jsonData) {
+                            if (jsonData && jsonData.control.error == 0) {
+                                $(".page-current").removeClass("hide");
+                                var data = jsonData.data;
+                                _this.store.isJoin = data.actInitData.isJoin;
+                                _this.creatTpl(data);
+                                _this.pageHandler(data);
+                            } else {
+                                util.errorHandler(_this.store.userId);
+                            }
+                        },
+                        error: function (jsonData) {
+                            util.errorHandler(_this.store.userId);
+                        }
+                    });
+                },
+                getPageDatas: function (idol) {
+                    var _this = this;
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + '/app/idolAct/selectIdol',
+                        dataType: "json",
+                        data: {
+                            userId: _this.store.userId,
+                            idol: idol
+                        },
+                        beforeSend: function () {
+                            util.showLoading();
+                        },
+                        complete: function () {
+                            util.hideLoading();
+                        },
+                        success: function (jsonData) {
+                            if (jsonData && jsonData.control.error == 0) {
+                                var data = jsonData.data;
+                                var actInitData = data.actInitData;
+                                var idol = actInitData.idol;
+                                _this.store.isJoin = actInitData.isJoin;
+                                util.showTips("选择成功！赶紧拉好友支持你！", function () {
+                                    _this.creatTplPk(actInitData, idol);
+                                    $(".lineup-result-box-money").html(actInitData.currSupportAmount + "元");
+                                    $(".lineup-result-box-des em").html(actInitData.currParticipaters);
+                                    $(".lineup-result-box-des span").html(actInitData.increaseAmount);
+                                    $(".lineup-result-box-focus").removeClass("hide");
+                                    $(".lineup-result-box-focus-first").addClass("hide");
+                                })
+                            } else if (jsonData && jsonData.control.error == -1006) {
+                                util.showTips("已经停止投票啦~", function () {
+                                    util.toPage("./quiz.html");
+                                });
+                            }
+                            else {
+                                util.errorHandler(_this.store.userId);
+                            }
+                        },
+                        error: function (jsonData) {
+                            util.errorHandler(_this.store.userId);
+                        }
+                    });
+                },
+                creatTplPk: function (actInitData, idol) {//用户参加
+                    var _this = this;
+                    var idol = idol;
+                    $(".quiz-wait").removeClass("hide");
+                    if (actInitData.idol == 0) {//当前选择鹿晗的话
+                        $("#lineUpLhBtn").attr("src", "./static/images/def/newUser/check_btn.png");
+                        $(".quiz-con-l .quiz-people").removeClass("hide").html("（已有" + actInitData.idolACounts + "人支持）");
+                        $("#lineUpTfBtn,#lineUpLhBtnNum").addClass("hide");
+                        $("#lineUpTfBtnNum").removeClass("hide").html("已有" + actInitData.idolBCounts + "人支持");
+                    } else if (actInitData.idol == 1) {//当前选择tf的话
+                        $("#lineUpTfBtn").attr("src", "./static/images/def/newUser/check_btn.png");
+                        $(".quiz-con-r .quiz-people").removeClass("hide").html("（已有" + actInitData.idolBCounts + "人支持）");
+                        $("#lineUpLhBtn,#lineUpTfBtnNum").addClass("hide");
+                        $("#lineUpLhBtnNum").removeClass("hide").html("已有" + actInitData.idolACounts + "人支持");
+                    }
+                    _this.sendWeibo(idol);
+                },
+                creatTpl: function (data) {
+                    var _this = this;
+                    var actInitData = data.actInitData;
+                    _this.store.isJoin = actInitData.isJoin;
+                    var idol = actInitData.idol;//当前用户选择偶像
+                    if (actInitData.actStatus == 4) {
+                        util.toPage("quizEnd.html");
+                    } else if (actInitData.actStatus == 1) {
+                        if (actInitData.isJoin == 0) {//用户未参加
+                            $(".quiz_btn_total").addClass("hide");
+                            _this.sendWeibos()
+                        } else {
+                            $(".quiz-wait").removeClass("hide");
+                            _this.creatTplPk(actInitData, idol);//用户参加
+                        }
+                    } else if (actInitData.actStatus == 2) {
+                        $("#lineUpLhBtn").attr("src", "./static/images/def/newUser/stop_btn.png");
+                        $("#lineUpTfBtn").attr("src", "./static/images/def/newUser/stop_btn.png");
+                        $(".quiz_btn_total").addClass("hide");
+                        $(".quiz-btn").addClass("hide");
+                        $(".quiz-btn-stop").removeClass("hide");
+                    } else if (actInitData.actStatus == 3) {
+                        $(".quiz-que").addClass("hide");
+                        $(".quiz-data,.quiz-win").removeClass("hide");
+                        $(".gedaye-data span").html(actInitData.pk1Count);
+                        $(".wall-data span").html(actInitData.pk2Count);
+                        var winWho = null;
+                        var idolACounts = parseFloat(actInitData.pk1Count);
+                        var idolBCounts = parseFloat(actInitData.pk2Count);
+                        var currParticipaters = actInitData.currParticipaters;
+                        if (idolACounts > idolBCounts) {
+                            winWho = "lh";
+                        } else {
+                            winWho = "tf";
+                        }
+                        var quizBtnWb = $(".quiz-btn-wb .com_btn");
+                        if (actInitData.isJoin == 0) {//用户未参加
+                            if (winWho == "lh") {
+                                $(".quiz-win-name em").html("《罗曼蒂克消亡史》");
+                            } else {
+                                $(".quiz-win-name em").html("《长城》");
+                            }
+                            $(".quiz-win-result").html("您来晚了，下次早点来哦");
+                            $(".quiz_btn").addClass("hide");
+                            $(".quiz_btn_total").removeClass("hide");
+                            $("#lineUpLhBtnNum").html("共" + actInitData.idolACounts + "人支持");
+                            $("#lineUpTfBtnNum").html("共" + actInitData.idolBCounts + "人支持");
+                            $(".quiz-btn").addClass("hide");
+                            $(".quiz-btn-wb").removeClass("hide");
+                            quizBtnWb.html("仍然为您准备了大礼包,去领取");
+                            quizBtnWb.on("click", function () {
+                                util.toPage("index.html");
+                            })
+                        } else {//用户参加
+                            if (actInitData.isWin == 0) {//没有中奖
+                                if (actInitData.idol == 0) {
+                                    $(".quiz-win-name em").html("《长城》");
+                                    $(".quiz-win-result").html("您未获得瓜分土豪奖金的资格");
+                                    $("#lineUpLhBtn").removeClass("hide").attr("src", "./static/images/def/newUser/check_btn.png");
+                                    $("#lineUpLhBtnNum").addClass("hide");
+                                    $("#lineUpTfBtn").addClass("hide");
+                                    $("#lineUpTfBtnNum").removeClass("hide").html("共" + actInitData.idolBCounts + "人支持");
+                                    $(".quiz-con-l .quiz-people").removeClass("hide").html("（已有" + actInitData.idolACounts + "人支持）")
+                                } else {
+                                    $(".quiz-win-name em").html("《罗曼蒂克消亡史》");
+                                    $(".quiz-win-result").html("您未获得瓜分土豪奖金的资格");
+                                    $("#lineUpTfBtn").removeClass("hide").attr("src", "./static/images/def/newUser/check_btn.png");
+                                    $("#lineUpTfBtnNum").addClass("hide");
+                                    $("#lineUpLhBtn").addClass("hide");
+                                    $("#lineUpLhBtnNum").removeClass("hide").html("共" + actInitData.idolACounts + "人支持");
+                                    $(".quiz-con-r .quiz-people").removeClass("hide").html("（已有" + actInitData.idolBCounts + "人支持）")
+                                }
+                                $(".quiz-btn").addClass("hide");
+                                $(".quiz-btn-wb").removeClass("hide");
+                                quizBtnWb.removeClass("hide").html("仍然为您准备了大礼包,去领取");
+                                quizBtnWb.on("click", function () {
+                                    util.toPage("index.html");
+                                })
+                            } else {//中奖了
+                                if (actInitData.idol == 0) {
+                                    $(".quiz-win-name em").html("《罗曼蒂克消亡史》");
+                                    $(".quiz-win-result").html("恭喜您获得瓜分土豪奖金的资格");
+                                    $("#lineUpLhBtn").removeClass("hide").attr("src", "./static/images/def/newUser/check_btn.png");
+                                    $("#lineUpLhBtnNum").addClass("hide");
+                                    $("#lineUpTfBtn").addClass("hide");
+                                    $("#lineUpTfBtnNum").removeClass("hide").html("共" + actInitData.idolBCounts + "人支持");
+                                    $(".quiz-con-l .quiz-people").removeClass("hide").html("（已有" + actInitData.idolACounts + "人支持）")
+                                } else {
+                                    $(".quiz-win-name em").html("《长城》");
+                                    $(".quiz-win-result").html("恭喜您获得瓜分土豪奖金的资格");
+                                    $("#lineUpTfBtn").removeClass("hide").attr("src", "./static/images/def/newUser/check_btn.png");
+                                    $("#lineUpTfBtnNum").addClass("hide");
+                                    $("#lineUpLhBtn").addClass("hide");
+                                    $("#lineUpLhBtnNum").removeClass("hide").html("共" + actInitData.idolACounts + "人支持");
+                                    $(".quiz-con-r .quiz-people").removeClass("hide").html("（已有" + actInitData.idolBCounts + "人支持）")
+                                }
+                                $(".quiz-btn").addClass("hide");
+                                $(".quiz-btn-wb").removeClass("hide");
+                                quizBtnWb.removeClass("hide").html("领个红包,坐等发奖");
+                                quizBtnWb.on("click", function () {
+                                    util.toPage("index.html");
+                                });
+                            }
+                        }
+                        $(".lineup-result-box-money").html(actInitData.currSupportAmount + "元");
+                        var winNum = actInitData.idolACounts > actInitData.idolBCounts ? actInitData.idolACounts : actInitData.idolBCounts;
+                        $(".lineup-result-box-des-result em").html(winNum);
+                        var bodyWinMoney = (actInitData.currSupportAmount / winNum).toFixed(2);
+                        $(".lineup-result-box-des-result span").html(bodyWinMoney.substring(0, bodyWinMoney.lastIndexOf('.') + 2));
+                        $(".lineup-result-box-des-result").removeClass("hide");
+                        $(".lineup-result-box-des").addClass("hide");
+                    }
+                    if (actInitData.actStatus != 3) {
+                        $(".lineup-result-box-money").html(actInitData.currSupportAmount + "元");
+                        $(".lineup-result-box-des em").html(actInitData.currParticipaters);
+                        $(".lineup-result-box-des span").html(actInitData.increaseAmount);
+                    }
+                },
+                pageHandler: function (data) {
+                    var _this = this;
+                    var actInitData = data.actInitData;
+                    $(".quiz_btn").on("click", function () {
+                        var idol = $(this).attr("data-idol");
+                        if (_this.store.isJoin == 0 && actInitData.actStatus == 1) {
+                            _this.getWbHandle();
+                            _this.getPageDatas(idol);
+                        }
+                    });
+                },
+                sendWeibo: function (idol) {
+                    var _this = this;
+                    var idol = idol;
+                    var quizBtnTwo = $(".quiz-btn-two");
+                    $(".quiz-btn").addClass("hide");
+                    quizBtnTwo.removeClass("hide");
+                    quizBtnTwo.on('click', function () {
+                        var sinaWbTxt = _this.store.sendweiboRanking;
+                        var dataTwb = "";
+                        if (idol == 0) {
+                            dataTwb = 'sinaweibo://sendweibo?title=发微博&content=' + encodeURIComponent("罗 曼 蒂 克 消 亡 史！葛大爷出品，必属精品，小鲜肉哪有演技！！【《罗 曼 蒂 克 消 亡 史》VS《长 城》上映首周谁是票房之王？】，还用说吗必须是罗 曼 蒂 克 消 亡 史 ！！我正在@理财平台 支持《罗 曼 蒂 克 消 亡 史》，瓜分土豪奖金！！不服你也来站！！" + sinaWbTxt);
+                        } else {
+                            dataTwb = 'sinaweibo://sendweibo?title=发微博&content=' + encodeURIComponent("长 城！长 城！我家爱豆就是票房保证！！【《罗 曼 蒂 克 消 亡 史》VS《长 城》上映首周谁是票房之王？】，还用说吗当然是长 城！明星阵容，豪华巨制亮瞎你的眼！！我正在@理财平台 支持《长 城》，瓜分冲天奖金！！不服你也来站！！" + sinaWbTxt);
+                        }
+                        util.toPage(dataTwb);
+                    });
+                },
+                sendWeibos: function () {
+                    var _this = this;
+                    $(".quiz-btn-ing").on('click', function () {
+                        var sinaWbTxt = _this.store.sendweiboRanking;
+                        var dataTwb = 'sinaweibo://sendweibo?title=发微博&content=' + encodeURIComponent("票房竞猜so easy，大奖我拿定了！" + sinaWbTxt);
+                        util.toPage(dataTwb);
+                    });
+                },
+                getWbHandle: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + '/app/weibo/lightapp/follow',
+                        data: {
+                            userId: _this.store.userId
+                        },
+                        dataType: "json",
+                        success: function (jsonData) {
+                        }
+                    });
+                }
+            };
+            $(function () {
+                pageController.init();
+            });
+        });
+
+block content
+    div.page-group <div class="page page-current hide"><div class="content native-scroll quiz-con"><div class="quiz-top"><img src="./static/images/def/newUser/quiz_bg1.jpg"></div><div class="quiz-que"><img src="./static/images/def/newUser/quiz_que.jpg"></div><div class="quiz-data hide"><div class="gedaye-data">《罗曼蒂克消亡史》<span>121201201201291</span></div><div class="wall-data">《长城》<span>1212917219271927192</span></div></div><div class="quiz-win hide"><div class="quiz-win-name"><em>《长城》</em>获胜</div><div class="quiz-win-result">您来晚了，下次早点来哦</div></div><div class="quiz-content clearfix"><div class="quiz-con-l"><div class="quiz-con-head"><img src="./static/images/def/newUser/gedaye.jpg"></div><div class="quiz-con-btn"><img src="./static/images/def/newUser/gedaye_btn.png" class="quiz_btn" id="lineUpLhBtn" data-idol="0"> <span class="quiz_btn_total" id="lineUpLhBtnNum">已有1334人支持</span></div><div class="move_name">《罗曼蒂克消亡史》</div><div class="quiz-people hide">（已有1213人支持）</div></div><div class="quiz-con-r"><div class="quiz-con-head"><img src="./static/images/def/newUser/wall.jpg"></div><div class="quiz-con-btn"><img src="./static/images/def/newUser/wall_btn.png" class="quiz_btn" id="lineUpTfBtn" data-idol="1"> <span class="quiz_btn_total" id="lineUpTfBtnNum">已有1334人支持</span></div><div class="move_name">《长城》</div><div class="quiz-people hide">（已有1212人支持）</div></div></div><div class="quiz-wait hide">敬请期待，开奖结果12月23日10点公布</div><div class="lineup-result"><div class="lineup-scroll-bar clearfix"><div class="lineup-result-con"><div class="lineup-result-box"><div class="lineup-result-box-tit">有奖竞猜·当前奖金由<em>@理财平台</em>赞助</div><div class="lineup-result-box-money">10010元</div><div class="lineup-result-box-des">已有<em>1001</em>人参与，每多1人参与，奖金增加<span>10</span>元</div><div class="lineup-result-box-des-result hide">共<em>1000</em>人平分奖金，每人<span>10</span>元</div><div class="lineup-result-box-focus hide"><em></em>关注理财平台</div><div class="lineup-result-box-focus lineup-result-box-focus-first"><em></em>关注理财平台、分享至微博</div></div></div><em class="lineup-box-flower"></em> <em class="lineup-box-triangle"></em></div></div><div class="three_steps"><img src="./static/images/def/newUser/three_steps.png"></div><div class="lineup-rule"><div class="act_rules_mess_top"><span>活动规则</span></div><div class="lineup-rule-des"><div class="lineup-rule-cons"><div class="lineup-rule-l"><em>1</em></div><div class="lineup-rule-o">本活动投票时间<em>2016年12月16日至12月22日；开奖时间为12月23日</em>。<br>开奖结果将以<em>12月23日10点</em>中国票房网（<em>http://www.cbooo.cn/realtime</em>）实时公布的国内累计票房数据为准）。</div></div><div class="lineup-rule-cons"><div class="lineup-rule-l"><em>2</em></div><div class="lineup-rule-o">活动期间参与投票即默认为参加本活动；每多一人参与，奖金增加<em>10</em>元，奖金上不封顶。</div></div><div class="lineup-rule-cons"><div class="lineup-rule-l"><em>3</em></div><div class="lineup-rule-o">活动结束后，猜中结果的获胜方全员平分所有奖金，奖金奖励分为<em>理财平台返现红包</em>或<em>现金红包</em>两种，红包种类随机发放。</div></div><div class="lineup-rule-cons"><div class="lineup-rule-l"><em>4</em></div><div class="lineup-rule-o">获胜一方所得奖金将于<em>12月24日</em>统一发放至您的理财平台账户中（手机微博>>我>>微博钱包>>理财>>我的>>我的礼券）。</div></div><div class="last-lineup-rule hide"><div class="lineup-rule-cons"><div class="lineup-rule-l"><em>5</em></div><div class="lineup-rule-o">个人所获得的红包金额按<em>奖金总额/获胜总人数</em>平均分配（如，总奖金池有1000万元奖金，获胜方共５万人，即每人分得奖金200元红包。红包种类及个数随机）。</div></div><div class="lineup-rule-cons"><div class="lineup-rule-l"><em>6</em></div><div class="lineup-rule-o">投返红包有效期为<em>７</em>天，现金红包有效期为<em>30</em>天，请及时使用，以免过期。</div></div><div class="lineup-rule-cons"><div class="lineup-rule-l"><em>7</em></div><div class="lineup-rule-o">本活动严禁任何恶意作弊行为，一经发现，将收回奖金并永久列入理财平台黑名单。</div></div></div><div class="quiz-tit_arrow"><div>查看更多活动细则</div><span></span></div></div></div><div class="quiz-btn quiz-btn-ing"><a href="javascript: void(0);" class="com_btn">呼朋唤友来瓜分奖励</a></div><div class="quiz-btn quiz-btn-two hide"><a href="javascript: void(0);" class="com_btn">呼朋唤友来瓜分奖励</a></div><div class="quiz-btn quiz-btn-stop hide"><a href="javascript: void(0);" class="com_btn">静候<em>12月23日10：00</em>公布结果</a></div><div class="quiz-btn quiz-btn-wb hide"><a href="javascript: void(0);" class="com_btn">仍然为您准备了大礼包，去领取</a></div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

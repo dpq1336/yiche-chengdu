@@ -1,0 +1,311 @@
+extends templateAct.jade
+block titleAndStyles
+    title 瓜分冲天奖金
+block scripts
+    script.
+        seajs.use(["zepto", "util"], function (a, util) {
+            var pageController = {
+                init: function () {
+                    util.getWeiboApi();
+                    this.getPageData();
+                },
+                store: {
+                    serverIP: util.getServerIp(),
+                    userId: util.getUserId(),
+                    isJoin: 0,
+                    sendweiboRanking: util.getServerIp() + '/app/pkAct'
+                },
+                getPageData: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + '/app/idolAct/actInit',
+                        dataType: "json",
+                        data: {
+                            userId: _this.store.userId
+                        },
+                        beforeSend: function () {
+                            util.showLoading();
+                        },
+                        complete: function () {
+                            util.hideLoading();
+                        },
+                        success: function (jsonData) {
+                            if (jsonData && jsonData.control.error == 0) {
+                                $(".page-current").removeClass("hide");
+                                var data = jsonData.data;
+                                _this.store.isJoin = data.actInitData.isJoin;
+                                _this.creatTpl(data);
+                                _this.pageHandler(data);
+                            } else {
+                                util.errorHandler(_this.store.userId);
+                            }
+                        },
+                        error: function (jsonData) {
+                            util.errorHandler(_this.store.userId);
+                        }
+                    });
+                },
+                getPageDatas: function (idol) {
+                    var _this = this;
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + '/app/idolAct/selectIdol',
+                        dataType: "json",
+                        data: {
+                            userId: _this.store.userId,
+                            idol: idol
+                        },
+                        beforeSend: function () {
+                            util.showLoading();
+                        },
+                        complete: function () {
+                            util.hideLoading();
+                        },
+                        success: function (jsonData) {
+                            if (jsonData && jsonData.control.error == 0) {
+                                var data = jsonData.data;
+                                console.log(jsonData);
+                                var actInitData = data.actInitData;
+                                var idol = actInitData.idol;
+                                _this.store.isJoin = actInitData.isJoin;
+                                util.showTips("选择成功！赶紧拉好友支持你！", function () {
+                                    _this.creatTplPk(actInitData, idol);
+                                    $(".lineup-result-box-money").html(actInitData.currSupportAmount + "元");
+                                    $(".lineup-result-box-des em").html(actInitData.currParticipaters);
+                                    $(".lineup-result-box-des span").html(actInitData.increaseAmount);
+                                    $(".lineup-result-box-focus").removeClass("hide");
+                                    $(".lineup-result-box-focus-first").addClass("hide");
+                                })
+                            }else if(jsonData && jsonData.control.error == -1006){
+                                util.showTips("已经停止投票啦~", function () {
+                                    util.toPage("./lineuping.html");
+                                });
+                            }
+                            else {
+                                util.errorHandler(_this.store.userId);
+                            }
+                        },
+                        error: function (jsonData) {
+                            util.errorHandler(_this.store.userId);
+                        }
+                    });
+                },
+                creatTplPk: function (actInitData, idol) {
+                    var _this = this;
+                    var idol = idol;
+                    if (actInitData.idol == 0) {
+                        $("#lineUpLhHea").attr("src", "./static/images/def/newUser/lineup_lh_head.png");
+                        $("#lineUpLhBtn").attr("src", "./static/images/def/newUser/lineup_lhc_btn.png").addClass("lineup_lh_btn_che");
+                        $("#lineUpTfHea").attr("src", "./static/images/def/newUser/lineup_tfg_head.png");
+                        $("#lineUpTfBtn").attr("src", "./static/images/def/newUser/lineup_tfg_btn.png").removeClass("lineup_lh_btn_che");
+                    } else if (actInitData.idol == 1) {
+                        $("#lineUpLhHea").attr("src", "./static/images/def/newUser/lineup_lhg_head.png");
+                        $("#lineUpLhBtn").attr("src", "./static/images/def/newUser/lineup_lhg_btn.png").removeClass("lineup_lh_btn_che");
+                        $("#lineUpTfHea").attr("src", "./static/images/def/newUser/lineup_tf_head.png");
+                        $("#lineUpTfBtn").attr("src", "./static/images/def/newUser/lineup_tfc_btn.png").addClass("lineup_lh_btn_che");
+                    }
+                    $("#lhPkTf").removeClass("hide");
+                    $(".lineup-pk").removeClass("hide");
+                    var meg = "拉好友来支持我的爱豆";
+                    _this.lineupScrollBar(actInitData, meg);
+                    $(".support-btn").removeClass("hide");
+                    $(".lineup-result").addClass("lineup-result-spe");
+                    _this.sendWeibo(idol);
+                },
+                creatTpl: function (data) {
+                    var _this = this;
+                    var actInitData = data.actInitData;
+                    _this.store.isJoin = actInitData.isJoin;
+                    var idol = actInitData.idol;
+                    if (actInitData.actStatus == 4) {
+                        util.toPage("lineupingEnd.html");
+                    } else if (actInitData.actStatus == 1) {
+                        $(".lineup-con-tit, .lineup-pk").removeClass("hide");
+                        $("#lineUpTime").removeClass("hide");
+                        if (actInitData.isJoin == 0) {
+                            $("#lhPkTf").removeClass("hide");
+                            $(".lineup-result-box-focus").addClass("hide");
+                            $(".lineup-result-box-focus-first").removeClass("hide");
+                        } else {
+                            _this.creatTplPk(actInitData, idol);
+                        }
+                    } else if (actInitData.actStatus == 2) {
+                        if (actInitData.isJoin == 0) {
+                            $("#lineUpLhBtn").attr("src", "./static/images/def/newUser/lineup_lhg_btn.png");
+                            $("#lineUpTfBtn").attr("src", "./static/images/def/newUser/lineup_tfg_btn.png");
+                        } else if (actInitData.isJoin == 1) {
+                            if (actInitData.idol == 0) {
+                                $("#lineUpLhBtn").attr("src", "./static/images/def/newUser/lineup_lhc_btn.png").addClass("lineup_lh_btn_che");
+                                $("#lineUpTfBtn").attr("src", "./static/images/def/newUser/lineup_tfg_btn.png");
+                            } else if (actInitData.idol == 1) {
+                                $("#lineUpLhBtn").attr("src", "./static/images/def/newUser/lineup_lhg_btn.png");
+                                $("#lineUpTfBtn").attr("src", "./static/images/def/newUser/lineup_tfc_btn.png").addClass("lineup_lh_btn_che");
+                            }
+                        }
+                        $("#lhPkTf").removeClass("hide");
+                        $(".lineup-pk").removeClass("hide");
+                        $(".lineup-result").addClass("lineup-result-spe");
+                        $(".support-btn").addClass("support-btn-gray");
+                        var meg = "已停止投票,14:00公布结果";
+                        _this.lineupScrollBar(actInitData, meg);
+                    } else if (actInitData.actStatus == 3) {
+                        var winWho = null;
+                        var idolACounts = actInitData.idolACounts;
+                        var idolBCounts = actInitData.idolBCounts;
+                        var currParticipaters = actInitData.currParticipaters;
+                        var moreNum = Math.abs(idolACounts - idolBCounts);
+                        if (idolACounts > idolBCounts) {
+                            winWho = "lh";
+                        } else {
+                            winWho = "tf";
+                        }
+                        $(".lineup-content").addClass("lineup-content-spe");
+                        $(".lineup-result").addClass("lineup-result-spe");
+                        if (actInitData.isJoin == 0) {
+                            if (winWho == "lh") {
+                                $(".lineup-result-announcement .lineup-tf-head").attr("src", "./static/images/def/newUser/lineup_lh_win.png").addClass("lineup-lh-win-head");
+                                $(".lineup-pk-more .total").html(idolACounts);
+                            } else {
+                                $(".lineup-result-announcement .lineup-tf-head").attr("src", "./static/images/def/newUser/lineup_tf_win.png").addClass("lineup-tf-win-head");
+                                $(".lineup-pk-more .total").html(idolBCounts);
+                            }
+                            $(".lineup-result-announcement .lineup-late-btn").attr("src", "./static/images/def/newUser/lineup_late_btn.png");
+                            $(".lineup-pk-more span").html("超过");
+                            $(".support-btn").removeClass("hide").html("给您准备了见面礼,去领取");
+                            $(".support-btn").on("click", function () {
+                                util.toPage("index.html");
+                            })
+                        } else {
+                            if (actInitData.isWin == 0) {
+                                if (actInitData.idol == 0) {
+                                    $(".lineup-result-announcement .lineup-tf-head").attr("src", "./static/images/def/newUser/lineup_lh_head.png").addClass("lineup-lh-head");
+                                    $(".lineup-pk-more .total").html(idolACounts);
+                                } else {
+                                    $(".lineup-result-announcement .lineup-tf-head").attr("src", "./static/images/def/newUser/lineup_tf_head.png").addClass("lineup-tf-head");
+                                    $(".lineup-pk-more .total").html(idolBCounts);
+                                }
+                                $(".lineup-result-announcement .lineup-late-btn").attr("src", "./static/images/def/newUser/lineup_failure_btn.png");
+                                $(".lineup-pk-more span").html("落后");
+                                $(".support-btn").removeClass("hide").html("给您准备了见面礼,去领取");
+                                $(".support-btn").on("click", function () {
+                                    util.toPage("index.html");
+                                })
+                            } else {
+                                if (actInitData.idol == 0) {
+                                    $(".lineup-result-announcement .lineup-tf-head").attr("src", "./static/images/def/newUser/lineup_lh_win.png").addClass("lineup-lh-win-head");
+                                    $(".lineup-result-announcement .lineup-late-btn").attr("src", "./static/images/def/newUser/lineup_lh_win_btn.png");
+                                    $(".lineup-pk-more .total").html(idolACounts);
+                                } else {
+                                    $(".lineup-result-announcement .lineup-tf-head").attr("src", "./static/images/def/newUser/lineup_tf_win.png").addClass("lineup-tf-win-head");
+                                    $(".lineup-result-announcement .lineup-late-btn").attr("src", "./static/images/def/newUser/lineup_tf_win_btn.png");
+                                    $(".lineup-pk-more .total").html(idolBCounts);
+                                }
+                                $(".lineup-pk-more span").html("超过");
+                                $(".support-btn").removeClass("hide").html("已将平分的大奖奉上,快去兑换吧");
+                                $(".support-btn").on("click", function () {
+                                    util.toPage("myCoupon.html?accountType="+actInitData.accountType);
+                                })
+                            }
+                        }
+                        //$(".lineup-pk-more .total").html(currParticipaters);//bug2
+                        $(".lineup-pk-more .more").html(moreNum);
+                        $(".lineup-result-announcement").removeClass("hide");
+
+                        $(".lineup-result-box-money").html(actInitData.currSupportAmount + "元");
+                        var winNum=actInitData.idolACounts>actInitData.idolBCounts?actInitData.idolACounts:actInitData.idolBCounts;
+                        $(".lineup-result-box-des-result em").html(winNum);
+                        var bodyWinMoney=(actInitData.currSupportAmount/winNum).toFixed(2);
+                        $(".lineup-result-box-des-result span").html(bodyWinMoney.substring(0,bodyWinMoney.lastIndexOf('.')+2));
+                        $(".lineup-result-box-des-result").removeClass("hide");
+                        $(".lineup-result-box-des").addClass("hide");
+                    }
+                    if(actInitData.actStatus != 3){
+                        $(".lineup-result-box-money").html(actInitData.currSupportAmount + "元");
+                        $(".lineup-result-box-des em").html(actInitData.currParticipaters);
+                        $(".lineup-result-box-des span").html(actInitData.increaseAmount);
+                    }
+                },
+                pageHandler: function (data) {
+                    var _this = this;
+                    var actInitData = data.actInitData;
+                    $(".lineup_lh_btn").on("click", function () {
+                        var idol = $(this).attr("data-idol");
+                        if (_this.store.isJoin == 0 && actInitData.actStatus==1 ) {//bug1
+                            _this.getWbHandle();
+                            _this.getPageDatas(idol);
+                        }
+                    });
+                },
+                sendWeibo: function (idol) {
+                    var _this = this;
+                    var idol = idol;
+                    $(".support-btn").on('click', function () {
+                        var sinaWbTxt = _this.store.sendweiboRanking;
+                        var dataTwb = "";
+                        if (idol == 0) {
+                            dataTwb = 'sinaweibo://sendweibo?title=发微博&content=' + encodeURIComponent("鹿晗！鹿晗！除了我们鹿宝还有谁！！我正在参与@理财平台 发起的投票 【鹿晗 VS TFBOYS，谁才是你心中的微博人气王！】，只想说当然是鹿晗！鹿晗！除了我们鹿宝还有谁！！你也快来为爱豆站队，瓜分冲天奖金！！" + sinaWbTxt);
+                        } else {
+                            dataTwb = 'sinaweibo://sendweibo?title=发微博&content=' + encodeURIComponent("TFBOYS ！！谁敢说我家宝贝们不是人气王！！我正在参与@理财平台 发起的投票 【鹿晗 VS TFBOYS，谁才是你心中的微博人气王！】，只想说必须是TFBOYS ！！谁敢说我家宝贝们不是实力派！！你也快来为爱豆站队，瓜分冲天奖金！！" + sinaWbTxt);
+                        }
+                        util.toPage(dataTwb);
+                    });
+                },
+                lineupScrollBar: function (actInitData, meg) {
+                    var idolACounts = actInitData.idolACounts;
+                    var idolBCounts = actInitData.idolBCounts;
+                    var currParticipaters = actInitData.currParticipaters;
+                    var lh = idolACounts / currParticipaters * 100;
+                    var tf = idolBCounts / currParticipaters * 100;
+                    $(".rank-progress span").animate({width: lh + '%', minWidth: '10%'}, 700, 'ease-out');
+                    $(".rank-progress-spe span").animate({width: tf + '%', minWidth: '10%'}, 700, 'ease-out');
+                    $(".lineup-scroll-bar-l .lineup-number em").html(actInitData.idolACounts);
+                    $(".lineup-scroll-bar-r .lineup-number em").html(actInitData.idolBCounts);
+                    $(".lineup-scroll-bar").removeClass("hide");
+                    $(".support-btn").removeClass("hide").html(meg);
+                    $("#lineUpTime").removeClass("hide");
+                },
+                getWbHandle: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + '/app/weibo/lightapp/follow',
+                        data: {
+                            userId: _this.store.userId
+                        },
+                        dataType: "json",
+                        success: function (jsonData) {
+                        }
+                    });
+                }
+            };
+            $(function () {
+                pageController.init();
+            });
+        });
+
+block content
+    div.page-group <div class="page page-current hide"><div class="content native-scroll"><div class="lineup-top"><img src="./static/images/def/newUser/lineup_bg1.jpg"></div><div class="lineup-content"><!--lineup-content-spe-- 中奖未中奖来晚了加class--><p class="lineup-con-tit hide">那么问题来了，谁才是你心中的微博人气王？</p><div class="lineup-con clearfix hide" id="lhPkTf"><!--lh pk tf--><div class="lineup-con-l"><div class="lineup_lh_head_con"><img src="./static/images/def/newUser/lineup_lh_head.png" class="lineup_lh_head" id="lineUpLhHea"></div><img src="./static/images/def/newUser/lineup_lh_btn.png" data-idol="0" class="lineup_lh_btn" id="lineUpLhBtn"></div><div class="lineup-con-r"><div class="lineup_lh_head_con"><img src="./static/images/def/newUser/lineup_tf_head.png" class="lineup_lh_head" id="lineUpTfHea"></div><img src="./static/images/def/newUser/lineup_tf_btn.png" data-idol="1" class="lineup_lh_btn" id="lineUpTfBtn"></div></div><div class="lineup-result-announcement hide"><!--您来晚了下次早点来--> <img src="./static/images/def/newUser/lineup_tf_head.png" class="lineup-tf-head"> <img src="./static/images/def/newUser/lineup_late_btn.png" class="lineup-late-btn"><div class="lineup-pk-more"><div>共有<em class="total">--</em>人站队</div><div><span>超过</span>对方<em class="more">--</em>人</div></div></div></div><div class="lineup-pk hide"><!--心电图--> <img src="./static/images/def/newUser/lineup_bg3.jpg"></div><div class="lineup-result"><!--lineup-result-spe投票后加class--><div class="lineup-scroll-bar clearfix hide"><!--百分比--><div class="lineup-scroll-bar-l"><div class="rank-progress"><span></span></div><div class="lineup-number">已有<em>--人</em>选择</div></div><div class="lineup-scroll-bar-r"><div class="rank-progress rank-progress-spe"><span></span></div><div class="lineup-number">已有<em>--人</em>选择</div></div></div><div class="support-btn hide">拉好友来支持我的爱豆</div><!--按钮--><p id="lineUpTime" class="lineup-result-tit hide">站队人数多的一方胜出，12月8日14:00揭晓结果</p><div class="lineup-result-con"><!--日历--><div class="lineup-result-box"><div class="lineup-result-box-tit">@理财平台 当前赞助奖金</div><div class="lineup-result-box-money">--</div><div class="lineup-result-box-des">已有<em>1000</em>人参与，每多1人参与，奖金增加<span>10</span>元</div><div class="lineup-result-box-des-result hide">共<em>1000</em>人平分奖金，每人<span>10</span>元</div><div class="lineup-result-box-focus"><em></em>关注理财平台</div><div class="lineup-result-box-focus lineup-result-box-focus-first hide"><em></em>关注理财平台、分享至微博</div></div></div><em class="lineup-box-flower"></em> <em class="lineup-box-triangle"></em></div><div class="lineup-rule"><div class="act_rules_mess_top"><span>活动规则</span></div><div class="lineup-rule-des"><div class="lineup-rule-cons"><div class="lineup-rule-l"><em>1</em></div><div class="lineup-rule-o">活动时间：12月6日10:00-12月8日10:00</div></div><div class="lineup-rule-cons"><div class="lineup-rule-l"><em>2</em></div><div class="lineup-rule-o">每人只能选择一方参与站队，活动结束后，站队人数多的一方即可平分奖金；</div></div><div class="lineup-rule-cons"><div class="lineup-rule-l"><em>3</em></div><div class="lineup-rule-o">赢方所得奖金将于12月8日14：00前统一发放，并以投返红包的形式发放至<em>@理财平台“我的”-“我的礼券”</em>中；</div></div><div class="lineup-rule-cons"><div class="lineup-rule-l"><em>4</em></div><div class="lineup-rule-o">活动结束后，将从赢方中抽取106位现金大奖，并以现金红包形式发放至<em>@理财平台“我的”-“我的礼券”</em>中；</div></div><div class="lineup-rule-cons"><div class="lineup-rule-l"><em>5</em></div><div class="lineup-rule-o">本活动严禁任何恶意作弊行为，如经发现，将收回奖金并永久列入理财平台黑名单；</div></div><div class="lineup-rule-cons"><div class="lineup-rule-l"><em>6</em></div><div class="lineup-rule-o">在法律允许范围内，理财平台保留本活动最终解释权。</div></div></div></div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

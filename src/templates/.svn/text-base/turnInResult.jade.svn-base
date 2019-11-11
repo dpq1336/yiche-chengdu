@@ -1,0 +1,26 @@
+extends template.jade
+block titleAndStyles
+	title 充值结果
+block scripts
+	script(type="text/javascript",charset="utf-8",src="./static/js/def/turnInRusult.js")
+block content
+	div.page-group
+		div.page.page-current
+			div.content
+				//-
+					div.result_cont
+						img.ImgSuc(src="./static/images/def/icons/buy_suc.png")
+						div.buySucce_x 转入成功
+						div.buyBack 2017年5月23日，成功转入<span>100,34.00</span>元
+					div.buyFalse_x
+						a.trunOut.external(href="./index.html") 我知道了
+					div.buyBack.mt20
+						a 联系客服
+				//-
+					div.result_cont
+						img(src="./static/images/def/icons/activateFalse.png").ImgSuc
+						div.buySucce_x 转入失败
+						div.buyBack 如有疑问请请咨询新浪支付 <a href="#">400-921-8887</a>
+					div.buyFalse_x
+						a.other_x.external(href="./index.html") 我知道了
+						a.IKnow.external(href="javascript:void(0);") 再试一次

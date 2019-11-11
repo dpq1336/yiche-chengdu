@@ -1,0 +1,30 @@
+extends template.jade
+block titleAndStyles
+	title 账户总览
+block scripts
+	script(type='text/javascript',src='./static/js/def/accountView.js',charset='utf-8')
+block content
+	div.page-group
+		div.page.page-current
+			div.content.native-scroll
+				//-
+					div.accv_top.t_card
+						div.acct_tit 总资产
+						div.acct_money 133,345.56 <span>元</span>
+					div.accv_bot.t_card
+						div.t_card_tit 账户余额 <span>2,463.00元</span>
+						div.t_card_tit 待收本金 <span>2,463.00元</span>
+						div.t_card_tit 待收收益 <span>2,463.00元</span>
+						div.t_card_tit 冻结金额 <span>2,463.00元</span>
+			//-
+				script#proListTpl(type="text/html").
+					<div class="accv_top t_card">
+						<div class="acct_tit">总资产</div>
+						<div class="acct_money">{{d.totalAmount}}<span>元</span></div>
+					</div>
+					<div class="accv_bot t_card">
+						<div class="t_card_tit">账户余额 <span>{{d.availableAmount}}元</span></div>
+						<div class="t_card_tit">待收本金 <span>{{d.sumPrincipal}}元</span></div>
+						<div class="t_card_tit">待收收益 <span>{{d.sumInterest}}元</span></div>
+						<div class="t_card_tit">冻结金额 <span>{{d.frozenBiddingCash}}元</span></div>
+					</div>

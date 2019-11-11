@@ -1,0 +1,34 @@
+extends template.jade
+block titleAndStyles
+	title 购买结果
+block scripts
+	script(type="text/javascript",charset="utf-8",src="./static/js/def/buyResult.js")
+block content
+	div.page-group
+		div.page.page-current
+			//-
+				div.content
+					div.result_cont
+						img(src="./static/images/def/icons/buy_suc.png",class="ImgSuc")
+						div.buySucce_x 购买成功
+						div.buyBack 2017年5月23日，预计本息回款100,34.00元
+						div.buybackDay
+							p 2016.08.23开始计息
+							img(src="./static/images/def/icons/icon_buyResult_s.jpg")
+							p 2016.08.23开始计息
+					div.buyFalse_x
+						a.IKnow.external(href="./userCenter.html") 我知道了
+						div.atten_x
+							span.about_x
+								input(type="checkbox",id="radio-1",name="radio-1" checked)
+								label(for="radio-1")
+							span 关注 <a href="#">@微理财</a>
+			//-失败内容
+				div.content
+					div.result_cont
+						img(src="./static/images/def/icons/activateFalse.png",class="ImgSuc")
+						div.buySucce_x 购买失败
+						div.buyBack 请确认网络是否通畅，且银行卡余额充足</br>如有疑问，请<a href="#">联系客服</a>
+					div.buyFalse_x
+						a.other_x(href="./index.html") 我知道了
+						a.IKnow(href="./lcList.html") 查看其它项目

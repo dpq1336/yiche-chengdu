@@ -1,0 +1,32 @@
+extends template.jade
+block titleAndStyles
+	title 交易记录
+block scripts
+	script(type="text/javascript",charset="utf-8",src="./static/js/def/chargeList.js")
+block content
+	div.page-group
+		div.page.page-current
+			div.content.native-scroll
+				//-div.mt20
+				//-
+					div.com_list
+					div.t_card.com_list_con.mt0
+						div.com_lite_item
+							div.cli_1.cli_item <span class="l_s">充值</span><span class="r_s">+1,324,000.00元</span>
+							div.cli_2.cli_item <span class="l_s">2015-10-22 13:42</span>
+						div.com_lite_item
+							div.cli_1.cli_item <span class="l_s">提现</span><span class="r_s">-31,324,000.00元</span>
+							div.cli_2.cli_item <span class="l_s">2015-10-22 13:42</span>
+						div.com_lite_item
+							div.cli_1.cli_item <span class="l_s">现金奖励</span><span class="l_s tit_color">新手奖励</span><span class="r_s">+1,324,000.00元</span>
+							div.cli_3.cli_item <span class="l_s">2015-10-22 13:42</span>
+						div.com_lite_item
+							div.cli_1.cli_item <span class="l_s">投资</span><span class="l_s tit_color">优房宝352-29</span><span class="r_s">-1,324,000.00元</span>
+							div.cli_3.cli_item <span class="l_s">2015-10-22 13:42</span>
+				//-
+					div.com_no_data.tc_no_data
+						img(src="./static/images/def/icons/activateFalse.png")
+						div 暂还没有购买记录
+			
+
+

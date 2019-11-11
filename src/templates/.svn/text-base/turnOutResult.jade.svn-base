@@ -1,0 +1,24 @@
+extends template.jade
+block titleAndStyles
+	title 提现结果
+block scripts
+	script(type="text/javascript",charset="utf-8",src="./static/js/def/turnOutRusult.js")
+block content
+	div.page-group
+		div.page.page-current
+			div.content
+				//-
+					div.result_cont
+						img(src="./static/images/def/icons/buy_suc.png",class="ImgSuc")
+						div.buySucce_x 申请提现成功
+						div.buyBack.mt15line1 提现金额<span>100,34.00</span>元</br>资金预计将在明日内到达您的银行卡
+					div.buyFalse_x
+						a.trunOut(href="./index.html") 我知道了
+				//-
+					div.result_cont
+						img(src="./static/images/def/icons/activateFalse.png",class="ImgSuc")
+						div.buySucce_x 转出失败
+						div.buyBack 如有疑问请请咨询新浪支付 <a href="#">400-921-8887</a>
+					div.buyFalse_x
+						a.other_x(href="./index.html") 我知道了
+						a.IKnow(href="javascript:void(0);") 再试一次

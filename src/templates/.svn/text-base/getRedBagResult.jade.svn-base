@@ -1,0 +1,117 @@
+extends templateAct.jade
+block titleAndStyles
+	title 新手礼遇
+	style.
+		.page-group {
+			background: #fff;
+		}
+		.page{
+			height:auto;
+		}
+		.page-current{
+			padding-bottom: 2.5rem;
+		}
+block scripts
+	//-
+	script.
+		seajs.use(["zepto","util"], function(a, util) {
+			var pageController = {
+				init: function() {
+					util.getWeiboApi();
+					util.pushData({
+						orderType: "a",//a:新手领取，b:员工专享，c:活动专题，d：分享领取结果页
+						sourceType: 0 //0:pv,1:点击
+					});
+					var _this=this;
+					_this.pageHandler();
+				},
+				store: {
+					serverIP: util.getServerIp(),
+					staticIP: util.getStaticIp(),
+					isReceive:util.getUrlParam("isReceive"),
+					amountCode:util.getUrlParam("amountCode"),
+					userId: util.getUserId()
+				},
+				pageHandler: function(){
+					this.createTpl();
+					$('.look_rules').on('click',function(){
+						$('.common_layer').show();
+						$('.act_rules_cont').show();
+					})
+					$('.off_p').on('click', function () {
+						$('.common_layer').hide();
+						$('.act_rules_cont').hide();
+					})
+					$(".btn_see").on('click',function () {
+						util.pushData({
+							orderType: "a",//a:新手领取，b:员工专享，c:活动专题，d：分享领取结果页
+							sourceType: $(this).attr("data_type") //0:pv,1:点击,2:点击微博
+						});
+						util.toPage($(this).attr("data_url"))
+					})
+
+				},
+				createTpl:function(){
+					var _this=this;
+					var isReceive=_this.store.isReceive;
+					var amountCode=_this.store.amountCode;
+					var dataTpl='<div class="rb_main content">'
+					dataTpl+='<div class="get_rb_top">'
+					dataTpl+='<img src="./static/images/def/newUser/red_bg2.png" />'
+					if(isReceive==0){
+						dataTpl+='<div class="rb_text">恭喜您抢到一个红包</div>'
+					}else if(isReceive==1){
+						dataTpl+='<div class="rb_text">您已经领取过新手红包了<br />快去使用吧！</div>'
+					}
+					dataTpl+='</div>'
+					dataTpl+='<div class="get_rb_mid">'
+					dataTpl+='<img src="./static/images/def/newUser/red_bg3.png" />'
+					if(isReceive==2){
+						dataTpl+='<div class="rb_mid_text3"><img src="./static/images/def/newUser/red_bg5.png">'
+						dataTpl+='<a href="./activity.html">查看活动详情 &gt;</a>'
+						dataTpl+='</div>'
+					}else{
+						dataTpl+='<div class="rb_mid_text1"><span>'+amountCode+'</span>元</div>'
+						dataTpl+='<div class="rb_mid_text2">'
+						dataTpl+='</div>'
+					}
+
+					dataTpl+='</div>'
+					dataTpl+='<h3 class="look_rules">查看活动细则 <span></span></h3>';
+					dataTpl+='<div class="common_layer hide"></div><div class="act_rules_cont hide"><p class="off_p"></p><div class="act_rules_mess_top"><span>活动细则</span></div><div class="act_rules_mess"><p><i></i><span>本活动时间为<em class="spe">2016年10月31日至11月7日</em>；</span></p><p><i></i><span>新用户每人可获得1次拆随机红包机会，红包金额<em class="spe">1.28元至888元</em>不等；</span></p> <p><i></i><span>红包为投资返现红包，单笔理财满指定金额<em class="spe">即可激活</em>；</span></p><p><i></i><span>红包有效期为<em class="spe">15</em>天，请在有效期内使用，以免过期给您造成损失。</span></p></div></div>';
+					if(isReceive==2){
+						var sinaWbTxt ='http://8.sc.weibo.com/api/app/rookieAct/'+_this.store.amountCode;
+						dataTpl+='<a data_url="sinaweibo://sendweibo?title=发微博&content=今日“宜”理财：看到这条消息，你注定要发财。'+encodeURIComponent(sinaWbTxt)+'" data_type="2" href="javascript: void(0);" class="rb_btn btn_wb btn_see">发微博，趣抢888元红包</a>'
+					}else{
+						dataTpl+='<a data_url="index.html" href="javascript: void(0);" data_type="1" class="rb_btn btn_wb btn_see" >立即购买理财激活红包</a>'
+					}
+
+					dataTpl+='</div>'
+					$(".page").html(dataTpl);
+				}
+			};
+			$(function(){
+				pageController.init();
+			});
+		});
+block content
+	div.page-group
+		div.page.page-current
+			//-
+				div.common_layer
+				div.act_rules_cont <p class="off_p"></p><div class="act_rules_mess_top"><span>活动细则</span></div><div class="act_rules_mess"><p><i></i><span>活动时间：<em class="spe">2016年9月26日至11月16日</em>；</span></p><p><i></i><span>新用户每人可获得1次拆随机红包机会，红包金额<em class="spe">1.88元至888元</em>不等。</span></p> <p><i></i><span>红包为返现红包，完成任意笔理财<em class="spe">即可兑换成现金</em>；</span></p><p><i></i><span>红包有效期为<em class="spe">30</em>天，过期失效；</span></p><p><i></i><span>在法律法规允许的范围内，微理财保留对本次活动的最终解释权。</span></p></div>
+			//-
+				div.rb_main
+					div.get_rb_top
+						//div.rb_text 恭喜您抢到一个红包
+						//div.rb_text 您已经领取过新手红包了<br />快去使用吧！
+					div.get_rb_mid
+						//-
+							div.rb_mid_text1 <span>8.88</span>元
+							div.rb_mid_text2
+								p.p1 购买任意理财项目，即可兑换现金
+								p.p2 购买理财产品前需先绑卡哦
+						div.rb_mid_text3
+							img(src="./static/images/def/newUser/red_bg5.png")
+							a(href="javascript:void(0)") 查看活动详情 &gt;
+					a.rb_btn.btn_wb.btn_see(href="javascript:void(0)") 立即开启财富之路

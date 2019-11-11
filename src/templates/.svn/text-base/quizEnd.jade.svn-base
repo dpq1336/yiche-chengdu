@@ -1,0 +1,69 @@
+extends templateAct.jade
+block titleAndStyles
+    title 有奖竞猜·瓜分土豪奖金！
+    style.
+        .content, .page {
+            height: 100%;
+        }
+block scripts
+    script.
+        seajs.use(["zepto", "util"], function (a, util) {
+            var pageController = {
+                init: function () {
+                    util.getWeiboApi();
+                    this.getWbHandle();
+                },
+                store: {
+                    serverIP: util.getServerIp(),
+                    userId: util.getUserId()
+                },
+                getWbHandle: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: "POST",
+                        url: _this.store.serverIP + '/app/weibo/lightapp/follow',
+                        data: {
+                            userId: _this.store.userId
+                        },
+                        dataType: "json",
+                        success: function (jsonData) {
+                        }
+                    });
+                }
+            };
+            $(function () {
+                pageController.init();
+            });
+        });
+
+block content
+    div.page-group
+        div.page.page-current
+            div.content.native-scroll.quiz-con
+                div.quiz-top
+                    img(src="./static/images/def/newUser/quiz_bg1.jpg")
+                div.quiz-end
+                    img(src="./static/images/def/newUser/quiz_end.jpg")
+                div.quiz-btn
+                    a(href="index.html").com_btn 领取大红包
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

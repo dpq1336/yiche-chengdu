@@ -1,0 +1,24 @@
+extends template.jade
+block titleAndStyles
+    title 修改支付密码
+block scripts
+    script(type="text/javascript",charset="utf-8",src="./static/js/def/modifyPwd.js")
+block content
+    div.page-group
+        div.page.page-current
+                //-
+                    div.set-pay-pwd
+                        div.input-pwd
+                            span.tit 原支付密码
+                            input(type="password",placeholder="请输入原密码")
+                            span.icon-pwd-close
+                    div.pl26
+                        a.btn_buy 下一步
+
+
+
+
+
+
+
+

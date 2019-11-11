@@ -1,0 +1,997 @@
+.main_banner {
+  height: 296px;
+}
+
+.main_nav {
+  height: 40px;
+  background: #4180FF;
+}
+
+.main_nav .wrapper {
+  width: 1200px;
+  height: 40px;
+  margin: 0 auto;
+}
+
+.main_nav .wrapper ul li {
+  float: left;
+  line-height: 40px;
+}
+
+.main_nav .wrapper ul li a {
+  display: inline-block;
+  color: white;
+  font-weight: 800;
+  padding: 0 35px;
+  font-size: 14px;
+}
+
+.main_nav .wrapper ul li a:hover {
+  color: #22FBB5;
+  background-color: #0532FE;
+}
+
+.main_nav .wrapper ul li:nth-child(1) a {
+  color: #22FBB5;
+  background-color: #0532FE;
+}
+
+.main_pic {
+  padding-top: 20px;
+  background-color: #0532FF;
+  padding-bottom: 90px;
+}
+
+.main_pic .wrapper {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.main_pic .wrapper .brand {
+  height: 120px;
+  background-color: #4180FF;
+  position: relative;
+}
+
+.main_pic .wrapper .brand ._left,
+.main_pic .wrapper .brand ._right {
+  width: 10px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.main_pic .wrapper .brand ._left {
+  position: absolute;
+  background: url("http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-left.png") no-repeat;
+  background-size: 100%;
+  left: 20px;
+  top: 50px;
+}
+
+.main_pic .wrapper .brand ._right {
+  position: absolute;
+  background: url("http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-right.png") no-repeat;
+  background-size: 100%;
+  right: 20px;
+  top: 50px;
+}
+
+.main_pic .wrapper .brand .main {
+  width: 1060px;
+  height: 120px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.main_pic .wrapper .brand .main .cars {
+  width: 3000px;
+}
+
+.main_pic .wrapper .brand .main .cars ul {
+  width: 100%;
+  height: 120px;
+  box-sizing: border-box;
+  padding-top: 30px;
+}
+
+.main_pic .wrapper .brand .main .cars ul li {
+  width: 50px;
+  float: left;
+  text-align: center;
+  margin-right: 34px;
+  height: 90px;
+  position: relative;
+}
+
+.main_pic .wrapper .brand .main .cars ul li a:nth-child(1) {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.main_pic .wrapper .brand .main .cars ul li a:nth-child(2) {
+  position: absolute;
+  display: block;
+  color: white;
+  font-size: 12px;
+  bottom: 20px;
+  text-align: center;
+}
+
+.main_pic .wrapper .main_cars {
+  height: 157px;
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+.main_pic .wrapper .main_cars .left {
+  width: 70px;
+  height: 147px;
+  background-color: #4180FF;
+  margin-top: 10px;
+  margin-right: 40px;
+  padding: 25px 22.5px;
+  box-sizing: border-box;
+}
+
+.main_pic .wrapper .main_cars .left span {
+  display: inline-block;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 26px;
+}
+
+.main_pic .wrapper .main_cars .right {
+  float: left;
+}
+
+.main_pic .wrapper .main_cars .right ul li {
+  float: left;
+  margin-right: 45px;
+}
+
+.main_pic .wrapper .main_cars .right ul li a:nth-child(1) {
+  display: inline-block;
+  background-color: #22FBB5;
+  width: 120px;
+  height: 80px;
+  margin-top: 15px;
+}
+
+.main_pic .wrapper .main_cars .right ul li a:nth-child(2) {
+  display: block;
+  font-size: 14px;
+  color: #333333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.main_pic .wrapper .main_cars .right ul li h5 {
+  color: #999999;
+  font-size: 12px;
+  font-weight: normal;
+  text-align: center;
+}
+
+.main_pic .wrapper .main_cars .right ul li:nth-child(7) {
+  margin-right: 0;
+  width: 60px;
+}
+
+.main_pic .wrapper .main_cars .right ul li:nth-child(7) a {
+  display: inline-block;
+  width: 100%;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container {
+  width: 100%;
+  height: 320px;
+  position: relative;
+  box-sizing: content-box;
+  z-index: 1;
+  overflow: hidden;
+  padding-bottom: 60px;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-wrapper {
+  width: 3600px;
+  height: 100%;
+  z-index: 1;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-wrapper .swiper-slide {
+  float: left;
+  width: 1200px;
+  height: 320px;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-wrapper .swiper-slide .left {
+  width: 477px;
+  height: 320px;
+  margin-right: 5px;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-wrapper .swiper-slide .left a {
+  display: inline-block;
+  position: relative;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-wrapper .swiper-slide .left a p {
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
+  bottom: 15px;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-wrapper .swiper-slide .right {
+  width: 718px;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-wrapper .swiper-slide .right ul li {
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  width: 236px;
+  height: 157px;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-wrapper .swiper-slide .right ul li a {
+  display: inline-block;
+  position: relative;
+  width: 236px;
+  height: 157px;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-wrapper .swiper-slide .right ul li a img {
+  width: 100%;
+  height: 100%;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-wrapper .swiper-slide .right ul li a p {
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  font-weight: normal;
+  color: white;
+  font-size: 16px;
+  bottom: 10px;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-wrapper .swiper-slide .right ul li:nth-child(3n) {
+  margin-right: 0;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-wrapper .swiper-slide .right ul li:nth-child(n+3) {
+  margin-bottom: 0;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-button-prev {
+  width: 30px;
+  height: 60px;
+  position: absolute;
+  left: 0;
+  top: 160px;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-button-next {
+  position: absolute;
+  width: 30px;
+  height: 60px;
+  right: 0;
+  top: 160px;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-pagination {
+  position: absolute;
+  width: 80px;
+  height: 15px;
+  bottom: 20px;
+  left: 560px;
+}
+
+.main_pic .wrapper .pic_lunbo .swiper-container .swiper-pagination span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.main_pic .wrapper .banner {
+  height: 80px;
+  margin-bottom: 65px;
+}
+
+.main_pic .wrapper .banner .left {
+  height: 100%;
+  width: 820px;
+}
+
+.main_pic .wrapper .banner .left a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.main_pic .wrapper .banner .right {
+  height: 100%;
+  width: 360px;
+}
+
+.main_pic .wrapper .banner .right a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.main_pic .wrapper .main_live {
+  background-color: #4180FF;
+  height: 750px;
+  position: relative;
+}
+
+.main_pic .wrapper .main_live .top {
+  width: 1200px;
+  height: 71px;
+  z-index: 22;
+  position: absolute;
+  background: url("http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-banner-6.png");
+}
+
+.main_pic .wrapper .main_live .live {
+  width: 1150px;
+  -webkit-transform: translateY(71px);
+  transform: translateY(71px);
+  height: 462px;
+  margin: 0 auto;
+}
+
+.main_pic .wrapper .main_live .live .player-box {
+  width: 100%;
+  height: 462px;
+}
+
+.main_pic .wrapper .main_live .live .player-box .play-right-box {
+  height: 462px;
+}
+
+.main_pic .wrapper .main_live .live .player-box .play-img {
+  height: 462px;
+}
+
+.main_pic .wrapper .main_live .bottom {
+  width: 1150px;
+  margin: 0 auto;
+  margin-top: 20px;
+  overflow-x: scroll;
+  height: 127px;
+  -webkit-transform: translateY(71px);
+  transform: translateY(71px);
+}
+
+.main_pic .wrapper .main_live .bottom ul {
+  width: 3000px;
+  height: 127px;
+  overflow-x: scroll;
+}
+
+.main_pic .wrapper .main_live .bottom ul li {
+  background-color: #666;
+  float: left;
+  width: 225px;
+  height: 127px;
+  margin-right: 5px;
+  margin-bottom: 20px;
+}
+
+.main_pic .wrapper .main_live .bottom ul li span {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 15px;
+  background-color: #FF4B3B;
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 30px;
+  font-size: 12px;
+}
+
+.main_pic .wrapper .main_live .bottom ul li .user {
+  height: 30px;
+}
+
+.main_pic .wrapper .main_live .bottom ul li .user .left strong {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 50%;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.main_pic .wrapper .main_live .bottom ul li .user .left b {
+  font-weight: normal;
+  color: white;
+  vertical-align: middle;
+}
+
+.main_pic .wrapper .main_live .bottom ul li .user .right {
+  width: 45px;
+  height: 20px;
+  border-radius: 5px;
+  color: #FF4B3B;
+  border: 1px solid #FF4B3B;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+  -webkit-transform: translate(-10px, 5px);
+  transform: translate(-10px, 5px);
+}
+
+.main_pic .wrapper .main_live .bottom ul li h4 {
+  font-size: 16px;
+  padding: 0 10px;
+  color: white;
+  margin-top: 5px;
+}
+
+.main_pic .wrapper .main_live .banner1 {
+  position: absolute;
+  top: -30px;
+  right: 0;
+  width: 608px;
+  height: 60px;
+  background: url("http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-banner-2.png");
+}
+
+.main_pic .wrapper .main_live .banner2 {
+  position: absolute;
+  top: -17px;
+  right: -27px;
+  z-index: 50;
+  width: 54px;
+  height: 265px;
+  background: url("http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-banner-1.png");
+}
+
+.main_pic .wrapper .main_live .banner3 {
+  position: absolute;
+  width: 950px;
+  height: 30px;
+  background: url("http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-banner-3.png");
+  bottom: -15px;
+}
+
+.main_pic .wrapper .main_live .banner4 {
+  position: absolute;
+  width: 35px;
+  height: 170px;
+  background: url("http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-banner-4.png");
+  left: -18px;
+  bottom: -33px;
+  z-index: 99;
+}
+
+.main_pic .wrapper .main_live .banner5 {
+  position: absolute;
+  width: 570px;
+  height: 18px;
+  background: url("http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-banner-5.png");
+  bottom: -33px;
+}
+
+.main_pic .wrapper .main_live .banner6 {
+  position: absolute;
+  width: 658px;
+  height: 1343px;
+  background: url("http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-13.png");
+  bottom: -33px;
+}
+
+.main_text .wrapper .banner {
+  width: 1200px;
+  height: 80px;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+.main_text .wrapper .banner a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background: url("http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-banner-8.png");
+}
+
+.main_text .wrapper .main .left {
+  width: 760px;
+}
+
+.main_text .wrapper .main .left .firsttitle .btitle {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.main_text .wrapper .main .left .firsttitle .btitle img {
+  display: inline-block;
+  width: 30px;
+  height: 27px;
+  vertical-align: middle;
+}
+
+.main_text .wrapper .main .left .firsttitle .btitle span {
+  display: inline-block;
+  font-size: 22px;
+  color: #333;
+  font-weight: bold;
+  vertical-align: middle;
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
+}
+
+.main_text .wrapper .main .left .firsttitle .content .left {
+  margin-right: 30px;
+  width: 240px;
+}
+
+.main_text .wrapper .main .left .firsttitle .content .left a {
+  display: inline-block;
+  width: 240px;
+  height: 160px;
+  position: relative;
+}
+
+.main_text .wrapper .main .left .firsttitle .content .left a img {
+  height: 100%;
+}
+
+.main_text .wrapper .main .left .firsttitle .content .left a p {
+  position: absolute;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  bottom: 10px;
+  width: 100%;
+  font-weight: bold;
+}
+
+.main_text .wrapper .main .left .firsttitle .content .right {
+  width: 390px;
+  float: left;
+  padding-top: 5px;
+}
+
+.main_text .wrapper .main .left .firsttitle .content .right a {
+  font-size: 22px;
+  color: #333;
+  font-weight: bold;
+}
+
+.main_text .wrapper .main .left .firsttitle .content .right a:hover {
+  color: #FF4B3B;
+}
+
+.main_text .wrapper .main .left .firsttitle .content .right .b_title {
+  margin-top: 20px;
+}
+
+.main_text .wrapper .main .left .firsttitle .content .right .b_title a {
+  font-size: 12px;
+  display: inline-block;
+  font-weight: normal;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.main_text .wrapper .main .left .firsttitle .content .right .b_title a:hover {
+  color: #FF4B3B;
+}
+
+.main_text .wrapper .main .left .firsttitle .content .right .b_title b {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background-color: #ccc;
+  vertical-align: middle;
+  margin: 0 3px;
+}
+
+.main_text .wrapper .main .left .firsttitle .content .right .b_banner a {
+  font-size: 12px;
+  display: inline-block;
+  font-weight: normal;
+}
+
+.main_text .wrapper .main .left .firsttitle .content .right .b_banner b {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background-color: #ccc;
+  vertical-align: middle;
+  margin: 0 3px;
+}
+
+.main_text .wrapper .main .left .newcarask {
+  margin-top: 15px;
+}
+
+.main_text .wrapper .main .left .newcarask .btitle {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.main_text .wrapper .main .left .newcarask .btitle img {
+  display: inline-block;
+  width: 30px;
+  height: 27px;
+  vertical-align: middle;
+}
+
+.main_text .wrapper .main .left .newcarask .btitle span {
+  display: inline-block;
+  font-size: 22px;
+  color: #333;
+  font-weight: bold;
+  vertical-align: middle;
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
+}
+
+.main_text .wrapper .main .left .newcarask .content .left {
+  margin-right: 30px;
+  width: 240px;
+}
+
+.main_text .wrapper .main .left .newcarask .content .left a {
+  display: inline-block;
+  width: 240px;
+  height: 160px;
+  position: relative;
+}
+
+.main_text .wrapper .main .left .newcarask .content .left a img {
+  height: 100%;
+}
+
+.main_text .wrapper .main .left .newcarask .content .left a p {
+  position: absolute;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  bottom: 10px;
+  width: 100%;
+  font-weight: bold;
+}
+
+.main_text .wrapper .main .left .newcarask .content .left a:nth-child(1) {
+  margin-bottom: 15px;
+}
+
+.main_text .wrapper .main .left .newcarask .content .right {
+  width: 390px;
+  float: left;
+  padding-top: 5px;
+}
+
+.main_text .wrapper .main .left .newcarask .content .right a {
+  font-size: 22px;
+  color: #333;
+  font-weight: bold;
+}
+
+.main_text .wrapper .main .left .newcarask .content .right a:hover {
+  color: #FF4B3B;
+}
+
+.main_text .wrapper .main .left .newcarask .content .right .c_title {
+  margin-top: 25px;
+}
+
+.main_text .wrapper .main .left .newcarask .content .right .c_title a {
+  font-size: 12px;
+  display: inline-block;
+  font-weight: normal;
+  color: #333;
+  margin-bottom: 17px;
+}
+
+.main_text .wrapper .main .left .newcarask .content .right .c_title a:hover {
+  color: #FF4B3B;
+}
+
+.main_text .wrapper .main .left .newcarask .content .right .c_title .fenge {
+  margin-bottom: 45px;
+}
+
+.main_text .wrapper .main .left .newcarask .content .right .c_title b {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background-color: #ccc;
+  vertical-align: middle;
+  margin: 0 3px;
+}
+
+.main_text .wrapper .main .left .newcarask .content .right .c_banner a {
+  font-size: 12px;
+  display: inline-block;
+  font-weight: normal;
+}
+
+.main_text .wrapper .main .left .newcarask .content .right .c_banner b {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background-color: #ccc;
+  vertical-align: middle;
+  margin: 0 3px;
+}
+
+.main_text .wrapper .main .left .yichenum {
+  margin-top: 15px;
+}
+
+.main_text .wrapper .main .left .yichenum .btitle {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.main_text .wrapper .main .left .yichenum .btitle img {
+  display: inline-block;
+  width: 30px;
+  height: 27px;
+  vertical-align: middle;
+}
+
+.main_text .wrapper .main .left .yichenum .btitle span {
+  display: inline-block;
+  font-size: 22px;
+  color: #333;
+  font-weight: bold;
+  vertical-align: middle;
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
+}
+
+.main_text .wrapper .main .left .yichenum .content .left {
+  margin-right: 30px;
+  width: 240px;
+}
+
+.main_text .wrapper .main .left .yichenum .content .left a {
+  display: inline-block;
+  width: 240px;
+  height: 160px;
+  position: relative;
+}
+
+.main_text .wrapper .main .left .yichenum .content .left a img {
+  height: 100%;
+}
+
+.main_text .wrapper .main .left .yichenum .content .left a p {
+  position: absolute;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  bottom: 10px;
+  width: 100%;
+  font-weight: bold;
+}
+
+.main_text .wrapper .main .left .yichenum .content .left a:nth-child(1) {
+  margin-bottom: 15px;
+}
+
+.main_text .wrapper .main .left .yichenum .content .right {
+  width: 390px;
+  float: left;
+  padding-top: 5px;
+}
+
+.main_text .wrapper .main .left .yichenum .content .right a {
+  font-size: 22px;
+  color: #333;
+  font-weight: bold;
+}
+
+.main_text .wrapper .main .left .yichenum .content .right a:hover {
+  color: #FF4B3B;
+}
+
+.main_text .wrapper .main .left .yichenum .content .right .c_title {
+  margin-top: 25px;
+}
+
+.main_text .wrapper .main .left .yichenum .content .right .c_title a {
+  font-size: 12px;
+  display: inline-block;
+  font-weight: normal;
+  color: #333;
+  margin-bottom: 17px;
+}
+
+.main_text .wrapper .main .left .yichenum .content .right .c_title a:hover {
+  color: #FF4B3B;
+}
+
+.main_text .wrapper .main .left .yichenum .content .right .c_title .fenge {
+  margin-bottom: 45px;
+}
+
+.main_text .wrapper .main .left .yichenum .content .right .c_title b {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background-color: #ccc;
+  vertical-align: middle;
+  margin: 0 3px;
+}
+
+.main_text .wrapper .main .left .yichenum .content .right .c_banner a {
+  font-size: 12px;
+  display: inline-block;
+  font-weight: normal;
+}
+
+.main_text .wrapper .main .left .yichenum .content .right .c_banner b {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background-color: #ccc;
+  vertical-align: middle;
+  margin: 0 3px;
+}
+
+.show_car {
+  background-color: #2A5FFF;
+  padding-top: 60px;
+}
+
+.show_car .wrapper .video .banner {
+  width: 966px;
+  height: 197px;
+  margin: 0 auto;
+  background: url("http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-6.png") no-repeat;
+}
+
+.show_car .wrapper .video .lunbo .swiper-container2 {
+  overflow: hidden;
+  position: relative;
+}
+
+.show_car .wrapper .video .lunbo .swiper-container2 .swiper-wrapper .swiper-slide ul li {
+  margin-right: 40px;
+  margin-bottom: 30px;
+  float: left;
+}
+
+.show_car .wrapper .video .lunbo .swiper-container2 .swiper-wrapper .swiper-slide ul li a {
+  display: inline-block;
+  width: 270px;
+  height: 150px;
+}
+
+.show_car .wrapper .video .lunbo .swiper-container2 .swiper-wrapper .swiper-slide ul li a img {
+  height: 100%;
+}
+
+.show_car .wrapper .video .lunbo .swiper-container2 .swiper-wrapper .swiper-slide ul li .content {
+  width: 270px;
+  height: 107px;
+  box-sizing: border-box;
+  padding: 10px 15px 15px 15px;
+  background-color: white;
+  position: relative;
+  -webkit-transform: translateY(-5px);
+  transform: translateY(-5px);
+}
+
+.show_car .wrapper .video .lunbo .swiper-container2 .swiper-wrapper .swiper-slide ul li .content a {
+  width: 100%;
+  height: 42px;
+  color: #333;
+  font-weight: bold;
+}
+
+.show_car .wrapper .video .lunbo .swiper-container2 .swiper-wrapper .swiper-slide ul li .content .bottom a {
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+}
+
+.show_car .wrapper .video .lunbo .swiper-container2 .swiper-wrapper .swiper-slide ul li .content .bottom a b {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.show_car .wrapper .video .lunbo .swiper-container2 .swiper-wrapper .swiper-slide ul li .content .bottom .guanzhu {
+  position: absolute;
+  width: 60px;
+  height: 26px;
+  color: #FF4B3B;
+  border: 1px solid #FF4B3B;
+  text-align: center;
+  line-height: 26px;
+  font-size: 14px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.show_car .wrapper .video .lunbo .swiper-container2 .swiper-wrapper .swiper-slide ul li:nth-child(4n) {
+  margin-right: 0;
+}
+
+.show_car .wrapper .video .lunbo .swiper-container2 .swiper-pagination {
+  position: absolute;
+  width: 80px;
+  height: 15px;
+  bottom: 0px;
+  left: 560px;
+}
+
+.show_car .wrapper .video .lunbo .swiper-container2 .swiper-pagination span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.show_car .wrapper .more {
+  margin-top: 40px;
+  margin-bottom: 90px;
+  text-align: center;
+}
+
+.show_car .wrapper .more a {
+  display: inline-block;
+  width: 220px;
+  height: 75px;
+  background-color: red;
+}
+
+.show_car .wrapper .newcar .banner {
+  width: 966px;
+  height: 197px;
+  margin: 0 auto;
+  background: url("http://image.bitautoimg.com/yc-pc/expo-pc/special/index/index-9.png") no-repeat;
+}
+
+.show_car .wrapper .newcar .content .lunbo .swiper-container3 .swiper-wrapper .swiper-slide {
+  height: 437px;
+}
+
+.show_car .wrapper .newcar .content .lunbo .swiper-container3 .swiper-wrapper .swiper-slide .left {
+  margin-right: 10px;
+}
+
+.show_car .wrapper .newcar .content .lunbo .swiper-container3 .swiper-wrapper .swiper-slide .left a {
+  display: inline-block;
+  width: 494px;
+  height: 437px;
+}
+
+.show_car .wrapper .newcar .content .lunbo .swiper-container3 .swiper-wrapper .swiper-slide .left a img {
+  height: 100%;
+}
+
+.show_car .wrapper .newcar .content .lunbo .swiper-container3 .swiper-wrapper .swiper-slide .right {
+  width: 690px;
+}
+
+.show_car .wrapper .newcar .content .lunbo .swiper-container3 .swiper-wrapper .swiper-slide .right ul li {
+  float: left;
+}
+
+/*# sourceMappingURL=index.css.map */

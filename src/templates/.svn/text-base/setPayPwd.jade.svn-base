@@ -1,0 +1,31 @@
+extends template.jade
+block titleAndStyles
+    title 设置支付密码
+    style.
+        .set_pass_word_box{
+            margin-top: 4.25rem;
+            padding-top: 0;
+        }
+        .real_bk_Top_img2,.real_bk_Top_img1{
+            display: none;
+        }
+block scripts
+    script(type="text/javascript",charset="utf-8",src="./static/js/def/setPayPwd.js")
+block content
+    div.page-group
+        div.page.page-current
+            div.real_bk_Top
+                img(src="./static/images/def/icons/step_two.png").real_bk_Top_img1
+                img(src="./static/images/def/icons/step_two_old.png").real_bk_Top_img2
+                //-
+                    div.set-pay-pwd
+                        div.input-pwd.l-b
+                            span.tit 输入支付密码
+                            input(type="text",placeholder="请输入六位数字密码")
+                            span.icon-pwd-close
+                        div.input-pwd
+                            span.tit 确认支付密码
+                            input(type="text",placeholder="请再次输入六位密码")
+                            span.icon-pwd-close.icon-pwd-open
+                        div.pl26
+                            a.btn_buy(href="javascript:void(0);") 确认修改

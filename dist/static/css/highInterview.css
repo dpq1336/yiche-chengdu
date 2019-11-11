@@ -1,0 +1,209 @@
+.main_banner {
+  height: 296px;
+}
+
+.main_nav {
+  height: 40px;
+  background: #4180FF;
+}
+
+.main_nav .wrapper {
+  width: 1200px;
+  height: 40px;
+  margin: 0 auto;
+}
+
+.main_nav .wrapper ul li {
+  float: left;
+  line-height: 40px;
+}
+
+.main_nav .wrapper ul li a {
+  display: inline-block;
+  color: white;
+  font-weight: 800;
+  padding: 0 35px;
+  font-size: 14px;
+}
+
+.main_nav .wrapper ul li a:hover {
+  color: #22FBB5;
+  background-color: #0532FE;
+}
+
+.main_nav .wrapper ul li:nth-child(9) a {
+  color: #22FBB5;
+  background-color: #0532FE;
+}
+
+.main_body {
+  margin-top: 20px;
+  margin-bottom: 26px;
+}
+
+.main_body .wrapper {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.main_body .wrapper .banner .left a {
+  display: inline-block;
+  width: 598px;
+  height: 401px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.main_body .wrapper .banner .left a span {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  position: absolute;
+  color: white;
+  font-weight: 800;
+  font-size: 20px;
+  bottom: 15px;
+}
+
+.main_body .wrapper .banner .left a img {
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-transform .5s ease-out;
+  transition: -webkit-transform .5s ease-out;
+  transition: transform .5s ease-out;
+  transition: transform .5s ease-out, -webkit-transform .5s ease-out;
+}
+
+.main_body .wrapper .banner .left a img:hover {
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.main_body .wrapper .banner .right {
+  width: 598px;
+  height: 401px;
+}
+
+.main_body .wrapper .banner .right a {
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  display: inline-block;
+  width: 294px;
+  height: 198px;
+  overflow: hidden;
+  position: relative;
+}
+
+.main_body .wrapper .banner .right a span {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  position: absolute;
+  color: white;
+  font-weight: 800;
+  font-size: 16px;
+  bottom: 15px;
+}
+
+.main_body .wrapper .banner .right a img {
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-transform .5s ease-out;
+  transition: -webkit-transform .5s ease-out;
+  transition: transform .5s ease-out;
+  transition: transform .5s ease-out, -webkit-transform .5s ease-out;
+}
+
+.main_body .wrapper .banner .right a img:hover {
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.main_body .wrapper .highInterview {
+  margin-top: 20px;
+}
+
+.main_body .wrapper .highInterview h2 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E1E1E1;
+  font-weight: 800;
+}
+
+.main_body .wrapper .highInterview .clear {
+  margin-top: 20px;
+}
+
+.main_body .wrapper .highInterview .clear li {
+  float: left;
+  width: 570px;
+  height: 160px;
+  margin-bottom: 30px;
+}
+
+.main_body .wrapper .highInterview .clear li .left {
+  width: 240px;
+  height: 100%;
+}
+
+.main_body .wrapper .highInterview .clear li .left a {
+  height: 100%;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.main_body .wrapper .highInterview .clear li .left a img {
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-transform .5s ease-out;
+  transition: -webkit-transform .5s ease-out;
+  transition: transform .5s ease-out;
+  transition: transform .5s ease-out, -webkit-transform .5s ease-out;
+}
+
+.main_body .wrapper .highInterview .clear li .left a img:hover {
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.main_body .wrapper .highInterview .clear li .right {
+  width: 330px;
+  box-sizing: border-box;
+  padding-top: 5px;
+  padding-left: 12px;
+}
+
+.main_body .wrapper .highInterview .clear li .right a {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+.main_body .wrapper .highInterview .clear li .right a:hover {
+  color: #FF4B3B;
+}
+
+.main_body .wrapper .highInterview .clear li .right a:hover img:hover {
+  -webkit-transition: -webkit-transform .5s ease-out;
+  transition: -webkit-transform .5s ease-out;
+  transition: transform .5s ease-out;
+  transition: transform .5s ease-out, -webkit-transform .5s ease-out;
+}
+
+.main_body .wrapper .highInterview .clear li .right p {
+  padding-top: 7px;
+  height: 50px;
+  background: url(http://image.bitautoimg.com/yc-pc/expo-pc/special/high-fangtan-top.png) no-repeat 0 0;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #4A4A4A;
+  line-height: 26px;
+  text-indent: 1.5em;
+  overflow: hidden;
+}
+
+.main_body .wrapper .highInterview .clear li:nth-of-type(odd) {
+  margin-right: 60px;
+}
+
+/*# sourceMappingURL=highInterview.css.map */

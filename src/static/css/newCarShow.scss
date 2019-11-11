@@ -1,0 +1,333 @@
+.main_banner {
+  height: 296px;
+}
+
+.main_nav {
+  height: 40px;
+  background: #4180FF;
+}
+
+.main_nav .wrapper {
+  width: 1200px;
+  height: 40px;
+  margin: 0 auto;
+
+  ul {
+    li {
+      float: left;
+      line-height: 40px;
+
+
+
+      a {
+        display: inline-block;
+        color: white;
+        font-weight: 800;
+        padding: 0 35px;
+        font-size: 14px;
+      }
+
+      a:hover {
+        color: #22FBB5;
+        background-color: #0532FE;
+      }
+
+
+    }
+
+    li:nth-child(8) a {
+      color: #22FBB5;
+      background-color: #0532FE;
+
+    }
+  }
+
+}
+
+.main_body {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  .wrapper {
+    width: 1200px;
+    margin: 0 auto;
+
+    .position {
+      color: #999999;
+
+      span {
+        color: black;
+        vertical-align: middle;
+      }
+    }
+
+    .search {
+
+      b,
+      span {
+        display: inline-block;
+      }
+
+      button {
+        width: 56px;
+        height: 20px;
+        color: #4180FF;
+        border: 1px solid #4180FF;
+        border-radius: 5%;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        cursor: pointer;
+      }
+
+      .level {
+        margin-bottom: 15px;
+        height: 26px;
+        line-height: 26px;
+
+        b {
+          display: inline-block;
+          margin-right: 5px;
+        }
+
+        span {
+          display: inline-block;
+          padding: 0 11px;
+          color: #333;
+          cursor: pointer;
+          border-radius: 7%;
+
+        }
+      }
+
+      .brand {
+        b {
+          display: inline-block;
+          margin-right: 5px;
+        }
+
+        span {
+          display: inline-block;
+          padding: 0 7px;
+          color: #333;
+          cursor: pointer;
+
+
+        }
+
+        .nolimit {
+          display: inline-block;
+          padding: 0 11px;
+          height: 26px;
+          line-height: 26px;
+          border-radius: 7%;
+
+        }
+
+        .search_brand {
+          margin-top: 15px;
+          border-top: solid 1px #EDEDED;
+          padding-top: 10px;
+          margin-top: 15px;
+          margin-left: 90px;
+
+          span {
+            height: 24px;
+            line-height: 24px;
+            color: #999;
+            padding: 0 8px;
+            cursor: pointer;
+            border-radius: 8%;
+
+          }
+        }
+
+      }
+
+
+
+      .venue {
+        margin-top: 15px;
+
+        span {
+          height: 26px;
+          line-height: 26px;
+          display: inline-block;
+          margin-right: 15px;
+          padding: 0 9px;
+          color: #333;
+          cursor: pointer;
+          border-radius: 8%;
+        }
+
+        .nolimit {
+          display: inline-block;
+          padding: 0 10px;
+          height: 26px;
+          line-height: 26px;
+          margin-left: 7px;
+        }
+
+      }
+    }
+
+    .carShow {
+      margin-top: 15px;
+
+      ul {
+        li {
+          float: left;
+          width: 279px;
+          height: 283px;
+          margin-right: 15px;
+          margin-bottom: 15px;
+
+
+
+          a:nth-child(1) {
+            display: inline-block;
+            height: 186px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+
+            strong {
+              display: inline-block;
+              background-color: #FF4B3B;
+              color: white;
+              width: 60px;
+              height: 20px;
+              line-height: 20px;
+              position: absolute;
+              font-weight: normal;
+              text-align: center;
+              border-radius: 20px;
+              top: 10px;
+              left: 10px;
+            }
+
+            img {
+              width: 100%;
+              height: 100%;
+              transition: transform .5s ease-out;
+            }
+
+            img:hover {
+              transform: scale(1.03);
+            }
+          }
+
+          a:nth-child(2) {
+            display: inline-block;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+          }
+
+          a:hover {
+            color: #FF4B3B;
+
+          }
+
+          p {
+            margin-bottom: 10px;
+            color: #FF4B3B;
+            font-size: 16px;
+          }
+
+          .report {
+            height: 145px;
+
+            span {
+              display: inline-block;
+              color: #333;
+              background-size: 100%;
+              font-size: 14px;
+
+              img {
+                display: inline-block;
+                width: 8px;
+                height: 5px;
+                margin-left: 5px;
+              }
+            }
+
+            .carreport {
+              display: none;
+              position: absolute;
+              transform: translateY(10px);
+              width: 280px;
+              background-color: white;
+              border: 1px solid #ccc;
+              z-index: 999;
+
+              .one {
+                height: 40px;
+                line-height: 40px;
+                padding-left: 20px;
+                border-bottom: 1px solid #E1E1E1;
+
+                a {
+                  height: 100%;
+                  overflow: hidden;
+                }
+
+                a:hover {
+                  color: #FF4B3B;
+
+                }
+              }
+
+              .two {
+                height: 40px;
+                line-height: 40px;
+                padding-left: 20px;
+                border-bottom: 1px solid #E1E1E1;
+
+                a {
+                  height: 100%;
+                  color: #333;
+                  overflow: hidden;
+                }
+
+                a:hover {
+                  color: #FF4B3B;
+
+                }
+              }
+
+              .three {
+                height: 40px;
+                line-height: 40px;
+                padding-left: 20px;
+
+                a {
+                  height: 100%;
+                  overflow: hidden;
+                }
+
+                a:hover {
+                  color: #FF4B3B;
+
+                }
+              }
+            }
+          }
+
+
+
+        }
+
+
+
+        li:nth-child(4n) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+
+
+}

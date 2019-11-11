@@ -1,0 +1,37 @@
+extends template.jade
+block titleAndStyles
+	title 安全保障
+block scripts
+	script.
+		seajs.use(["zepto","util"], function(a,util) {
+			var pageController = {
+				init: function() {
+					util.getWeiboApi();
+				}
+			}
+			$(function() {
+				pageController.init();
+			});
+		});
+block content
+	div.page-group
+		div.page
+			div.content.bgf1.pd60
+				img(src="./static/images/def/safeIcons/bz_banner.jpg").ge_banner
+				img(src="./static/images/def/safeIcons/safety_img1.jpg").safety_imgTop
+				img(src="./static/images/def/safeIcons/safety_img2.jpg").safety_cont
+				img(src="./static/images/def/safeIcons/safety_img3_1.jpg").safety_imgTop2
+				p.safety_pTxt 本产品由<b>大型保险公司</b>承保，投资人在完整投资期内</br>享受<b>保险保障承诺</b>。
+				//p.safety_pTxt.mt40 一旦出现产品过期的情况，保险公司会在项目</br><b>到期当日24点前</b>启动理赔程序，并于<b>三个工作日内</b></br>将<b>本金及收益直接打入投资人账户内</b>
+				p.safety_pTxt.mt40 投资人无须承担保险的<b>投保费用</b>
+				img(src="./static/images/def/safeIcons/safety_img4.jpg").safety_cont2
+
+				img(src="./static/images/def/safeIcons/safety_img7.png").safety_imgTop4
+				p.safety_pTxt.mt20 <b>银行级别保障</b>
+				p.safety_pTxt.mt40 <b class='mr20'>实名同卡</b>出入安全
+				p.safety_pTxt.mt40 <b class='mr20'>独立专用账户</b>资金专款专用
+				div.safety_animate2
+					i
+					i
+					i
+					img(src="./static/images/def/safeIcons/safety_ship.png").safety_cont4

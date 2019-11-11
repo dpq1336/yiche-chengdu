@@ -1,0 +1,153 @@
+.main_banner {
+  height: 296px;
+}
+
+.main_nav {
+  height: 40px;
+  background: #4180FF;
+}
+
+.main_nav .wrapper {
+  width: 1200px;
+  height: 40px;
+  margin: 0 auto;
+}
+
+.main_nav .wrapper ul li {
+  float: left;
+  line-height: 40px;
+}
+
+.main_nav .wrapper ul li a {
+  display: inline-block;
+  color: white;
+  font-weight: 800;
+  padding: 0 35px;
+  font-size: 14px;
+}
+
+.main_nav .wrapper ul li a:hover {
+  color: #22FBB5;
+  background-color: #0532FE;
+}
+
+.main_nav .wrapper ul li:nth-child(3) a {
+  color: #22FBB5;
+  background-color: #0532FE;
+}
+
+.main_body .wrapper {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.main_body .wrapper .load_more {
+  margin: 40px auto;
+  width: 144px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 16px;
+  color: #333333;
+}
+
+.main_body .wrapper .main_header {
+  height: 74px;
+  border-bottom: 2px solid #E1E1E1;
+}
+
+.main_body .wrapper .main_header .main_tit {
+  font-size: 24px;
+  color: #333333;
+  padding-top: 30px;
+}
+
+.main_body .wrapper .main_card {
+  margin-top: 20px;
+}
+
+.main_body .wrapper .main_card .card_list {
+  width: 299px;
+  height: 351px;
+  margin: 10px 1.3px 20px 0;
+  float: left;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.main_body .wrapper .main_card .card_list img {
+  width: 279px;
+  height: 186px;
+}
+
+.main_body .wrapper .main_card .card_list .card_img {
+  width: 279px;
+  height: 186px;
+}
+
+.main_body .wrapper .main_card .card_list .card_details {
+  padding: 0 15px;
+}
+
+.main_body .wrapper .main_card .card_list .card_details h2 {
+  height: 56px;
+  margin: 10px 0 20px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+  overflow: hidden;
+}
+
+.main_body .wrapper .main_card .card_list .card_details h2 a:hover {
+  color: #FF4B3B;
+}
+
+.main_body .wrapper .main_card .card_list .card_details .card_info .card_author {
+  color: #999999;
+  margin-bottom: 10px;
+}
+
+.main_body .wrapper .main_card .card_list .card_details .card_info .card_author em {
+  color: #151515;
+}
+
+.main_body .wrapper .main_card .card_list .card_details .card_bottom {
+  margin-bottom: 10px;
+  height: 16px;
+  line-height: 16px;
+}
+
+.main_body .wrapper .main_card .card_list .card_details .card_bottom .card_view {
+  background: url(http://image.bitautoimg.com/yc-pc/expo-pc/special/auto-info-shape.png) 0 3px no-repeat;
+  display: inline-block;
+  padding-left: 20px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  color: #999;
+}
+
+.main_body .wrapper .main_card .card_list .card_details .card_bottom .card_comment {
+  background: url(http://image.bitautoimg.com/yc-pc/expo-pc/special/auto-info-common.png) 0 3px no-repeat;
+  display: inline-block;
+  padding-left: 20px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  color: #999;
+}
+
+.main_body .wrapper .main_card .card_list .card_details .card_bottom .card_time {
+  float: right;
+  margin-right: 0;
+  color: #999999;
+}
+
+.main_body .wrapper .main_card .card_list:nth-child(4n) {
+  margin: 10px 0 20px;
+}
+
+.main_body .wrapper .main_card .card_list:hover {
+  background: #FFFFFF;
+  box-shadow: 1px 2px 12px 0 rgba(153, 153, 153, 0.2);
+}
+
+/*# sourceMappingURL=autoShowInfo.css.map */

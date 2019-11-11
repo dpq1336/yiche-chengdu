@@ -1,0 +1,25 @@
+extends template.jade
+block titleAndStyles
+	title 激活失败
+block scripts
+	script.
+		seajs.use(["zepto","util"], function(a,util) {
+			var pageController = {
+				init: function() {
+					util.getWeiboApi();
+				}
+			}
+			$(function() {
+				pageController.init();
+			});
+		});
+		
+block content
+	div.activaFalse
+		img(src="./static/images/def/icons/activateFalse.png")
+		div.err_Tite 没有获取到您的微博账户信息
+		a.btn_lc.external(href="http://apps.weibo.com/linkcard/1042111:wlcindex01") 刷新试试
+		a.contact.external(href="sinaweibo://messagelist?uid=5957836033") 联系客服
+			
+
+

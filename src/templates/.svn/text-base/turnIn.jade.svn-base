@@ -1,0 +1,75 @@
+extends template.jade
+block titleAndStyles
+	title 充值
+	style.
+		.dis_btn {
+			background-color: #dbdbdb;
+			color: #999;
+		}
+		.content {
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+block scripts
+		script(type="text/javascript",charset="utf-8",src="./static/js/def/turnIn.js")
+block content
+	div.page-group
+		div.page.page-current
+			div.content
+				//-
+					form
+						div.bgff.clearfix.borderTm
+							div.bank_x 招商银行（尾号3456）
+							div.banktite_x 该卡本次最多可转入1,000.00元
+						div.bgff.clearfix.mb20
+							div.bank_x 账户余额（元）
+							div.banktite_x 10
+						div.buyInput_x.bgff
+							span 金额（元）
+							input
+						div.err_x.pl26.text_alignR 5000元起投，请输入整数
+						div.pl26.turnIn.mt0
+							a.btn_buy.turn_mb0(href='./turnInSuccess.html') 确认转入
+					div.turn_Tips
+						div.turn_Tipe_title 小贴士
+						div.turn_Tipe_Cont
+							p 1.每次最少提现1元，最多5万元；
+							p 2.每日最多提现1次，每日最多提现5万元。
+				//-
+					div.common_layer
+					div.pass_word_box
+						div.pass_head 确认支付密码
+							p
+						div.pay_money_cont
+							div.pay_password_text 买入金额1000.00元
+							div.pay_password_input.clearfix
+								input.pay_password_side(type="password",maxlength='1')
+								input.pay_password_side(type="password",maxlength='1')
+								input.pay_password_side(type="password",maxlength='1')
+								input.pay_password_side(type="password",maxlength='1')
+								input.pay_password_side(type="password",maxlength='1')
+								input.pay_password_side(type="password",maxlength='1')
+						div.pay_password_number.clearfix
+							div.pay_number 1
+							div.pay_number.bdlr34 2
+							div.pay_number 3
+							div.pay_number 4
+							div.pay_number.bdlr34 5
+							div.pay_number 6
+							div.pay_number 7
+							div.pay_number.bdlr34 8
+							div.pay_number 9
+							div.pay_number.bgca
+							div.pay_number.bdlr34 0
+							div.pay_number.bgcaImg
+				//-
+					div.common_layer3
+					div.error_tips_x
+						div.error_cont_x 支付密码不正确，还可以输入4次
+						div.error_fot_x
+							a(href="javascript: void(0);") 找回密码
+							a(href="javascript: void(0);") 重新输入
+
+

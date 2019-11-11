@@ -1,0 +1,34 @@
+extends template.jade
+block titleAndStyles
+	title 实名认证
+block scripts
+	script(type='text/javascript',src='./static/js/def/realName.js',charset='utf-8')
+block content
+	div.page-group
+		div.page.page-current
+			div.content.native-scroll
+				div.real_name
+					div.rn_steps
+						//-
+							div.rn_th_steps
+								div.steps_t.step1
+									div.step_img
+									div.step_text
+						div.rn_form
+							form
+								div.t_card.t_form_card
+									div.t_fc_item
+										div.t_fci_l 真实姓名
+										div.t_fci_r
+											input.com_input.userName(type="text",placeholder="请输入您的真实姓名",maxlength="20")
+									div.t_fc_item
+										div.t_fci_l 身份证号
+										div.t_fci_r
+											input.com_input.userCard(type="text",placeholder="请输入您的身份证号",maxlength="18")
+								div.err_x.pl26.error_msg.dis_none
+								a.external.com_btn.rn_next_btn.dis_btn(href="javascript:void(0)") 下一步
+						p.footer_text 实名认证由新浪支付提供
+					
+			
+
+
